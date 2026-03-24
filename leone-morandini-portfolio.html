@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leone Morandini — Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400;1,900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f0ede6;
+    --accent: #d4ff5c;
+    --gray: #2a2a2a;
+    --mid: #888;
+    --font-display: 'Playfair Display', serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.6;
+    cursor: none;
+    overflow-x: hidden;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease, width 0.2s, height 0.2s;
+    transform: translate(-50%, -50%);
+  }
+  .cursor.expand { width: 48px; height: 48px; background: transparent; border: 1.5px solid var(--accent); }
+
+  /* Nav */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 28px 40px;
+    mix-blend-mode: difference;
+  }
+  .nav-logo { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em; color: var(--white); text-decoration: none; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: var(--white); text-decoration: none; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; transition: opacity 0.2s; }
+  .nav-links a:hover { opacity: 1; }
+
+  /* Hero */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 40px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-tag {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.3s forwards;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(64px, 10vw, 140px);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.5s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-bottom {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.8s forwards;
+  }
+
+  .hero-desc {
+    max-width: 420px;
+    font-size: 14px;
+    color: var(--mid);
+    line-height: 1.8;
+  }
+
+  .hero-scroll {
+    display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid);
+  }
+  .scroll-line {
+    width: 60px; height: 1px; background: var(--mid);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+  @keyframes scrollLine { 0%, 100% { width: 60px; } 50% { width: 120px; } }
+
+  /* Marquee */
+  .marquee-wrapper {
+    border-top: 1px solid var(--gray);
+    border-bottom: 1px solid var(--gray);
+    padding: 18px 0;
+    overflow: hidden;
+    margin: 80px 0;
+  }
+  .marquee-track {
+    display: flex; gap: 60px;
+    animation: marquee 18s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-item {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-style: italic;
+    color: var(--mid);
+    flex-shrink: 0;
+  }
+  .marquee-dot { color: var(--accent); }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* Sections */
+  section { padding: 80px 40px; }
+
+  .section-label {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 48px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--gray); }
+
+  /* About */
+  #about { border-top: 1px solid var(--gray); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+
+  .about-big {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .about-big em { font-style: italic; color: var(--accent); }
+
+  .about-right { padding-top: 8px; }
+  .about-text { color: var(--mid); line-height: 1.9; margin-bottom: 32px; font-size: 14px; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+  .tag {
+    border: 1px solid var(--gray);
+    padding: 6px 14px;
+    font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--mid);
+    transition: all 0.2s;
+  }
+  .tag:hover { border-color: var(--accent); color: var(--accent); }
+
+  .stat-row { display: flex; gap: 40px; }
+  .stat-num { font-family: var(--font-display); font-size: 48px; font-weight: 900; color: var(--white); line-height: 1; }
+  .stat-label { font-size: 11px; color: var(--mid); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+
+  /* Work */
+  #work { border-top: 1px solid var(--gray); }
+
+  .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+
+  .work-item {
+    position: relative; overflow: hidden;
+    background: var(--gray);
+    aspect-ratio: 4/3;
+    cursor: none;
+  }
+  .work-item.tall { aspect-ratio: 3/4; }
+
+  /* 
+   * TO ADD YOUR OWN IMAGES:
+   * Replace the .work-placeholder with an <img> tag:
+   * <img src="your-image.jpg" style="width:100%;height:100%;object-fit:cover;">
+   */
+  .work-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 80px;
+    opacity: 0.05;
+    transition: opacity 0.4s;
+  }
+  .work-item:hover .work-placeholder { opacity: 0.12; }
+
+  .work-info {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 28px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  .work-item:hover .work-info { transform: translateY(0); opacity: 1; }
+
+  .work-title { font-family: var(--font-display); font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .work-cat { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+
+  .work-num {
+    position: absolute; top: 20px; right: 20px;
+    font-size: 11px; color: var(--mid); letter-spacing: 0.1em;
+  }
+
+  /* Services */
+  #services { border-top: 1px solid var(--gray); }
+  .service-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--gray);
+    transition: padding-left 0.3s;
+  }
+  .service-item:hover { padding-left: 16px; }
+  .service-item:hover .service-name { color: var(--accent); }
+
+  .service-name { font-family: var(--font-display); font-size: clamp(24px, 3vw, 40px); font-style: italic; transition: color 0.3s; }
+  .service-tag { font-size: 11px; color: var(--mid); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* Contact */
+  #contact {
+    border-top: 1px solid var(--gray);
+    text-align: center;
+    padding: 100px 40px;
+  }
+  .contact-title {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 8vw, 110px);
+    font-weight: 900;
+    line-height: 0.95;
+    margin-bottom: 48px;
+  }
+  .contact-title em { font-style: italic; color: var(--accent); }
+
+  .cta-btn {
+    display: inline-block;
+    border: 1.5px solid var(--white);
+    padding: 18px 48px;
+    font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--white); text-decoration: none;
+    transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .cta-btn::before {
+    content: ''; position: absolute; inset: 0;
+    background: var(--accent);
+    transform: translateX(-101%);
+    transition: transform 0.3s ease;
+    z-index: -1;
+  }
+  .cta-btn:hover { color: var(--black); border-color: var(--accent); }
+  .cta-btn:hover::before { transform: translateX(0); }
+
+  .contact-links {
+    display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+    margin-top: 60px; padding-top: 48px;
+    border-top: 1px solid var(--gray);
+  }
+  .contact-links a { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+  .contact-links a:hover { color: var(--accent); }
+
+  /* Footer */
+  footer {
+    display: flex; justify-content: space-between;
+    padding: 24px 40px;
+    border-top: 1px solid var(--gray);
+    font-size: 11px; color: var(--mid); letter-spacing: 0.08em;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Noise overlay */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 9998; opacity: 0.4;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav { padding: 20px 20px; }
+    .nav-links { gap: 16px; }
+    section { padding: 60px 20px; }
+    #hero { padding: 0 20px 40px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .work-grid { grid-template-columns: 1fr; }
+    .work-item.tall { aspect-ratio: 4/3; }
+    .hero-bottom { flex-direction: column; gap: 24px; align-items: flex-start; }
+    footer { flex-direction: column; gap: 8px; padding: 20px; }
+    .contact-links { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- Nav -->
+<nav>
+  <a href="#" class="nav-logo">LM ©2025</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section id="hero">
+  <p class="hero-tag">Designer · Videomaker · Photographer — Based in Turin → Lisbon?</p>
+  <h1 class="hero-title">
+    I tell<br>
+    <em>stories</em><br>
+    that stick.
+  </h1>
+  <div class="hero-bottom">
+    <p class="hero-desc">Hi, I'm Leone. Italian by origin, curious by nature. I design experiences that feel human — because before I touch a screen, I talk to people.</p>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      Scroll
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-wrapper">
+  <div class="marquee-track">
+    <span class="marquee-item">Design <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Photography <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Video <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Storytelling <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Empathy-first <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Communication <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Design <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Photography <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Video <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Storytelling <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Empathy-first <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Communication <span class="marquee-dot">✦</span></span>
+  </div>
+</div>
+
+<!-- About -->
+<section id="about">
+  <p class="section-label">00 — About</p>
+  <div class="about-grid">
+    <div class="about-left reveal">
+      <h2 class="about-big">
+        Born in the<br>mountains,<br>
+        <em>built for the</em><br>
+        screen.
+      </h2>
+    </div>
+    <div class="about-right reveal">
+      <p class="about-text">I'm Leone, born 2001 in Piedmont, Italy. I studied Transportation Design at IAAD Turin and I'm currently finishing a Master in Digital Communication Design. I've spent years working with people — as an educator, a photographer, an event organizer — and that's exactly where my design thinking comes from.</p>
+      <p class="about-text">I believe the best design is the kind you don't notice. The kind that just feels right, that talks to the right people in the right language.</p>
+      <div class="tags">
+        <span class="tag">Figma</span>
+        <span class="tag">Photography</span>
+        <span class="tag">Videomaking</span>
+        <span class="tag">Branding</span>
+        <span class="tag">Social Media</span>
+        <span class="tag">Storytelling</span>
+      </div>
+      <div class="stat-row">
+        <div class="stat">
+          <div class="stat-num">4+</div>
+          <div class="stat-label">Years freelance</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Languages</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Curiosity</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Work -->
+<!-- 
+  HOW TO ADD YOUR IMAGES:
+  Replace each .work-placeholder div with:
+  <img src="path/to/your-image.jpg" style="width:100%;height:100%;object-fit:cover;">
+  
+  You can also add a link wrapping the whole .work-item:
+  <a href="https://your-case-study-link.com">
+    <div class="work-item">...</div>
+  </a>
+-->
+<section id="work">
+  <p class="section-label">01 — Selected Work</p>
+  <div class="work-grid">
+    <div class="work-item">
+      <div class="work-placeholder">📸</div>
+      <span class="work-num">01</span>
+      <div class="work-info">
+        <div class="work-title">Wedding Stories</div>
+        <div class="work-cat">Photography · Videomaking</div>
+      </div>
+    </div>
+    <div class="work-item tall">
+      <div class="work-placeholder">🎨</div>
+      <span class="work-num">02</span>
+      <div class="work-info">
+        <div class="work-title">AIKO srl — Brand</div>
+        <div class="work-cat">Design · Social Media</div>
+      </div>
+    </div>
+    <div class="work-item tall" style="background:#1a1a1a;">
+      <div class="work-placeholder">🏛️</div>
+      <span class="work-num">03</span>
+      <div class="work-info">
+        <div class="work-title">Fondazione CRC Events</div>
+        <div class="work-cat">Event Design · Communication</div>
+      </div>
+    </div>
+    <div class="work-item">
+      <div class="work-placeholder">🏠</div>
+      <span class="work-num">04</span>
+      <div class="work-info">
+        <div class="work-title">Real Estate Visual</div>
+        <div class="work-cat">Photography · Videomaking</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services">
+  <p class="section-label">02 — What I do</p>
+  <div class="services-list reveal">
+    <div class="service-item">
+      <span class="service-name">Visual Design</span>
+      <span class="service-tag">Brand · Identity · Print</span>
+    </div>
+    <div class="service-item">
+      <span class="service-name">Photography</span>
+      <span class="service-tag">Events · Wedding · Real Estate</span>
+    </div>
+    <div class="service-item">
+      <span class="service-name">Videomaking</span>
+      <span class="service-tag">Reels · Documentaries · Events</span>
+    </div>
+    <div class="service-item">
+      <span class="service-name">Digital Communication</span>
+      <span class="service-tag">Social · Strategy · Content</span>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <p class="section-label" style="justify-content:center;">03 — Let's Talk</p>
+  <h2 class="contact-title reveal">
+    Got a project?<br>
+    <em>Let's make</em><br>
+    it unforgettable.
+  </h2>
+  <!-- UPDATE: replace href with your real email -->
+  <a href="mailto:leonemorandini@gmail.com" class="cta-btn">Say hello →</a>
+  <div class="contact-links">
+    <!-- UPDATE: replace # with your real social links -->
+    <a href="https://instagram.com/" target="_blank">Instagram</a>
+    <a href="https://linkedin.com/in/" target="_blank">LinkedIn</a>
+    <a href="mailto:leonemorandini@gmail.com">leonemorandini@gmail.com</a>
+    <a href="tel:+393476295182">+39 347 629 5182</a>
+  </div>
+</section>
+
+<footer>
+  <span>Leone Morandini © 2025</span>
+  <span>Turin — Lisbon</span>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, .work-item, .service-item, .cta-btn').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
