@@ -117,159 +117,83 @@
   .intro-text { font-size: 14px; color: var(--mid); line-height: 1.9; max-width: 560px; }
 
   /* ── PHOTO: FULL WIDTH ── */
-  .photo-full {
-    width: 100%; overflow: hidden; position: relative;
-  }
-  .photo-full img {
-    width: 100%; height: 80vh;
-    object-fit: cover; object-position: center;
-    display: block;
-    transition: transform 0.8s ease;
-  }
+  .photo-full { width: 100%; overflow: hidden; }
+  .photo-full img { width: 100%; height: auto; display: block; transition: transform 0.8s ease; }
   .photo-full:hover img { transform: scale(1.02); }
   .photo-caption {
-    padding: 16px 40px 0;
-    font-size: 11px; color: var(--mid); letter-spacing: 0.1em;
-    display: flex; justify-content: space-between;
+    padding: 14px 40px 0;
+    font-size: 11px; color: var(--mid); letter-spacing: 0.09em;
+    display: flex; justify-content: space-between; gap: 20px;
+    flex-wrap: wrap;
   }
 
-  /* ── PHOTO: DUO ── */
-  .photo-duo {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 3px;
-  }
-  .photo-duo .slot { overflow: hidden; position: relative; }
-  .photo-duo .slot img { width: 100%; height: 65vh; object-fit: cover; display: block; transition: transform 0.7s ease; }
+  /* ── PHOTO: DUO — proporzioni naturali ── */
+  .photo-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; align-items: start; }
+  .photo-duo .slot { overflow: hidden; }
+  .photo-duo .slot img { width: 100%; height: auto; display: block; transition: transform 0.7s ease; }
   .photo-duo .slot:hover img { transform: scale(1.03); }
-  .photo-duo .slot.tall img { height: 80vh; }
 
   /* ── PHOTO: TRIO ── */
-  .photo-trio { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 3px; }
+  .photo-trio { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px; align-items: start; }
   .photo-trio .slot { overflow: hidden; }
-  .photo-trio .slot img { width: 100%; height: 55vh; object-fit: cover; display: block; transition: transform 0.7s ease; }
+  .photo-trio .slot img { width: 100%; height: auto; display: block; transition: transform 0.7s ease; }
   .photo-trio .slot:hover img { transform: scale(1.03); }
 
   /* ── PHOTO: ASYMMETRIC ── */
-  .photo-asym { display: grid; grid-template-columns: 1fr 2fr; gap: 3px; }
+  .photo-asym { display: grid; grid-template-columns: 1fr 1.5fr; gap: 3px; align-items: start; }
   .photo-asym .slot { overflow: hidden; }
-  .photo-asym .slot img { width: 100%; height: 70vh; object-fit: cover; display: block; transition: transform 0.7s ease; }
+  .photo-asym .slot img { width: 100%; height: auto; display: block; transition: transform 0.7s ease; }
   .photo-asym .slot:hover img { transform: scale(1.03); }
 
-  /* ── PHOTO: PORTRAIT GRID ── */
-  .photo-portrait-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px; }
+  /* ── PHOTO: PORTRAIT GRID — 3 colonne per verticali ── */
+  .photo-portrait-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px; align-items: start; }
   .photo-portrait-grid .slot { overflow: hidden; }
-  .photo-portrait-grid .slot img { width: 100%; height: 75vh; object-fit: cover; object-position: center top; display: block; transition: transform 0.7s ease; }
+  .photo-portrait-grid .slot img { width: 100%; height: auto; display: block; transition: transform 0.7s ease; }
   .photo-portrait-grid .slot:hover img { transform: scale(1.03); }
 
   /* ── PULL QUOTE ── */
-  .pull-quote {
-    padding: 100px 40px;
-    border-top: 1px solid var(--gray);
-    border-bottom: 1px solid var(--gray);
-  }
-  .pull-quote-inner {
-    display: grid; grid-template-columns: auto 1fr; gap: 48px; align-items: start;
-    max-width: 900px;
-  }
-  .pull-mark {
-    font-family: var(--font-display);
-    font-size: 120px; line-height: 0.7;
-    color: var(--accent); font-style: italic; font-weight: 900;
-    user-select: none;
-  }
-  .pull-text {
-    font-family: var(--font-display);
-    font-size: clamp(24px, 3.5vw, 44px);
-    font-style: italic; line-height: 1.3;
-    font-weight: 400;
-  }
+  .pull-quote { padding: 100px 40px; border-top: 1px solid var(--gray); border-bottom: 1px solid var(--gray); }
+  .pull-quote-inner { display: grid; grid-template-columns: auto 1fr; gap: 48px; align-items: start; max-width: 900px; }
+  .pull-mark { font-family: var(--font-display); font-size: 120px; line-height: 0.7; color: var(--accent); font-style: italic; font-weight: 900; user-select: none; }
+  .pull-text { font-family: var(--font-display); font-size: clamp(24px, 3.5vw, 44px); font-style: italic; line-height: 1.3; font-weight: 400; }
   .pull-text em { color: var(--accent); font-style: normal; font-weight: 900; }
   .pull-author { margin-top: 20px; font-size: 11px; color: var(--mid); letter-spacing: 0.15em; text-transform: uppercase; }
 
   /* ── CHAPTER HEADER ── */
-  .chapter {
-    padding: 80px 40px 48px;
-    border-top: 1px solid var(--gray);
-    display: flex; justify-content: space-between; align-items: flex-end;
-  }
-  .chapter-title {
-    font-family: var(--font-display);
-    font-size: clamp(40px, 6vw, 80px);
-    font-weight: 900; line-height: 0.9;
-    letter-spacing: -0.02em;
-  }
+  .chapter { padding: 80px 40px 48px; border-top: 1px solid var(--gray); display: flex; justify-content: space-between; align-items: flex-end; }
+  .chapter-title { font-family: var(--font-display); font-size: clamp(40px, 6vw, 80px); font-weight: 900; line-height: 0.9; letter-spacing: -0.02em; }
   .chapter-title em { font-style: italic; color: var(--accent); }
   .chapter-text { max-width: 340px; font-size: 13px; color: var(--mid); line-height: 1.8; text-align: right; }
 
   /* ── SIDEBAR TEXT + PHOTO ── */
-  .text-photo {
-    display: grid; grid-template-columns: 1fr 1.5fr; gap: 0;
-    border-top: 1px solid var(--gray);
-  }
-  .text-photo-body {
-    padding: 80px 40px;
-    display: flex; flex-direction: column; justify-content: center;
-    border-right: 1px solid var(--gray);
-  }
-  .text-photo-title {
-    font-family: var(--font-display);
-    font-size: clamp(28px, 3vw, 40px);
-    font-weight: 900; line-height: 1.1;
-    margin-bottom: 24px;
-  }
+  .text-photo { display: grid; grid-template-columns: 1fr 1.5fr; gap: 0; border-top: 1px solid var(--gray); }
+  .text-photo-body { padding: 80px 40px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--gray); }
+  .text-photo-title { font-family: var(--font-display); font-size: clamp(28px, 3vw, 40px); font-weight: 900; line-height: 1.1; margin-bottom: 24px; }
   .text-photo-title em { font-style: italic; color: var(--accent); }
   .text-photo-body p { font-size: 14px; color: var(--mid); line-height: 1.9; margin-bottom: 20px; }
   .text-photo-img { overflow: hidden; }
-  .text-photo-img img { width: 100%; height: 100%; object-fit: cover; min-height: 500px; display: block; transition: transform 0.8s ease; }
+  .text-photo-img img { width: 100%; height: auto; display: block; transition: transform 0.8s ease; }
   .text-photo-img:hover img { transform: scale(1.03); }
 
-  /* ── PHOTO MOSAIC ── */
-  .mosaic {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: 400px 320px;
-    gap: 3px;
-  }
-  .mosaic .slot { overflow: hidden; position: relative; }
-  .mosaic .slot img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s ease; }
+  /* ── MOSAIC: colonna sinistra + colonna destra con 2 foto ── */
+  .mosaic { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3px; align-items: start; }
+  .mosaic-right { display: flex; flex-direction: column; gap: 3px; }
+  .mosaic .slot { overflow: hidden; }
+  .mosaic .slot img { width: 100%; height: auto; display: block; transition: transform 0.7s ease; }
   .mosaic .slot:hover img { transform: scale(1.04); }
-  .mosaic .slot.main { grid-row: 1 / 3; }
 
   /* ── NUMBERS STRIP ── */
-  .stats-strip {
-    padding: 60px 40px;
-    border-top: 1px solid var(--gray);
-    border-bottom: 1px solid var(--gray);
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
-  }
-  .stat-item { }
+  .stats-strip { padding: 60px 40px; border-top: 1px solid var(--gray); border-bottom: 1px solid var(--gray); display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
   .stat-n { font-family: var(--font-display); font-size: clamp(48px, 6vw, 80px); font-weight: 900; line-height: 1; color: var(--white); }
   .stat-n em { font-style: italic; color: var(--accent); }
   .stat-l { font-size: 11px; color: var(--mid); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 8px; }
 
   /* ── FOOTER CTA ── */
-  #footer-cta {
-    padding: 100px 40px;
-    border-top: 1px solid var(--gray);
-    display: flex; justify-content: space-between; align-items: flex-end;
-  }
-  .footer-title {
-    font-family: var(--font-display);
-    font-size: clamp(40px, 7vw, 96px);
-    font-weight: 900; line-height: 0.9;
-    letter-spacing: -0.02em;
-  }
+  #footer-cta { padding: 100px 40px; border-top: 1px solid var(--gray); display: flex; justify-content: space-between; align-items: flex-end; }
+  .footer-title { font-family: var(--font-display); font-size: clamp(40px, 7vw, 96px); font-weight: 900; line-height: 0.9; letter-spacing: -0.02em; }
   .footer-title em { font-style: italic; color: var(--accent); }
   .footer-right { text-align: right; }
-  .footer-right a {
-    display: inline-block;
-    border: 1.5px solid var(--white);
-    padding: 16px 40px;
-    font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--white); text-decoration: none;
-    transition: all 0.3s; position: relative; overflow: hidden;
-    margin-bottom: 24px;
-  }
+  .footer-right a { display: inline-block; border: 1.5px solid var(--white); padding: 16px 40px; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); text-decoration: none; transition: all 0.3s; position: relative; overflow: hidden; margin-bottom: 24px; }
   .footer-right a::before { content: ''; position: absolute; inset: 0; background: var(--accent); transform: translateX(-101%); transition: transform 0.3s; z-index: -1; }
   .footer-right a:hover { color: var(--black); border-color: var(--accent); }
   .footer-right a:hover::before { transform: translateX(0); }
@@ -281,46 +205,44 @@
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
   .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
-
   body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 1; opacity: 0.4; }
 
-  /* Responsive */
+  /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     nav { padding: 16px 20px; }
-    .cover-title { font-size: clamp(48px, 12vw, 80px); }
+    .cover-title { font-size: clamp(40px, 11vw, 72px); }
     #cover { padding: 0 20px 40px; }
     .cover-meta { flex-direction: column; gap: 16px; align-items: flex-start; }
     .cover-info { text-align: left; }
-    #intro { grid-template-columns: 1fr; gap: 24px; padding: 60px 20px; }
-    .intro-num { font-size: 72px; }
-    .pad { padding: 60px 20px; }
+    #intro { grid-template-columns: 1fr; gap: 20px; padding: 48px 20px; }
+    .intro-num { font-size: 60px; }
     .photo-duo { grid-template-columns: 1fr; }
-    .photo-duo .slot img, .photo-duo .slot.tall img { height: 60vw; }
-    .photo-trio { grid-template-columns: 1fr; }
-    .photo-trio .slot img { height: 55vw; }
-    .photo-asym { grid-template-columns: 1fr; }
-    .photo-asym .slot img { height: 55vw; }
+    .photo-trio { grid-template-columns: 1fr 1fr; }
     .photo-portrait-grid { grid-template-columns: 1fr 1fr; }
-    .photo-portrait-grid .slot img { height: 55vw; }
     .photo-portrait-grid .slot:last-child { display: none; }
-    .pull-quote { padding: 60px 20px; }
-    .pull-quote-inner { grid-template-columns: 1fr; gap: 16px; }
-    .pull-mark { font-size: 72px; }
-    .chapter { flex-direction: column; align-items: flex-start; gap: 20px; padding: 60px 20px 32px; }
+    .photo-asym { grid-template-columns: 1fr; }
+    .pull-quote { padding: 48px 20px; }
+    .pull-quote-inner { grid-template-columns: 1fr; gap: 12px; }
+    .pull-mark { font-size: 60px; }
+    .chapter { flex-direction: column; align-items: flex-start; gap: 16px; padding: 48px 20px 28px; }
     .chapter-text { text-align: left; max-width: 100%; }
     .text-photo { grid-template-columns: 1fr; }
-    .text-photo-body { padding: 60px 20px; border-right: none; border-bottom: 1px solid var(--gray); }
-    .text-photo-img img { min-height: 300px; }
-    .mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-    .mosaic .slot.main { grid-row: auto; grid-column: 1 / 3; }
-    .mosaic .slot img { height: 50vw; }
-    .mosaic .slot.main img { height: 65vw; }
-    .stats-strip { grid-template-columns: 1fr 1fr; gap: 32px; padding: 48px 20px; }
-    #footer-cta { flex-direction: column; gap: 40px; padding: 60px 20px; }
+    .text-photo-body { padding: 48px 20px; border-right: none; border-bottom: 1px solid var(--gray); }
+    .mosaic { grid-template-columns: 1fr; }
+    .mosaic-right { flex-direction: row; }
+    .stats-strip { grid-template-columns: 1fr 1fr; gap: 24px; padding: 40px 20px; }
+    #footer-cta { flex-direction: column; gap: 32px; padding: 48px 20px; }
     .footer-right { text-align: left; }
     footer { flex-direction: column; gap: 8px; padding: 20px; }
-    .photo-caption { padding: 12px 20px 0; flex-direction: column; gap: 4px; }
-    .photo-full img { height: 60vw; }
+    .photo-caption { padding: 10px 20px 0; flex-direction: column; gap: 2px; }
+  }
+
+  @media (max-width: 480px) {
+    .photo-trio { grid-template-columns: 1fr; }
+    .photo-portrait-grid { grid-template-columns: 1fr; }
+    .photo-portrait-grid .slot:last-child { display: block; }
+    .mosaic-right { flex-direction: column; }
+    .stats-strip { grid-template-columns: 1fr 1fr; }
   }
 </style>
 </head>
@@ -346,7 +268,7 @@
       <em>in Paris.</em>
     </h1>
     <div class="cover-meta">
-      <p class="cover-desc">I went to visit Arianna, my friend doing her Erasmus in Paris. Three days, her city, her life — and a red notebook she hadn't bought yet.</p>
+      <p class="cover-desc">I went to visit Arianna, my friend doing her Erasmus in Paris. Three days, her city, her life  and a red notebook she hadn't bought yet.</p>
       <div class="cover-info">
         <div>March 2026</div>
         <div>20 photographs</div>
@@ -364,11 +286,11 @@
   <div class="intro-body">
     <p class="intro-big">
       Arianna has been living in Paris<br>
-      since September. I came to see<br>
+      since January. I came to see<br>
       <strong>what that looks like.</strong>
     </p>
     <p class="intro-text">
-      She has a flat somewhere between the 9th and the 18th. There are shoes by the door — Salomon trail runners, which feel slightly wrong for Paris and completely right for her. She studies on the sofa with her laptop on her knees. She knows which boulangerie opens first.
+      She has a flat somewhere between the 9th and the 18th. There are shoes by the door: Salomon trail runners, which feel slightly wrong for Paris and completely right for her. sometimes she studies on the sofa with her laptop on her knees. She knows which boulangerie opens first.
       <br><br>
       I was there for three days in March 2026. This is what I photographed.
     </p>
@@ -383,21 +305,24 @@
     Her<br>
     <em>apartment.</em>
   </h2>
-  <p class="chapter-text">The story starts inside. Shoes by the door, laptop on the sofa, the particular light of a Parisian flat in early March. This is where she lives now.</p>
+  <p class="chapter-text">The story starts inside. Shoes by the door, laptop on the sofa, morning light through the window. This is where she lives now.</p>
 </div>
 
-<!-- Shoes + laptop duo — apartment scene -->
-<div class="photo-duo">
-  <div class="slot tall">
-    <img src="Parigi/FotoParigiLowQ-13.jpg" alt="Arianna putting on her Salomon shoes">
+<!-- Appartamento: scarpe + laptop + tovaglia alla finestra -->
+<div class="photo-trio">
+  <div class="slot">
+    <img src="Parigi/FotoParigiLowQ-13.jpg" alt="Arianna si allaccia le Salomon">
   </div>
   <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-31.jpg" alt="Arianna studying on the sofa">
+    <img src="Parigi/FotoParigiLowQ-31.jpg" alt="Arianna studia sul divano">
+  </div>
+  <div class="slot">
+    <img src="Parigi/FotoParigiLowQ-7.jpg" alt="Due persone alla finestra del suo appartamento">
   </div>
 </div>
 <div class="photo-caption">
-  <span>Salomon trail runners in Paris. She puts them on every morning like a ritual. On the sofa, studying — the ordinary version of Erasmus they don't put on the brochure.</span>
-  <span>Her apartment, 9th arr.</span>
+  <span>Studying on the sofa. Her two flatmates folding a blanket by the window; ordinary moments from an Erasmus flat in the 17th.</span>
+  <span>Her apartment, March 2026</span>
 </div>
 
 <!-- Pull quote 1 -->
@@ -419,32 +344,37 @@
     Then we<br>
     <em>go out.</em>
   </h2>
-  <p class="chapter-text">Her building has a spiral staircase. Of course it does — it's Paris. We leave every morning like we're descending into something.</p>
+  <p class="chapter-text">Her building has a spiral staircase. Of course it does, it's Paris. We leave every morning through it. Then the city begins.</p>
 </div>
 
-<!-- Staircase full width -->
-<div class="photo-full">
-  <img src="Parigi/FotoParigiLowQ-14.jpg" alt="Spiral staircase" style="object-position: center center;">
+<!-- Staircase + first building duo -->
+<div class="photo-duo">
+  <div class="slot">
+    <img src="Parigi/FotoParigiLowQ-14.jpg" alt="Scala a chiocciola del palazzo di Arianna">
+  </div>
+  <div class="slot">
+    <img src="Parigi/FotoParigiLowQ-33.jpg" alt="Edifici parigini">
+  </div>
 </div>
 <div class="photo-caption">
-  <span>The staircase of her building. Six floors. Every time, a different angle.</span>
-  <span>9th arrondissement, March 2026</span>
+  <span>Her staircase: five floors, every time a different angle. Then outside: Haussmann buildings catching the first light.</span>
+  <span>Her building & Paris streets</span>
 </div>
 
 <!-- Streets trio -->
 <div class="photo-trio" style="margin-top:3px;">
   <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-33.jpg" alt="Parisian buildings">
+    <img src="Parigi/FotoParigiLowQ-34.jpg" alt="Incrocio parigino vuoto">
   </div>
   <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-34.jpg" alt="Street corner Paris">
+    <img src="Parigi/FotoParigiLowQ-90.jpg" alt="Fromagerie Chatin">
   </div>
   <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-48.jpg" alt="Lamp and buildings">
+    <img src="Parigi/FotoParigiLowQ-48.jpg" alt="Lampione e palazzi">
   </div>
 </div>
 <div class="photo-caption">
-  <span>The streets at 7am before Paris wakes up. Haussmann buildings in golden light. A lamppost nobody asked to be perfect.</span>
+  <span>An empty intersection at 10am. A fromagerie that looks like it was designed by someone who loved type. A lamppost nobody asked to be perfect.</span>
   <span>Paris streets, early morning</span>
 </div>
 
@@ -454,7 +384,7 @@
       Montmartre,<br>
       <em>her territory.</em>
     </h3>
-    <p>She's been here two months. She knows which streets to avoid and which ones to take on purpose. Montmartre is one of her places — she walks it like someone who has already stopped being a tourist.</p>
+    <p>She's been here three months. She knows which streets to avoid and which ones to take on purpose. Montmartre is one of her places: she walks it like someone who has already stopped being a tourist.</p>
     <p>I followed her up the stairs with my camera. She didn't wait for me.</p>
     <p style="color: var(--accent); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 8px;">Montmartre — Rue Lepic area</p>
   </div>
@@ -469,7 +399,7 @@
 </div>
 <div class="photo-caption">
   <span>Sacré-Cœur before the crowds. She had already been. She came again anyway.</span>
-  <span>Montmartre, 7:30am</span>
+  <span>Montmartre, 4:30pm</span>
 </div>
 
 <!-- ══════════════════════════════════
@@ -481,7 +411,7 @@
     <div class="stat-l">visiting Arianna</div>
   </div>
   <div class="stat-item">
-    <div class="stat-n">6<em>mo</em></div>
+    <div class="stat-n">3+<em>mo</em></div>
     <div class="stat-l">she's been there</div>
   </div>
   <div class="stat-item">
@@ -502,41 +432,40 @@
     The<br>
     <em>red notebook.</em>
   </h2>
-  <p class="chapter-text">She bought it at the bouquinistes along the Seine. Used books, 2€ each, and a notebook she didn't need but couldn't leave behind. She carried it the rest of the day.</p>
+  <p class="chapter-text">She bought it at the bouquinistes along the Champ de Mars. Used books, 2€ each, and a notebook she didn't need but couldn't leave behind. She carried it the rest of the day.</p>
 </div>
 
-<!-- Book market + fromagerie duo -->
+<!-- Book market duo -->
 <div class="photo-duo">
-  <div class="slot tall">
-    <img src="Parigi/FotoParigiLowQ-44.jpg" alt="Bouquinistes book market Paris">
+  <div class="slot">
+    <img src="Parigi/FotoParigiLowQ-44.jpg" alt="Bouquinistes - mercato libri usati">
   </div>
   <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-90.jpg" alt="Fromagerie Chatin">
+    <img src="Parigi/FotoParigiLowQ-84.jpg" alt="Uomo con cane ai Tuileries">
   </div>
 </div>
 <div class="photo-caption">
-  <span>The bouquinistes — she spent twenty minutes on one table. That same afternoon, a fromagerie caught the morning light like it knew it was being photographed.</span>
-  <span>Along the Seine & Paris streets</span>
+  <span>The bouquinistes: she spent twenty minutes on one table. A man with his dog at the Tuileries, indifferent to everything, which is the most Parisian thing possible.</span>
+  <span>Seine riverbank & Tuileries</span>
 </div>
 
-<!-- Mosaic — city life -->
+<!-- City life — mosaic col sinistra + due a destra -->
 <div class="mosaic" style="margin-top:3px;">
-  <div class="slot main">
-    <img src="Parigi/FotoParigiLowQ-84.jpg" alt="Man with dog in Tuileries">
-  </div>
   <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-93.jpg" alt="Basketball Eiffel Tower">
+    <img src="Parigi/FotoParigiLowQ-49.jpg" alt="Uomo con giacca rossa contro muro bianco">
   </div>
-  <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-49.jpg" alt="Man leaning on wall">
-  </div>
-  <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-60.jpg" alt="Carousel">
+  <div class="mosaic-right">
+    <div class="slot">
+      <img src="Parigi/FotoParigiLowQ-93.jpg" alt="Basket sotto la Torre Eiffel">
+    </div>
+    <div class="slot">
+      <img src="Parigi/FotoParigiLowQ-60.jpg" alt="Giostra vuota">
+    </div>
   </div>
 </div>
 <div class="photo-caption">
-  <span>The city in between: a man and his dog at the Tuileries, basketball under the Tour Eiffel, a red jacket against a white wall, a carousel nobody was riding.</span>
-  <span>Paris — various locations</span>
+  <span>A red jacket against a white wall. Basketball in the shadow of the Eiffel Tower. A carousel nobody was riding.</span>
+  <span>Paris - various locations</span>
 </div>
 
 <!-- Pull quote 2 -->
@@ -558,7 +487,7 @@
     Paris<br>
     <em>after dark.</em>
   </h2>
-  <p class="chapter-text">We stayed out late. She still had the notebook. The streets were louder. The light was different. She moved like she owned the place — because at this point, she kind of did.</p>
+  <p class="chapter-text">We stayed out late. She still had the notebook. The streets were louder. The light was different. She didn't move like she owned the place anymore, because at this point, she is still a girl from the countryside.</p>
 </div>
 
 <!-- Moulin Rouge full width -->
@@ -566,24 +495,21 @@
   <img src="Parigi/FotoParigiLowQ-66.jpg" alt="Moulin Rouge at night" style="object-position: center 60%;">
 </div>
 <div class="photo-caption">
-  <span>Moulin Rouge at dusk — she had walked past it a hundred times and still stopped to look.</span>
+  <span>Moulin Rouge at dusk: she had walked past it a hundred times and still stopped to look.</span>
   <span>Pigalle, evening</span>
 </div>
 
-<!-- Night portraits: blurry + Arianna with red notebook + silhouette -->
-<div class="photo-portrait-grid" style="margin-top:3px;">
+<!-- Night portraits: Arianna blurry + col quaderno rosso -->
+<div class="photo-duo" style="margin-top:3px;">
   <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-70.jpg" alt="Arianna motion blur at night">
+    <img src="Parigi/FotoParigiLowQ-70.jpg" alt="Arianna sfocata di notte">
   </div>
   <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-73.jpg" alt="Arianna with the red notebook">
-  </div>
-  <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-7.jpg" alt="Silhouette by window">
+    <img src="Parigi/FotoParigiLowQ-73.jpg" alt="Arianna con il quaderno rosso di notte">
   </div>
 </div>
 <div class="photo-caption">
-  <span>She moves fast at night — hence the blur. The red notebook under the pharmacy cross. And the window of her apartment, from the inside, before sleep.</span>
+  <span>She moves fast at night, hence the blur. Then, still out, the red notebook under a pharmacy cross. She'd been carrying it all day.</span>
   <span>Paris by night, March 2026</span>
 </div>
 
@@ -595,7 +521,7 @@
     Her city.<br>
     <em>My visit.</em>
   </h2>
-  <p class="chapter-text">On the last day we went to the Trocadéro. Then I went alone to the Louvre and did the thing you do at the Louvre. She stayed home. She's already been.</p>
+  <p class="chapter-text">On the last day we went to the Trocadéro. Then my friend went to the Louvre. She stayed home. It was time for us to leave.</p>
 </div>
 
 <!-- Arianna Eiffel + Leone Louvre asym -->
@@ -608,7 +534,7 @@
   </div>
 </div>
 <div class="photo-caption">
-  <span>She was laughing at something. The Eiffel Tower was just there, behind her, like it always is. I went to the Louvre alone and pointed at a pyramid — the natural response.</span>
+  <span>She was laughing at something. The Eiffel Tower was just there, behind her, like it always is. A friend at the Louvre, doing the thing you do at the Louvre.</span>
   <span>Trocadéro & Louvre, March 2026</span>
 </div>
 
@@ -617,7 +543,7 @@
   <div class="pull-quote-inner">
     <div class="pull-mark">"</div>
     <div>
-      <p class="pull-text">She's been there six months.<br>I was there three days.<br>She showed me everything.<br><em>I still feel like I missed half.</em></p>
+      <p class="pull-text">She's been there three months.<br>I was there three days.<br>She showed me something.<br><em>I still feel like I missed almost everything.</em></p>
       <p class="pull-author">— Leone Morandini, March 2026</p>
     </div>
   </div>
