@@ -492,7 +492,7 @@
   <!-- FOTO HERO: stessa foto del profilo, appare subito a destra -->
   <!-- Cambia src con il percorso della tua foto -->
   <div class="hero-photo">
-    <img src="Resources/_DSF0346.jpg" alt="Leone Morandini">
+    <img src="resources/_DSF0346.jpg" alt="Leone Morandini">
   </div>
 
   <p class="hero-tag">Designer · Videomaker · Photographer — Turin → World</p>
@@ -745,9 +745,15 @@
     <a href="https://instagram.com/leoneciao_" target="_blank">Instagram</a>
     <a href="https://www.linkedin.com/in/leone-morandini-4b1441276" target="_blank">LinkedIn</a>
     <a href="/cdn-cgi/l/email-protection#dfb3bab0b1bab2b0adbeb1bbb6b1b69fb8b2beb6b3f1bcb0b2"><span class="__cf_email__" data-cfemail="3d515852535850524f5c53595453547d5a505c5451135e5250">[email&#160;protected]</span></a>
-    <a href="tel:&#43;&#51;&#57;&#51;&#52;&#55;&#54;&#50;&#57;&#53;&#49;&#56;&#50;">
-                  &#43;&#51;&#57; &#51;&#52;&#55; &#54;&#50;&#57; &#53;&#49;&#56;&#50;
-</a>
+    <a href="#" 
+      id="phone-cta" 
+      data-p1="347" 
+      data-p2="629" 
+      data-p3="5182" 
+      style="text-decoration: none; color: inherit;">
+      +39 [Mostra Telefono]
+    </a>
+    </a>
   </div>
 </section>
 
@@ -787,6 +793,18 @@
   }, { threshold: 0.1 });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  document.getElementById('phone-cta').addEventListener('click', function(e) {
+    e.preventDefault();
+    // Ricostruiamo il numero solo al click dell'utente umano
+    const num = `+39 ${this.dataset.p1} ${this.dataset.p2} ${this.dataset.p3}`;
+    this.href = 'tel:' + num.replace(/\s/g, '');
+    this.innerText = num;
+    // Ora che il link è "sbloccato", avviamo la chiamata
+    window.location.href = this.href;
+  });
+
+
 </script>
 
  
