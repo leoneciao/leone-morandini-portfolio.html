@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leone Morandini — Street Photography</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400;1,900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f0ede6;
+    --accent: #d4ff5c;
+    --gray: #2a2a2a;
+    --mid: #888;
+    --font-display: 'Playfair Display', serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: var(--font-mono); font-size: 14px; cursor: none; overflow-x: hidden; }
+
+  /* Cursor */
+  .cursor { width: 12px; height: 12px; background: var(--accent); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transition: transform 0.15s ease, width 0.2s, height 0.2s; transform: translate(-50%, -50%); }
+  .cursor.expand { width: 48px; height: 48px; background: transparent; border: 1.5px solid var(--accent); }
+
+  /* Nav */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 28px 40px; mix-blend-mode: difference; }
+  .nav-logo { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em; color: var(--white); text-decoration: none; text-transform: uppercase; }
+  .nav-back { color: var(--white); text-decoration: none; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; transition: opacity 0.2s; }
+  .nav-back:hover { opacity: 1; }
+
+  /* ─── PROJECT HERO ─── */
+  #project-hero {
+    min-height: 70vh;
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 120px 40px 60px;
+    border-bottom: 1px solid var(--gray);
+  }
+
+  .project-category {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 20px;
+    opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+  }
+
+  .project-title {
+    font-family: var(--font-display);
+    font-size: clamp(56px, 9vw, 120px);
+    font-weight: 900; line-height: 0.9;
+    letter-spacing: -0.02em;
+    margin-bottom: 40px;
+    opacity: 0; animation: fadeUp 0.8s 0.35s forwards;
+  }
+  .project-title em { font-style: italic; color: var(--accent); }
+
+  .project-meta {
+    display: grid; grid-template-columns: repeat(4, auto);
+    gap: 48px; align-items: start;
+    opacity: 0; animation: fadeUp 0.8s 0.5s forwards;
+  }
+  .meta-item {}
+  .meta-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); margin-bottom: 6px; }
+  .meta-value { font-size: 14px; color: var(--white); }
+
+  /* ─── INTRO TEXT ─── */
+  #intro { padding: 80px 40px; display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; border-bottom: 1px solid var(--gray); }
+  .intro-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); padding-top: 6px; }
+  .intro-text { font-family: var(--font-display); font-size: clamp(20px, 2.5vw, 30px); line-height: 1.4; font-weight: 400; }
+  .intro-text em { font-style: italic; color: var(--accent); }
+
+  /* ─── PHOTO GALLERY ─── */
+  /*
+   * LA GALLERIA È DIVISA IN BLOCCHI:
+   * - .gallery-full     → foto singola a tutta larghezza
+   * - .gallery-duo      → due foto affiancate
+   * - .gallery-trio     → tre foto affiancate
+   * - .gallery-feature  → 1 foto grande + 1 verticale a fianco
+   *
+   * COME AGGIUNGERE LE TUE FOTO:
+   * Su ogni .gal-img aggiungi:
+   *   style="background-image: url('street-01.jpg'); font-size:0;"
+   * oppure metti un <img> dentro .gal-slot.
+   *
+   * Per aggiungere nuovi blocchi: copia e incolla uno dei blocchi
+   * esistenti e cambia le immagini.
+   */
+  #gallery { padding: 0 0 80px; }
+
+  .gallery-full { padding: 3px 0; }
+  .gallery-full .gal-slot { width: 100%; height: 80vh; }
+
+  .gallery-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; padding: 3px 0; }
+  .gallery-duo .gal-slot { height: 70vh; }
+
+  .gallery-trio { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px; padding: 3px 0; }
+  .gallery-trio .gal-slot { height: 55vh; }
+
+  .gallery-feature { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3px; padding: 3px 0; }
+  .gallery-feature .gal-slot { height: 90vh; }
+  .gallery-feature .gal-slot.portrait { height: 90vh; }
+
+  .gallery-padded { padding-left: 40px; padding-right: 40px; }
+
+  .gal-slot {
+    position: relative; overflow: hidden;
+    background: var(--gray);
+    cursor: none;
+  }
+  .gal-img {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    transition: transform 0.6s ease;
+    /* PLACEHOLDER STYLE — rimuovi quando aggiungi background-image */
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-size: 12px; color: rgba(255,255,255,0.08);
+    letter-spacing: 0.1em;
+  }
+  .gal-slot:hover .gal-img { transform: scale(1.03); }
+
+  /* Caption opzionale sotto ogni foto */
+  .gal-caption {
+    padding: 12px 40px 0;
+    font-size: 11px; color: var(--mid);
+    letter-spacing: 0.08em;
+  }
+
+  /* ─── PULL QUOTE ─── */
+  .pull-quote {
+    padding: 100px 40px;
+    border-top: 1px solid var(--gray);
+    border-bottom: 1px solid var(--gray);
+    text-align: center;
+  }
+  .pull-quote p {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 52px);
+    font-style: italic;
+    line-height: 1.3;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .pull-quote p em { color: var(--accent); }
+
+  /* ─── NEXT PROJECT ─── */
+  #next-project {
+    padding: 80px 40px;
+    border-top: 1px solid var(--gray);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .next-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); margin-bottom: 12px; }
+  .next-title { font-family: var(--font-display); font-size: clamp(28px, 4vw, 52px); font-weight: 900; }
+  .next-title em { font-style: italic; color: var(--accent); }
+  .next-arrow { font-size: 48px; color: var(--accent); text-decoration: none; transition: transform 0.3s; display: block; }
+  .next-arrow:hover { transform: translateX(12px); }
+  #next-project a.next-link { text-decoration: none; color: inherit; }
+  #next-project a.next-link:hover .next-title em { text-decoration: underline; }
+
+  footer { display: flex; justify-content: space-between; padding: 24px 40px; border-top: 1px solid var(--gray); font-size: 11px; color: var(--mid); letter-spacing: 0.08em; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9998; opacity: 0.4; }
+
+  @media (max-width: 768px) {
+    nav { padding: 20px; }
+    #project-hero { padding: 100px 20px 40px; }
+    #intro { grid-template-columns: 1fr; gap: 24px; padding: 48px 20px; }
+    .project-meta { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .gallery-duo, .gallery-trio, .gallery-feature { grid-template-columns: 1fr; }
+    .gallery-duo .gal-slot, .gallery-trio .gal-slot, .gallery-feature .gal-slot { height: 60vw; }
+    .gallery-full .gal-slot { height: 60vw; }
+    #next-project { flex-direction: column; align-items: flex-start; gap: 24px; padding: 48px 20px; }
+    footer { flex-direction: column; gap: 8px; padding: 20px; }
+    .gal-caption { padding: 10px 20px 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">← Leone Morandini</a>
+  <a href="index.html#photo-preview" class="nav-back">All work</a>
+</nav>
+
+<!-- Project Hero -->
+<section id="project-hero">
+  <p class="project-category">Photography — Personal Project</p>
+  <h1 class="project-title">
+    Streets &<br>
+    <em>Strangers.</em>
+  </h1>
+  <div class="project-meta">
+    <div class="meta-item">
+      <div class="meta-label">Type</div>
+      <div class="meta-value">Street / Personal</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Period</div>
+      <!-- AGGIORNA CON IL PERIODO GIUSTO -->
+      <div class="meta-value">2021 – Ongoing</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Location</div>
+      <!-- AGGIORNA CON LE CITTÀ CHE HAI FOTOGRAFATO -->
+      <div class="meta-value">Italy · Portugal · Europe</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Camera</div>
+      <!-- AGGIORNA CON LA TUA FOTOCAMERA -->
+      <div class="meta-value">Fujifilm</div>
+    </div>
+  </div>
+</section>
+
+<!-- Intro -->
+<section id="intro" class="reveal">
+  <div class="intro-label">About this series</div>
+  <div class="intro-text">
+    I photograph people the way I try to design, by <em>listening first.</em>
+    Street photography taught me that the best moments are never staged.
+    They happen when you're patient enough to wait, and honest enough to look.
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     GALLERIA FOTOGRAFICA
+     
+     Aggiungi le tue foto sostituendo il testo
+     dentro .gal-img con background-image.
+     
+     Esempio:
+     <div class="gal-img" style="background-image: url('foto.jpg'); font-size:0;"></div>
+     ════════════════════════════════════════ -->
+<div id="gallery">
+
+  <!-- Foto 1: Full width -->
+  <div class="gallery-full">
+    <div class="gal-slot">
+      <div class="gal-img">ADD YOUR PHOTO HERE — full width hero shot</div>
+    </div>
+  </div>
+  <p class="gal-caption">Mondovì, 2022 — Descrizione opzionale</p>
+
+  <!-- Foto 2+3: Due affiancate -->
+  <div class="gallery-duo" style="margin-top: 3px;">
+    <div class="gal-slot">
+      <div class="gal-img">ADD YOUR PHOTO — left</div>
+    </div>
+    <div class="gal-slot">
+      <div class="gal-img">ADD YOUR PHOTO — right</div>
+    </div>
+  </div>
+
+  <!-- Pull quote — AGGIORNA CON UNA TUA FRASE O LASCIA COSÌ -->
+  <div class="pull-quote reveal">
+    <p>
+      "The street doesn't lie.<br>
+      It shows you <em>exactly who we are</em><br>
+      when we think no one's watching."
+    </p>
+  </div>
+
+  <!-- Foto 4: Full width -->
+  <div class="gallery-full">
+    <div class="gal-slot">
+      <div class="gal-img">ADD YOUR PHOTO — second hero shot</div>
+    </div>
+  </div>
+
+  <!-- Foto 5+6+7: Trio -->
+  <div class="gallery-trio" style="margin-top: 3px;">
+    <div class="gal-slot">
+      <div class="gal-img">ADD PHOTO</div>
+    </div>
+    <div class="gal-slot">
+      <div class="gal-img">ADD PHOTO</div>
+    </div>
+    <div class="gal-slot">
+      <div class="gal-img">ADD PHOTO</div>
+    </div>
+  </div>
+
+  <!-- Foto 8+9: Feature (grande + verticale) -->
+  <div class="gallery-feature" style="margin-top: 3px;">
+    <div class="gal-slot">
+      <div class="gal-img">ADD YOUR PHOTO — large feature</div>
+    </div>
+    <div class="gal-slot portrait">
+      <div class="gal-img">ADD YOUR PHOTO — portrait</div>
+    </div>
+  </div>
+  <p class="gal-caption">Torino, 2023</p>
+
+  <!-- Foto 10+11: Due affiancate finali -->
+  <div class="gallery-duo" style="margin-top: 3px;">
+    <div class="gal-slot">
+      <div class="gal-img">ADD YOUR PHOTO</div>
+    </div>
+    <div class="gal-slot">
+      <div class="gal-img">ADD YOUR PHOTO</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Next Project -->
+<div id="next-project">
+  <div>
+    <p class="next-label">Next project</p>
+    <!-- AGGIORNA href con la prossima pagina progetto -->
+    <a href="wedding.html" class="next-link">
+      <h2 class="next-title">Wedding <em>Stories</em></h2>
+    </a>
+  </div>
+  <a href="wedding.html" class="next-arrow">→</a>
+</div>
+
+<footer>
+  <span>Leone Morandini © 2026</span>
+  <span>Turin — World</span>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, .gal-slot').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+  });
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
