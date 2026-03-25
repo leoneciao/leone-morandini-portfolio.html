@@ -277,7 +277,7 @@
     /* PLACEHOLDER — sostituisci con background-image: url('tua-foto.jpg') */
     background-color: var(--gray);
     display: flex; align-items: center; justify-content: center;
-    font-size: 64px; opacity: 0.06;
+    font-size: 64px; opacity: 0.5; color: rgba(255,255,255,0.04);
   }
   .work-item:hover .work-bg { transform: scale(1.04); opacity: 1; }
 
@@ -463,8 +463,6 @@
 
   @media (max-width: 480px) {
     .nav-links li:nth-child(3),
-    .nav-links li:nth-child(4) { display: none; }
-    .hero-photo { display: none; }
     .photo-strip { grid-template-columns: 1fr; }
     .photo-thumb.wide { grid-column: 1; }
     .photo-thumb { height: 220px; }
@@ -492,7 +490,7 @@
   <!-- FOTO HERO: stessa foto del profilo, appare subito a destra -->
   <!-- Cambia src con il percorso della tua foto -->
   <div class="hero-photo">
-    <img src="resources/_DSF0346.jpg" alt="Leone Morandini">
+    <img src="Resources/_DSF0346.jpg" alt="Leone Morandini">
   </div>
 
   <p class="hero-tag">Designer · Videomaker · Photographer — Turin → World</p>
@@ -563,7 +561,7 @@
     <!-- Colonna sinistra: foto profilo -->
     <div class="about-left reveal">
       <div class="about-photo-wrap">
-        <img src="resources/x012 (2 di 3) low res.jpg" alt="Leone Morandini">
+        <img src="Resources/x012%20(2%20di%203)%20low%20res.jpg" alt="Leone Morandini">
       </div>
       <p class="about-photo-caption">Leone Morandini — Torino, 2024</p>
     </div>
@@ -627,12 +625,12 @@
       <span class="work-arrow">↗</span>
     </a>
 
-    <a class="work-item tall" href="aiko.html">
-      <div class="work-bg">🎨</div>
+    <a class="work-item tall" href="real-estate.html">
+      <div class="work-bg" style="font-variant-emoji: emoji;"></div>
       <span class="work-num">02</span>
       <div class="work-info">
-        <div class="work-title">AIKO srl — Brand</div>
-        <div class="work-cat">Design · Social Media</div>
+        <div class="work-title">Real Estate Visual</div>
+        <div class="work-cat">Photography · Videomaking</div>
       </div>
       <span class="work-arrow">↗</span>
     </a>
@@ -647,12 +645,12 @@
       <span class="work-arrow">↗</span>
     </a>
 
-    <a class="work-item" href="real-estate.html">
-      <div class="work-bg">🏠</div>
+    <a class="work-item wide" href="aiko.html">
+      <div class="work-bg" style="background-image: url('resources/image-1c5f68c9-dc4e-4287-b652-36c601daaec8.webp'); font-size:0;"></div>
       <span class="work-num">04</span>
       <div class="work-info">
-        <div class="work-title">Real Estate Visual</div>
-        <div class="work-cat">Photography · Videomaking</div>
+        <div class="work-title">AIKO srl — Brand</div>
+        <div class="work-cat">Design · Social Media</div>
       </div>
       <span class="work-arrow">↗</span>
     </a>
