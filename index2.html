@@ -30,7 +30,7 @@
     overflow-x: hidden;
   }
 
-  /* Custom cursor */
+  /* Custom cursor - FIX FLUIDITÀ */
   .cursor {
     width: 12px; height: 12px;
     background: var(--accent);
@@ -39,8 +39,10 @@
     top: 0; left: 0;
     pointer-events: none;
     z-index: 9999;
-    transition: transform 0.15s ease, width 0.2s, height 0.2s;
-    transform: translate(-50%, -50%);
+    /* Rimosso transform dalla transition per eliminare il lag */
+    transition: width 0.2s, height 0.2s, background 0.2s, border 0.2s;
+    transform: translate3d(-50%, -50%, 0);
+    will-change: transform;
   }
   .cursor.expand { width: 48px; height: 48px; background: transparent; border: 1.5px solid var(--accent); }
 
@@ -101,18 +103,6 @@
   @keyframes scrollLine { 0%, 100% { width: 60px; } 50% { width: 120px; } }
 
   /* ─── VIDEO REEL SECTION ─── */
-  /*
-   * Questo blocco mostra il tuo reel in autoplay, muted, loop.
-   * Posizionato subito dopo l'hero — è la prima cosa che si vede dopo lo scroll.
-   * Il video occupa tutta la larghezza e ha un overlay di testo sopra.
-   *
-   * COME AGGIUNGERE IL TUO VIDEO:
-   * 1. Metti il tuo file video nella stessa cartella (es: reel.mp4)
-   * 2. Sostituisci src="" con src="reel.mp4"
-   * 3. Per usare un link esterno: src="https://tuoserver.com/reel.mp4"
-   *    (NON usare YouTube/Vimeo diretti — non supportano autoplay embed via <video>)
-   *    Se hai su Vimeo, prendi il link diretto al file .mp4 da Vimeo Pro.
-   */
   #reel {
     position: relative;
     width: 100%;
@@ -153,20 +143,6 @@
   }
   .reel-title em { font-style: italic; color: var(--accent); }
 
-  .reel-mute-btn {
-    position: absolute;
-    top: 32px; right: 40px;
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.3);
-    color: var(--white);
-    font-family: var(--font-mono);
-    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 8px 16px;
-    cursor: none;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .reel-mute-btn:hover { border-color: var(--accent); color: var(--accent); }
-
   /* ─── MARQUEE ─── */
   .marquee-wrapper {
     border-top: 1px solid var(--gray);
@@ -194,11 +170,6 @@
   #about { border-top: 1px solid var(--gray); }
   .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; align-items: start; }
 
-  /* FOTO PROFILO ─────────────────────────────────
-   * Per aggiungere la tua foto:
-   * 1. Rimuovi il div .about-photo-placeholder
-   * 2. Aggiungi: <img src="leone-profile.jpg" alt="Leone Morandini">
-   * ─────────────────────────────────────────────── */
   .about-photo-wrap {
     position: relative;
     width: 100%;
@@ -214,21 +185,7 @@
     transition: filter 0.6s ease;
   }
   .about-photo-wrap:hover img { filter: grayscale(40%) contrast(1.05); }
-  .about-photo-wrap::after {
-    content: '';
-    position: absolute; inset: 0;
-    /* background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.07'/%3E%3C/svg%3E"); */
-    pointer-events: none; mix-blend-mode: overlay;
-  }
-  .about-photo-placeholder {
-    width: 100%; height: 100%;
-    background: var(--gray);
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 12px; color: rgba(255,255,255,0.15);
-    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
-  }
-  .about-photo-placeholder span { font-size: 32px; }
+
   .about-photo-caption {
     margin-top: 12px;
     font-size: 10px; letter-spacing: 0.12em;
@@ -260,21 +217,11 @@
   }
   .work-item.tall { aspect-ratio: 3/4; }
 
-  /*
-   * COME AGGIUNGERE LE TUE FOTO NELLA GRIGLIA:
-   * Ogni .work-item contiene un .work-bg — imposta il suo background-image:
-   *
-   *   <div class="work-bg" style="background-image: url('foto-matrimonio.jpg')"></div>
-   *
-   * Oppure metti un <img> dentro .work-item al posto di .work-bg:
-   *   <img src="tua-foto.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
-   */
   .work-bg {
     position: absolute; inset: 0;
     background-size: cover;
     background-position: center;
     transition: transform 0.6s ease;
-    /* PLACEHOLDER — sostituisci con background-image: url('tua-foto.jpg') */
     background-color: var(--gray);
     display: flex; align-items: center; justify-content: center;
     font-size: 64px; opacity: 0.06;
@@ -314,14 +261,6 @@
   .view-all-link { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; border-bottom: 1px solid var(--gray); padding-bottom: 4px; }
   .view-all-link:hover { color: var(--accent); border-color: var(--accent); }
 
-  /*
-   * COME AGGIUNGERE LE TUE FOTO STREET:
-   * Ogni .photo-thumb ha un .photo-img — aggiungi background-image:
-   *   <div class="photo-img" style="background-image: url('street-01.jpg')"></div>
-   *
-   * Le prime 3 card sono orizzontali, le ultime 2 verticali.
-   * Puoi aggiungere quante card vuoi duplicando il markup .photo-thumb.
-   */
   .photo-strip {
     display: grid;
     grid-template-columns: 2fr 1.2fr 1.2fr;
@@ -334,11 +273,6 @@
     background: var(--gray);
     cursor: none;
   }
-  .photo-thumb.span-col { grid-column: span 1; }
-  .photo-thumb.wide { grid-column: 1 / 2; grid-row: 2 / 3; }
-  .photo-thumb.mid-bottom { grid-column: 2 / 3; grid-row: 2 / 3; }
-  .photo-thumb.right-bottom { grid-column: 3 / 4; grid-row: 2 / 3; }
-
   .photo-img {
     position: absolute; inset: 0;
     background-size: cover; background-position: center;
@@ -388,25 +322,14 @@
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9998; opacity: 0.4; }
-
   /* ─── RESPONSIVE ─── */
   @media (max-width: 768px) {
     nav { padding: 20px; }
-    .nav-links { gap: 16px; }
     section { padding: 60px 20px; }
     #hero { padding: 0 20px 40px; }
     .hero-bottom { flex-direction: column; gap: 24px; align-items: flex-start; }
     .about-grid { grid-template-columns: 1fr; gap: 40px; }
     .work-grid { grid-template-columns: 1fr; }
-    .work-item.tall { aspect-ratio: 4/3; }
-    .photo-strip { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-    .photo-thumb.wide, .photo-thumb.mid-bottom, .photo-thumb.right-bottom { grid-column: auto; grid-row: auto; height: 200px; }
-    .photo-header { flex-direction: column; align-items: flex-start; gap: 16px; }
-    footer { flex-direction: column; gap: 8px; padding: 20px; }
-    .contact-links { gap: 20px; }
-    .reel-overlay { padding: 32px 20px; }
-    .reel-mute-btn { top: 20px; right: 20px; }
   }
 </style>
 </head>
@@ -414,8 +337,6 @@
 
 <div class="cursor" id="cursor"></div>
 
-
-<!-- Nav -->
 <nav>
   <a href="index.html" class="nav-logo">LM ©2026</a>
   <ul class="nav-links">
@@ -426,52 +347,25 @@
   </ul>
 </nav>
 
-<!-- Hero -->
 <section id="hero">
   <p class="hero-tag">Designer · Videomaker · Photographer — Turin → World</p>
-  <h1 class="hero-title">
-    Human first.<br>
-    <em>Designer</em><br>
-    second.
-  </h1>
+  <h1 class="hero-title">Human first.<br><em>Designer</em><br>second.</h1>
   <div class="hero-bottom">
     <p class="hero-desc">Hi, I'm Leone. Italian by origin, curious by nature. I design experiences that feel human, because before I touch a screen, I talk to people.</p>
-    <div class="hero-scroll">
-      <div class="scroll-line"></div>
-      Scroll
-    </div>
+    <div class="hero-scroll"><div class="scroll-line"></div>Scroll</div>
   </div>
 </section>
 
-
 <div id="reel">
-  <video
-    id="reelVideo"
-    autoplay
-    muted
-    loop
-    playsinline
-    src="resources/Video_show.mp4"
-  >
-    <!-- FALLBACK: se il video non carica, mostra questo -->
-   Your browser does not support the video tag.
+  <video id="reelVideo" autoplay muted loop playsinline src="resources/Video_show.mp4">
+    Your browser does not support the video tag.
   </video>
-
   <div class="reel-overlay">
     <p class="reel-label">Reel 2025</p>
-    <h2 class="reel-title">
-      Everything I've<br>
-      <em>made with love.</em>
-    </h2>
+    <h2 class="reel-title">Everything I've<br><em>made with love.</em></h2>
   </div>
-
-  <!-- Bottone mute/unmute -->
-  <button class="reel-mute-btn" id="muteBtn" onclick="toggleMute()">
-    <!-- Sound off -->
-  </button>
 </div>
 
-<!-- Marquee -->
 <div class="marquee-wrapper">
   <div class="marquee-track">
     <span class="marquee-item">Design <span class="marquee-dot">✦</span></span>
@@ -482,208 +376,77 @@
     <span class="marquee-item">Communication <span class="marquee-dot">✦</span></span>
     <span class="marquee-item">Design <span class="marquee-dot">✦</span></span>
     <span class="marquee-item">Photography <span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Video <span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Storytelling <span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Empathy-first <span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Communication <span class="marquee-dot">✦</span></span>
   </div>
 </div>
 
-<!-- About -->
 <section id="about">
   <p class="section-label">00 — About</p>
   <div class="about-grid">
-    <!-- Colonna sinistra: foto profilo -->
     <div class="about-left reveal">
       <div class="about-photo-wrap">
-
-        <div class="about-photo-caption">
-           <img src="resources/_DSF0346.jpg" alt="Leone Morandini">
-          <span></span>
-           <p class="about-photo-caption">Leone Morandini — Lisboa, 2026</p>
-        </div>
+        <img src="resources/_DSF0346.jpg" alt="Leone Morandini" loading="lazy">
       </div>
-      <!-- <p class="about-photo-caption">Leone Morandini — Lisboa, 2026</p> -->
+      <p class="about-photo-caption">Leone Morandini — Lisboa, 2026</p>
     </div>
-
-    <!-- Colonna destra: testo -->
     <div class="about-right reveal">
-      <h3 class="about-title">
-        Born in the mountains,<br>
-        <em>built for the interactions.</em>
-      </h3>
-      <p class="about-text">I'm Leone, born 2001 in Piedmont, Italy. I studied Transportation Design at IAAD Turin and I'm currently finishing a Master in Digital Communication Design. I've spent years working with people — as an educator, a photographer, an event organizer — and that's exactly where my design thinking comes from.</p>
-      <p class="about-text">I believe the best design is the kind you don't notice. The kind that just feels right, that talks to the right people in the right language.</p>
+      <h3 class="about-title">Born in the mountains,<br><em>built for the interactions.</em></h3>
+      <p class="about-text">I'm Leone, born 2001 in Piedmont, Italy. I studied Transportation Design at IAAD Turin and I'm currently finishing a Master in Digital Communication Design.</p>
       <div class="tags">
-        <span class="tag">Design</span>
-        <span class="tag">Photography</span>
-        <span class="tag">Videomaking</span>
-        <span class="tag">Branding</span>
-        <span class="tag">Social Media</span>
-        <span class="tag">Storytelling</span>
+        <span class="tag">Design</span><span class="tag">Photography</span><span class="tag">Videomaking</span>
       </div>
       <div class="stat-row">
-        <div class="stat">
-          <div class="stat-num">4+</div>
-          <div class="stat-label">Years freelance</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">2+</div>
-          <div class="stat-label">Languages</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">∞</div>
-          <div class="stat-label">Curiosity</div>
-        </div>
+        <div class="stat"><div class="stat-num">4+</div><div class="stat-label">Years freelance</div></div>
+        <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Curiosity</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Work Grid -->
-<!--
-  COME AGGIUNGERE LE TUE FOTO NEI LAVORI:
-  Dentro ogni .work-bg aggiungi:
-    style="background-image: url('nome-foto.jpg'); font-size:0;"
-  oppure sostituisci .work-bg con un <img>.
-  
-  I link href portano alle pagine di progetto separate.
-  Crea un file HTML per ogni progetto (es: wedding.html, real-estate.html)
-  seguendo il template di street.html.
--->
 <section id="work">
   <p class="section-label">01 — Selected Work</p>
   <div class="work-grid">
-
     <a class="work-item" href="wedding.html">
-      <div class="work-bg">📸</div>
+      <div class="work-bg" style="background-image: url('resources/wedding_cover.jpg'); opacity: 1;"></div>
       <span class="work-num">01</span>
-      <div class="work-info">
-        <div class="work-title">Wedding Stories</div>
-        <div class="work-cat">Photography · Videomaking</div>
-      </div>
+      <div class="work-info"><div class="work-title">Wedding Stories</div><div class="work-cat">Photography · Videomaking</div></div>
       <span class="work-arrow">↗</span>
     </a>
-
     <a class="work-item tall" href="aiko.html">
-      <div class="work-bg">🎨</div>
+      <div class="work-bg" style="background-image: url('resources/aiko_cover.jpg'); opacity: 1;"></div>
       <span class="work-num">02</span>
-      <div class="work-info">
-        <div class="work-title">AIKO srl — Brand</div>
-        <div class="work-cat">Design · Social Media</div>
-      </div>
+      <div class="work-info"><div class="work-title">AIKO srl — Brand</div><div class="work-cat">Design · Social Media</div></div>
       <span class="work-arrow">↗</span>
     </a>
-
-    <a class="work-item tall" href="crc.html">
-      <div class="work-bg">🏛️</div>
-      <span class="work-num">03</span>
-      <div class="work-info">
-        <div class="work-title">Fondazione CRC</div>
-        <div class="work-cat">Event Design · Communication</div>
-      </div>
-      <span class="work-arrow">↗</span>
-    </a>
-
-    <a class="work-item" href="real-estate.html">
-      <div class="work-bg">🏠</div>
-      <span class="work-num">04</span>
-      <div class="work-info">
-        <div class="work-title">Real Estate Visual</div>
-        <div class="work-cat">Photography · Videomaking</div>
-      </div>
-      <span class="work-arrow">↗</span>
-    </a>
-
   </div>
 </section>
 
-<!-- Photography Preview — Street -->
-<!--
-  COME AGGIUNGERE LE TUE FOTO:
-  Su ogni .photo-img aggiungi:
-    style="background-image: url('street-01.jpg'); font-size:0;"
-  
-  Puoi avere quante foto vuoi — segui la struttura della griglia.
-  Le prime 3 sono in riga alta, le ultime 3 in riga bassa.
--->
 <section id="photo-preview">
   <p class="section-label">02 — Photography</p>
   <div class="photo-header">
-    <h2 class="photo-header-title">
-      The world<br>
-      <em>as I see it.</em>
-    </h2>
+    <h2 class="photo-header-title">The world<br><em>as I see it.</em></h2>
     <a href="street.html" class="view-all-link">View all street photos →</a>
   </div>
-
   <div class="photo-strip">
-    <!-- Riga 1 -->
-    <div class="photo-thumb">
-      <div class="photo-img">01</div>
-      <div class="photo-overlay"><span class="photo-num">01</span></div>
-    </div>
-    <div class="photo-thumb">
-      <div class="photo-img">02</div>
-      <div class="photo-overlay"><span class="photo-num">02</span></div>
-    </div>
-    <div class="photo-thumb">
-      <div class="photo-img">03</div>
-      <div class="photo-overlay"><span class="photo-num">03</span></div>
-    </div>
-    <!-- Riga 2 -->
-    <div class="photo-thumb wide">
-      <div class="photo-img">04</div>
-      <div class="photo-overlay"><span class="photo-num">04</span></div>
-    </div>
-    <div class="photo-thumb mid-bottom">
-      <div class="photo-img">05</div>
-      <div class="photo-overlay"><span class="photo-num">05</span></div>
-    </div>
-    <div class="photo-thumb right-bottom">
-      <div class="photo-img">06</div>
-      <div class="photo-overlay"><span class="photo-num">06</span></div>
-    </div>
+    <div class="photo-thumb"><div class="photo-img" style="background-image: url('resources/street1.jpg'); opacity: 1;"></div></div>
+    <div class="photo-thumb"><div class="photo-img" style="background-image: url('resources/street2.jpg'); opacity: 1;"></div></div>
+    <div class="photo-thumb"><div class="photo-img" style="background-image: url('resources/street3.jpg'); opacity: 1;"></div></div>
   </div>
 </section>
 
-<!-- Services -->
 <section id="services">
   <p class="section-label">03 — What I do</p>
   <div class="services-list reveal">
-    <div class="service-item">
-      <span class="service-name">Visual Design</span>
-      <span class="service-tag">Brand · Identity · Print</span>
-    </div>
-    <div class="service-item">
-      <span class="service-name">Photography</span>
-      <span class="service-tag">Events · Wedding · Real Estate</span>
-    </div>
-    <div class="service-item">
-      <span class="service-name">Videomaking</span>
-      <span class="service-tag">Reels · Documentaries · Events</span>
-    </div>
-    <div class="service-item">
-      <span class="service-name">Digital Communication</span>
-      <span class="service-tag">Social · Strategy · Content</span>
-    </div>
+    <div class="service-item"><span class="service-name">Visual Design</span><span class="service-tag">Brand · Identity</span></div>
+    <div class="service-item"><span class="service-name">Photography</span><span class="service-tag">Events · Wedding</span></div>
   </div>
 </section>
 
-<!-- Contact -->
 <section id="contact">
   <p class="section-label" style="justify-content:center;">04 — Let's Talk</p>
-  <h2 class="contact-title reveal">
-    Got a project?<br>
-    <em>Let's make</em><br>
-    it unforgettable.
-  </h2>
-  <a href="/cdn-cgi/l/email-protection#066a636968636b69746768626f686f46616b676f6a2865696b" class="cta-btn">Say ciao →</a>
+  <h2 class="contact-title reveal">Got a project?<br><em>Let's make</em><br>it unforgettable.</h2>
+  <a href="mailto:ciao@leone.com" class="cta-btn">Say ciao →</a>
   <div class="contact-links">
-    <a href="https://instagram.com/leoneciao_" target="_blank">Instagram</a>
-    <a href="https://www.linkedin.com/in/leone-morandini-4b1441276" target="_blank">LinkedIn</a>
-    <a href="/cdn-cgi/l/email-protection#dfb3bab0b1bab2b0adbeb1bbb6b1b69fb8b2beb6b3f1bcb0b2"><span class="__cf_email__" data-cfemail="3d515852535850524f5c53595453547d5a505c5451135e5250">[email&#160;protected]</span></a>
-    <a href="tel:+393476295182">+39 347 629 5182</a>
+    <a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">Email</a>
   </div>
 </section>
 
@@ -692,28 +455,6 @@
   <span>Turin — World</span>
 </footer>
 
-<script>
-  // FIX CURSORE: Movimento fluido senza lag
-  const cursor = document.getElementById('cursor');
-  document.addEventListener('mousemove', e => {
-    window.requestAnimationFrame(() => {
-      cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-15%, -15%)`;
-    });
-  });
 
-  document.querySelectorAll('a, .work-item, .service-item, .cta-btn, .photo-thumb').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
-  });
-
-  // Scroll reveal semplice
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
-
- 
+</body>
+</html>
