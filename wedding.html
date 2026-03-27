@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leone Morandini — Wedding Photography</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0c0b09;
+    --white: #f5f0e8;
+    --accent: #c9a96e;
+    --gray: #2a2520;
+    --mid: #8a7e6e;
+    --font-display: 'Playfair Display', serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: var(--font-mono); font-size: 14px; line-height: 1.6; cursor: none; overflow-x: hidden; }
+
+  .cursor { width: 12px; height: 12px; background: var(--accent); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transition: width 0.2s, height 0.2s; transform: translate(-50%, -50%); }
+  .cursor.expand { width: 48px; height: 48px; background: transparent; border: 1.5px solid var(--accent); }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 28px 40px; mix-blend-mode: difference; }
+  .nav-logo { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em; color: var(--white); text-decoration: none; text-transform: uppercase; }
+  .nav-back { color: var(--white); text-decoration: none; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; transition: opacity 0.2s; }
+  .nav-back:hover { opacity: 1; }
+
+  /* COVER */
+  #cover { height: 100vh; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 40px 60px; }
+  .cover-img { position: absolute; inset: 0; background-image: url('Wedding/image-88a5e514-4a21-416f-ab69-a772baf86b5d.webp'); background-size: cover; background-position: center 20%; filter: brightness(0.5); transform: scale(1.04); animation: slowZoom 14s ease forwards; }
+  @keyframes slowZoom { from { transform: scale(1.04); } to { transform: scale(1); } }
+  .cover-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(12,11,9,0.93) 0%, rgba(12,11,9,0.1) 55%); }
+  .cover-content { position: relative; z-index: 2; }
+  .cover-eyebrow { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
+  .cover-title { font-family: var(--font-display); font-size: clamp(64px, 11vw, 144px); font-weight: 900; line-height: 0.85; letter-spacing: -0.02em; margin-bottom: 36px; opacity: 0; animation: fadeUp 0.9s 0.6s forwards; }
+  .cover-title em { font-style: italic; color: var(--accent); }
+  .cover-meta { display: flex; justify-content: space-between; align-items: flex-end; opacity: 0; animation: fadeUp 0.8s 0.9s forwards; }
+  .cover-desc { max-width: 360px; font-size: 13px; color: rgba(245,240,232,0.6); line-height: 1.9; }
+  .cover-info { text-align: right; font-size: 11px; color: var(--mid); letter-spacing: 0.12em; text-transform: uppercase; line-height: 2; }
+
+  /* INTRO */
+  #intro { padding: 100px 40px; display: grid; grid-template-columns: 1fr 1.8fr; gap: 80px; border-bottom: 1px solid var(--gray); }
+  .intro-ornament { font-family: var(--font-display); font-size: 140px; font-weight: 900; line-height: 1; color: var(--gray); letter-spacing: -0.04em; font-style: italic; }
+  .intro-big { font-family: var(--font-display); font-size: clamp(26px, 3.2vw, 42px); font-weight: 400; font-style: italic; line-height: 1.35; margin-bottom: 28px; }
+  .intro-big strong { font-style: normal; font-weight: 900; color: var(--accent); }
+  .intro-text { font-size: 14px; color: var(--mid); line-height: 1.95; max-width: 560px; }
+
+  /* PHOTO LAYOUTS — proportions naturali */
+  .photo-full { width: 100%; overflow: hidden; }
+  .photo-full img { width: 100%; height: auto; display: block; transition: transform 0.9s ease; }
+  .photo-full:hover img { transform: scale(1.02); }
+  .photo-caption { padding: 14px 40px 0; font-size: 11px; color: var(--mid); letter-spacing: 0.09em; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .photo-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; align-items: start; }
+  .photo-duo .slot { overflow: hidden; }
+  .photo-duo .slot img { width: 100%; height: auto; display: block; transition: transform 0.7s ease; }
+  .photo-duo .slot:hover img { transform: scale(1.03); }
+  .photo-asym { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3px; align-items: start; }
+  .photo-asym .slot { overflow: hidden; }
+  .photo-asym .slot img { width: 100%; height: auto; display: block; transition: transform 0.7s ease; }
+  .photo-asym .slot:hover img { transform: scale(1.03); }
+  .mosaic { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3px; align-items: start; }
+  .mosaic-col { display: flex; flex-direction: column; gap: 3px; }
+  .mosaic .slot { overflow: hidden; }
+  .mosaic .slot img { width: 100%; height: auto; display: block; transition: transform 0.7s ease; }
+  .mosaic .slot:hover img { transform: scale(1.04); }
+
+  /* CHAPTER */
+  .chapter { padding: 80px 40px 48px; border-top: 1px solid var(--gray); display: flex; justify-content: space-between; align-items: flex-end; }
+  .chapter-title { font-family: var(--font-display); font-size: clamp(40px, 6vw, 80px); font-weight: 900; line-height: 0.9; letter-spacing: -0.02em; }
+  .chapter-title em { font-style: italic; color: var(--accent); }
+  .chapter-text { max-width: 340px; font-size: 13px; color: var(--mid); line-height: 1.85; text-align: right; }
+
+  /* PULL QUOTE */
+  .pull-quote { padding: 96px 40px; border-top: 1px solid var(--gray); border-bottom: 1px solid var(--gray); }
+  .pull-quote-inner { display: grid; grid-template-columns: auto 1fr; gap: 44px; align-items: start; max-width: 860px; }
+  .pull-mark { font-family: var(--font-display); font-size: 112px; line-height: 0.7; color: var(--accent); font-style: italic; font-weight: 900; user-select: none; }
+  .pull-text { font-family: var(--font-display); font-size: clamp(22px, 3.2vw, 42px); font-style: italic; line-height: 1.35; font-weight: 400; }
+  .pull-text em { color: var(--accent); font-style: normal; font-weight: 900; }
+  .pull-author { margin-top: 20px; font-size: 11px; color: var(--mid); letter-spacing: 0.15em; text-transform: uppercase; }
+
+  /* TEXT + PHOTO */
+  .text-photo { display: grid; grid-template-columns: 1fr 1.5fr; gap: 0; border-top: 1px solid var(--gray); }
+  .text-photo-body { padding: 80px 40px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--gray); }
+  .text-photo-title { font-family: var(--font-display); font-size: clamp(26px, 3vw, 38px); font-weight: 900; line-height: 1.1; margin-bottom: 24px; }
+  .text-photo-title em { font-style: italic; color: var(--accent); }
+  .text-photo-body p { font-size: 14px; color: var(--mid); line-height: 1.9; margin-bottom: 20px; }
+  .text-photo-img { overflow: hidden; }
+  .text-photo-img img { width: 100%; height: auto; display: block; transition: transform 0.8s ease; }
+  .text-photo-img:hover img { transform: scale(1.03); }
+
+  /* STATS */
+  .stats-strip { padding: 56px 40px; border-top: 1px solid var(--gray); border-bottom: 1px solid var(--gray); display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+  .stat-n { font-family: var(--font-display); font-size: clamp(44px, 5.5vw, 72px); font-weight: 900; line-height: 1; color: var(--white); }
+  .stat-n em { font-style: italic; color: var(--accent); }
+  .stat-l { font-size: 11px; color: var(--mid); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 8px; }
+
+  /* FOOTER CTA */
+  #footer-cta { padding: 100px 40px; border-top: 1px solid var(--gray); display: flex; justify-content: space-between; align-items: flex-end; }
+  .footer-title { font-family: var(--font-display); font-size: clamp(40px, 7vw, 96px); font-weight: 900; line-height: 0.9; letter-spacing: -0.02em; }
+  .footer-title em { font-style: italic; color: var(--accent); }
+  .footer-right { text-align: right; }
+  .footer-right a { display: inline-block; border: 1.5px solid var(--white); padding: 16px 40px; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); text-decoration: none; transition: all 0.3s; position: relative; overflow: hidden; margin-bottom: 24px; }
+  .footer-right a::before { content: ''; position: absolute; inset: 0; background: var(--accent); transform: translateX(-101%); transition: transform 0.3s; z-index: -1; }
+  .footer-right a:hover { color: var(--black); border-color: var(--accent); }
+  .footer-right a:hover::before { transform: translateX(0); }
+  .footer-note { font-size: 11px; color: var(--mid); letter-spacing: 0.08em; line-height: 1.9; }
+
+  footer { display: flex; justify-content: space-between; padding: 24px 40px; border-top: 1px solid var(--gray); font-size: 11px; color: var(--mid); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 1; opacity: 0.35; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    #cover { padding: 0 20px 40px; }
+    .cover-title { font-size: clamp(52px, 13vw, 80px); }
+    .cover-meta { flex-direction: column; gap: 16px; align-items: flex-start; }
+    .cover-info { text-align: left; }
+    #intro { grid-template-columns: 1fr; gap: 20px; padding: 56px 20px; }
+    .intro-ornament { font-size: 80px; }
+    .photo-duo { grid-template-columns: 1fr; }
+    .photo-asym { grid-template-columns: 1fr; }
+    .mosaic { grid-template-columns: 1fr; }
+    .mosaic-col { flex-direction: row; }
+    .pull-quote { padding: 56px 20px; }
+    .pull-quote-inner { grid-template-columns: 1fr; gap: 12px; }
+    .pull-mark { font-size: 64px; }
+    .chapter { flex-direction: column; align-items: flex-start; gap: 16px; padding: 48px 20px 28px; }
+    .chapter-text { text-align: left; max-width: 100%; }
+    .text-photo { grid-template-columns: 1fr; }
+    .text-photo-body { padding: 48px 20px; border-right: none; border-bottom: 1px solid var(--gray); }
+    .stats-strip { grid-template-columns: 1fr 1fr; gap: 28px; padding: 40px 20px; }
+    #footer-cta { flex-direction: column; gap: 32px; padding: 56px 20px; }
+    .footer-right { text-align: left; }
+    footer { flex-direction: column; gap: 8px; padding: 20px; }
+    .photo-caption { padding: 10px 20px 0; flex-direction: column; gap: 2px; }
+  }
+  @media (max-width: 480px) {
+    .mosaic-col { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">← Leone Morandini</a>
+  <a href="index.html#work" class="nav-back">All work</a>
+</nav>
+
+<!-- COVER -->
+<section id="cover">
+  <div class="cover-img"></div>
+  <div class="cover-overlay"></div>
+  <div class="cover-content">
+    <p class="cover-eyebrow">Wedding Photography — Piedmont, Italy — October 2025</p>
+    <h1 class="cover-title">
+      A day<br>
+      <em>worth keeping.</em>
+    </h1>
+    <div class="cover-meta">
+      <p class="cover-desc">October 2025, a small church in Piedmont. Four generations in the same square. The kind of wedding you don't forget.</p>
+      <div class="cover-info">
+        <div>October 2025</div>
+        <div>Piedmont, Italy</div>
+        <div>Ceremony & Reception</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section id="intro" class="reveal">
+  <div class="intro-ornament">&amp;</div>
+  <div>
+    <p class="intro-big">
+      It's not about getting the right shot.<br>
+      It's about being present<br>
+      <strong>when it happens.</strong>
+    </p>
+    <p class="intro-text">A small church in Piedmont, an October morning, four generations in the same square. My job was to stay still, watch, and press at the right moment.</p>
+  </div>
+</section>
+
+<!-- ── CAP 1: I DETTAGLI ── -->
+<div class="chapter reveal">
+  <h2 class="chapter-title">Before<br><em>anything.</em></h2>
+  <p class="chapter-text">Details tell the intentions. The rings on the altar table. The bouquet held tight. Things placed there with care, before everything began.</p>
+</div>
+
+<div class="photo-duo">
+  <div class="slot">
+    <img src="Wedding/image-af51572f-5948-42a9-ae2d-75fc32f52886.webp" alt="Rings on the altar">
+  </div>
+  <div class="slot">
+    <img src="Wedding/image-eeba1a17-7c82-420a-9fb9-d772b2aa201a.webp" alt="Hands holding, wedding ring">
+  </div>
+</div>
+<div class="photo-caption">
+  <span>The rings on the altar table. Two hands holding — no words needed.</span>
+  <span>Ceremony, October 2025</span>
+</div>
+
+<div class="photo-full" style="margin-top:3px;">
+  <img src="Wedding/image-fa60a0b1-1a7e-4646-94d1-b22307a8cfb6.webp" alt="The bouquet">
+</div>
+<div class="photo-caption"><span>The bouquet, just before the entrance.</span></div>
+
+<!-- ── CAP 2: LA MATTINA ── -->
+<div class="chapter reveal">
+  <h2 class="chapter-title">The<br><em>morning.</em></h2>
+  <p class="chapter-text">Before the ceremony there's always a moment when everyone laughs at something and nobody quite knows what. And then someone cries. And then the laughing starts again.</p>
+</div>
+
+<div class="photo-duo">
+  <div class="slot">
+    <img src="Wedding/image-2c71469f-f4d2-472e-937f-4f42d7507fe0.webp" alt="Two women laughing together">
+  </div>
+  <div class="slot">
+    <img src="Wedding/image-fc4d525d-243f-4fe3-9d21-3a76a5e14c7f.webp" alt="Friend wiping tears">
+  </div>
+</div>
+<div class="photo-caption">
+  <span>The bride and her friend — the biggest laugh of the day, then tears. Often the same person, three minutes apart.</span>
+  <span>Getting ready, morning</span>
+</div>
+
+<div class="pull-quote reveal">
+  <div class="pull-quote-inner">
+    <div class="pull-mark">"</div>
+    <div>
+      <p class="pull-text">Before walking into the church,<br>she laughed so hard<br>she had to redo her lipstick.<br><em>Twice.</em></p>
+      <p class="pull-author">— Getting ready, October morning</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── CAP 3: LA CERIMONIA ── -->
+<div class="chapter reveal">
+  <h2 class="chapter-title">The<br><em>moment.</em></h2>
+  <p class="chapter-text">Some photographs can't be planned. You just wait for them. The church was quiet. And then it happened.</p>
+</div>
+
+<div class="photo-full">
+  <img src="Wedding/image-828f82ec-4061-4866-816f-c4756acd924e.webp" alt="The couple laughing at the altar">
+</div>
+<div class="photo-caption">
+  <span>At the altar. The priest said something. He laughed first. Then she did. Then everything else became secondary.</span>
+  <span>Religious ceremony</span>
+</div>
+
+<div class="photo-duo" style="margin-top:3px;">
+  <div class="slot">
+    <img src="Wedding/image-507c125e-d1dd-4e5a-95df-69fd7634fdf4.webp" alt="The bride, emotional">
+  </div>
+  <div class="slot">
+    <img src="Wedding/image-7b14ca0c-f5d2-4102-9bd5-92d4154611d7.webp" alt="The couple outside the church">
+  </div>
+</div>
+<div class="photo-caption">
+  <span>She turns with those eyes. He wipes his glasses. Outside the church, October light finds them still looking at each other the same way.</span>
+</div>
+
+<div class="text-photo reveal">
+  <div class="text-photo-body">
+    <h3 class="text-photo-title">Just<br><em>outside.</em></h3>
+    <p>When you walk out of a church and hug the person you've been waiting to hug all morning, your face stops pretending. Everything you held in comes out.</p>
+    <p style="color: var(--accent); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 8px;">Outside the church — Piedmont</p>
+  </div>
+  <div class="text-photo-img">
+    <img src="Wedding/image-5e240c13-1649-401c-acec-89d905bb0204.webp" alt="The bride laughing outside the church">
+  </div>
+</div>
+
+<!-- ── CAP 4: THE PEOPLE ── -->
+<div class="chapter reveal">
+  <h2 class="chapter-title">Who<br><em>was there.</em></h2>
+  <p class="chapter-text">A wedding is never just two people. It's everyone those two people have loved over time, gathered in the same place for a few hours.</p>
+</div>
+
+<div class="photo-duo">
+  <div class="slot">
+    <img src="Wedding/image-f479d11e-2f83-4d52-b763-7b9f0c427443.webp" alt="Young boy and elderly man">
+  </div>
+  <div class="slot">
+    <img src="Wedding/image-48c8f039-7477-4899-a4c2-c82aa7214dde.webp" alt="Family photo with grandparents">
+  </div>
+</div>
+<div class="photo-caption">
+  <span>The boy reaching toward the old man in the chair — one of the best moments of the day, and nobody else was watching. The grandparents who made a great effort to be there. And they were.</span>
+</div>
+
+<div class="photo-full" style="margin-top:3px;">
+  <img src="Wedding/image-188b4371-3f3b-4ed1-8efb-a358505b38ea.webp" alt="The whole family outside the church">
+</div>
+<div class="photo-caption">
+  <span>The whole family outside the church door. In the middle of all that happy chaos, she leaned down toward the smallest child. She noticed him.</span>
+  <span>Church square</span>
+</div>
+
+<div class="pull-quote reveal">
+  <div class="pull-quote-inner">
+    <div class="pull-mark">"</div>
+    <div>
+      <p class="pull-text">Some people made<br>a great effort to be there.<br><em>And they were.</em></p>
+      <p class="pull-author">— Outside the church, October 2025</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── CAP 5: THE RECEPTION ── -->
+<div class="chapter reveal">
+  <h2 class="chapter-title">After<br><em>the yes.</em></h2>
+  <p class="chapter-text">The reception is when people stop being wedding people and go back to being just people. That's when the real photographs happen.</p>
+</div>
+
+<div class="photo-duo">
+  <div class="slot">
+    <img src="Wedding/image-84f68ece-2457-4b9b-b63f-4d9be48cd1c7.webp" alt="Couple seen through the neon sign">
+  </div>
+  <div class="slot">
+    <img src="Wedding/image-53367c2b-e72b-4996-853e-ead3ba1678d0.webp" alt="Family at the reception with newborn">
+  </div>
+</div>
+<div class="photo-caption">
+  <span>The written sign: someone stepped in front of it without thinking, and the glass framed them perfectly. Four generations in the same afternoon.</span>
+  <span>Reception</span>
+</div>
+
+<div class="photo-full" style="margin-top:3px;">
+  <img src="Wedding/image-292c132c-681b-4953-bc41-bee8dc43a27e.webp" alt="Cutting the cake">
+</div>
+<div class="photo-caption">
+  <span>The cake. She's already laughing. He's paying close attention. Almost there.</span>
+  <span>Reception, afternoon</span>
+</div>
+
+<!-- STATS -->
+<div class="stats-strip reveal">
+  <div class="stat-item">
+    <div class="stat-n">1<em>day</em></div>
+    <div class="stat-l">October 2025</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-n">3<em>gen.</em></div>
+    <div class="stat-l">In that square</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-n">∞</div>
+    <div class="stat-l">Laughs, total</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-n">2</div>
+    <div class="stat-l">People who chose each other</div>
+  </div>
+</div>
+
+<!-- FOOTER CTA -->
+<div id="footer-cta" class="reveal">
+  <h2 class="footer-title">Planning<br><em>a wedding?</em></h2>
+  <div class="footer-right">
+    <a href="index.html#contact">Let's talk →</a>
+    <p class="footer-note">Wedding photography — Piedmont, October 2025<br>Photography & Videomaking · Leone Morandini</p>
+  </div>
+</div>
+
+<footer>
+  <span>Leone Morandini © 2026</span>
+  <span>Turin — World</span>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    window.requestAnimationFrame(() => {
+      cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+    });
+  });
+  document.querySelectorAll('a, .slot, .photo-full, .text-photo-img').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
