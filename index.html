@@ -249,6 +249,18 @@
   #work { border-top: 1px solid var(--gray); }
   .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
 
+
+                      /* Forza l'elemento wide a occupare entrambe le colonne */
+                      .work-item.wide { 
+                        grid-column: span 2; 
+                        aspect-ratio: 16 / 8; /* Proporzione più panoramica */
+                      }
+
+                      /* Se vuoi che il 3 sia "più alto" e il 5 gli si affianchi perfettamente */
+                      .work-item.tall { 
+                        grid-row: span 2; 
+                        aspect-ratio: auto; /* Permette alla griglia di deciderne l'altezza */
+                      }
   .work-item {
     position: relative; overflow: hidden;
     background: var(--gray);
@@ -620,41 +632,56 @@
       <span class="work-num">01</span>
       <div class="work-info">
         <div class="work-title">Erasmus in Paris</div>
-        <div class="work-cat">Photography</div>
+        <div class="work-cat">Personal Photography</div>
       </div>
       <span class="work-arrow">↗</span>
     </a>
 
-    <a class="work-item tall" href="real-estate.html">
-      <div class="work-bg" style="font-variant-emoji: emoji;"></div>
+    <a class="work-item tall" href="NoSignal.html">
+      <div class="work-bg"  style="background-image: url('resources/image-c89d5ee6-cfed-4998-b5d4-e99c85edb75e.webp'); font-size:0;"></div>
       <span class="work-num">02</span>
       <div class="work-info">
-        <div class="work-title">Real Estate Visual</div>
-        <div class="work-cat">Photography · Videomaking</div>
+        <div class="work-title">NoSignal ets - Fondazione CRC</div>
+        <div class="work-cat">Branding · Events · Advisory Board member</div>
       </div>
       <span class="work-arrow">↗</span>
     </a>
 
-    <a class="work-item tall" href="crc.html">
-      <div class="work-bg">🏛️</div>
+    <a class="work-item tall" href="wedding.html">
+      <div class="work-bg" style="background-image: url('Wedding/image-507c125e-d1dd-4e5a-95df-69fd7634fdf4.webp'); font-size:0;"></div>
       <span class="work-num">03</span>
       <div class="work-info">
-        <div class="work-title">Fondazione CRC</div>
-        <div class="work-cat">Event Design · Communication</div>
+        <div class="work-title">Weddings</div>
+        <div class="work-cat">Event Photography</div>
       </div>
       <span class="work-arrow">↗</span>
     </a>
 
-    <a class="work-item wide" href="aiko.html">
-      <div class="work-bg" style="background-image: url('resources/image-1c5f68c9-dc4e-4287-b652-36c601daaec8.webp'); font-size:0;"></div>
+
+
+    <a class="work-item" href="aiko.html">
+      <div class="work-bg" style="background-image: url('resources/image-1c5f68c9-dc4e-4287-b652-36c601daaec8.webp');background-position: 80% center; font-size:0;"></div>
       <span class="work-num">04</span>
       <div class="work-info">
+        <style>/* Prende l'ultimo elemento della griglia e lo mette nella colonna 2 */
+          .work-grid .work-item:last-child {
+            grid-column-start: 2;}
+        </style>
         <div class="work-title">AIKO srl — Brand</div>
-        <div class="work-cat">Design · Social Media</div>
+        <div class="work-cat">Videogame Design · Social Media</div>
       </div>
       <span class="work-arrow">↗</span>
     </a>
 
+        <a class="work-item wide" href="oratorio.html">
+      <div class="work-bg" style="background-image: url('resources/DJI_20250613110024_0005_D.jpg');  font-size:0;"></div>
+      <span class="work-num">05</span>
+      <div class="work-info">
+        <div class="work-title">Scala del Re - Oratorio Ferrone</div>
+        <div class="work-cat">Music teaching · Kid mentoring</div>
+      </div>
+      <span class="work-arrow">↗</span>
+    </a>
   </div>
 </section>
 
@@ -674,13 +701,13 @@
       The world<br>
       <em>as I see it.</em>
     </h2>
-    <a href="street.html" class="view-all-link">View all street photos →</a>
+    <a href="street.html" class="view-all-link">View more photos →</a>
   </div>
 
   <div class="photo-strip">
     <!-- Riga 1 -->
     <div class="photo-thumb">
-      <div class="photo-img" style="background-image: url('wedding/image-507c125e-d1dd-4e5a-95df-69fd7634fdf4.webp'); font-size:0;"></div>
+      <div class="photo-img" style="background-image: url('resources/DSF6474.jpg'); font-size:0;"></div>
       <div class="photo-overlay"><span class="photo-num">01</span></div>
     </div>
     <div class="photo-thumb">
@@ -748,8 +775,7 @@
       id="phone-cta" 
       data-p1="347" 
       data-p2="629" 
-      data-p3="5182" 
-      style="text-decoration: none; color: inherit;">
+      data-p3="5182" >
       +39 [Show number]
     </a>
     </a>
