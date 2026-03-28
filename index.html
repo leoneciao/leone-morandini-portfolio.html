@@ -249,18 +249,12 @@
   #work { border-top: 1px solid var(--gray); }
   .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
 
-
-                      /* Forza l'elemento wide a occupare entrambe le colonne */
-                      .work-item.wide { 
-                        grid-column: span 2; 
-                        aspect-ratio: 16 / 8; /* Proporzione più panoramica */
-                      }
-
-                      /* Se vuoi che il 3 sia "più alto" e il 5 gli si affianchi perfettamente */
-                      .work-item.tall { 
-                        grid-row: span 2; 
-                        aspect-ratio: auto; /* Permette alla griglia di deciderne l'altezza */
-                      }
+  /* Desktop only: wide item spans 2 cols, tall spans 2 rows */
+  @media (min-width: 769px) {
+    .work-item.wide { grid-column: span 2; aspect-ratio: 16 / 8; }
+    .work-item.tall { grid-row: span 2; aspect-ratio: auto; }
+    .work-grid .work-item:nth-child(4) { grid-column-start: 2; }
+  }
   .work-item {
     position: relative; overflow: hidden;
     background: var(--gray);
@@ -456,15 +450,30 @@
     .about-photo-wrap { aspect-ratio: 4/5; max-width: 260px; }
     .stat-row { flex-wrap: wrap; gap: 20px; }
     .stat-num { font-size: 36px; }
-    .work-grid { grid-template-columns: 1fr; }
-    .work-item.tall { aspect-ratio: 4/3; }
-    .work-info { opacity: 1; transform: translateY(0); }
-    .work-arrow { opacity: 1; transform: translate(0,0); }
-    .photo-strip { grid-template-columns: 1fr 1fr; grid-template-rows: 160px 160px 160px; }
-    .photo-thumb { height: 160px; }
-    .photo-thumb.wide { grid-column: 1 / 3; grid-row: auto; height: 200px; }
-    .photo-thumb.mid-bottom { grid-column: auto; grid-row: auto; }
-    .photo-thumb.right-bottom { grid-column: auto; grid-row: auto; }
+
+    /* Work grid — colonna singola, tutti 4/3, reset classi speciali */
+    .work-grid { grid-template-columns: 1fr !important; }
+    .work-item,
+    .work-item.tall,
+    .work-item.wide { aspect-ratio: 4/3 !important; grid-column: auto !important; grid-row: auto !important; }
+    /* Override inline style su AIKO */
+    .work-grid .work-item:last-child { grid-column-start: auto !important; }
+    /* Info e freccia sempre visibili su touch */
+    .work-info { opacity: 1 !important; transform: translateY(0) !important; }
+    .work-arrow { opacity: 1 !important; transform: translate(0,0) !important; }
+
+    /* Photo strip — 2 colonne, altezze in vw invece di px fissi */
+    .photo-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: none;
+      gap: 3px;
+    }
+    .photo-thumb { height: 44vw !important; grid-column: auto !important; grid-row: auto !important; }
+    .photo-thumb.wide { grid-column: 1 / 3 !important; height: 52vw !important; }
+    .photo-thumb.mid-bottom { grid-column: auto !important; grid-row: auto !important; }
+    .photo-thumb.right-bottom { grid-column: auto !important; grid-row: auto !important; }
+
     .photo-header { flex-direction: column; align-items: flex-start; gap: 16px; }
     .service-tag { font-size: 9px; }
     footer { flex-direction: column; gap: 8px; padding: 20px; }
@@ -474,10 +483,90 @@
   }
 
   @media (max-width: 480px) {
-    .nav-links li:nth-child(3),
-    .photo-strip { grid-template-columns: 1fr; }
-    .photo-thumb.wide { grid-column: 1; }
-    .photo-thumb { height: 220px; }
+    /* Photo strip — colonna singola su schermi molto piccoli */
+    .photo-strip { grid-template-columns: 1fr !important; }
+    .photo-thumb,
+    .photo-thumb.wide { grid-column: 1 !important; height: 60vw !important; }
+  }
+   #built { border-top: 1px solid var(--gray); }
+ 
+  .built-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--gray);
+  }
+ 
+  .built-intro {
+    grid-column: 1 / 3;
+    padding: 48px 40px;
+    border-bottom: 1px solid var(--gray);
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 60px;
+    align-items: center;
+  }
+ 
+  .built-title {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+  .built-title em { font-style: italic; color: var(--accent); }
+ 
+  .built-desc { font-size: 14px; color: var(--mid); line-height: 1.9; }
+  .built-ai { font-style: italic; color: var(--mid); opacity: 0.7; }
+ 
+  .built-col {
+    padding: 40px;
+    border-right: 1px solid var(--gray);
+  }
+  .built-col:last-of-type { border-right: none; }
+ 
+  .built-cat {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 24px;
+  }
+ 
+  .built-list {
+    list-style: none;
+  }
+  .built-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--gray);
+    font-size: 15px;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .built-list li:last-child { border-bottom: none; }
+  .built-list li::before {
+    content: '';
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+ 
+  .built-footer-row {
+    grid-column: 1 / 3;
+    padding: 24px 40px;
+    border-top: 1px solid var(--gray);
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--mid);
+    letter-spacing: 0.08em;
+  }
+ 
+  /* Mobile */
+  @media (max-width: 768px) {
+    .built-intro { grid-template-columns: 1fr; gap: 24px; grid-column: 1; }
+    .built-grid { grid-template-columns: 1fr; }
+    .built-col { border-right: none; border-bottom: 1px solid var(--gray); }
+    .built-footer-row { flex-direction: column; gap: 8px; grid-column: 1; }
   }
 </style>
 </head>
@@ -584,7 +673,7 @@
         Born in the mountains,<br>
         <em>built for the interactions.</em>
       </h3>
-      <p class="about-text">I'm Leone, born 2001 in Piedmont, Italy. I studied Transportation Design at IAAD Turin and I'm currently finishing a Master in Digital Communication Design. I've spent years working with people — as an educator, a photographer, an event organizer — and that's exactly where my design thinking comes from.</p>
+      <p class="about-text">I'm Leone, born 2001 in Piedmont, Italy. I studied Transportation Design at IAAD Turin and I'm currently finishing a Master in Digital Communication Design. I've spent years working with people as an educator, a photographer, an event organizer and that's exactly where my design thinking comes from.</p>
       <p class="about-text">I believe the best design is the kind you don't notice. The kind that just feels right, that talks to the right people in the right language.</p>
       <div class="tags">
         <span class="tag">Design</span>
@@ -627,12 +716,13 @@
   <p class="section-label">01 — Selected Work</p>
   <div class="work-grid">
 
-    <a class="work-item" href="paris_street.html">
-      <div class="work-bg" style="background-image: url('Parigi/FotoParigiLowQ-19.jpg'); font-size:0;"></div>
-      <span class="work-num">01</span>
+
+    <a class="work-item" href="iaad-aiko.html">
+      <div class="work-bg" style="background-image: url('resources/image-1c5f68c9-dc4e-4287-b652-36c601daaec8.webp');background-position: 80% center; font-size:0;"></div>
+      <span class="work-num">04</span>
       <div class="work-info">
-        <div class="work-title">Erasmus in Paris</div>
-        <div class="work-cat">Personal Photography</div>
+        <div class="work-title">AIKO srl — IAAD</div>
+        <div class="work-cat">Videogame Design · Transportation Design</div>
       </div>
       <span class="work-arrow">↗</span>
     </a>
@@ -657,21 +747,17 @@
       <span class="work-arrow">↗</span>
     </a>
 
-
-
-    <a class="work-item" href="aiko.html">
-      <div class="work-bg" style="background-image: url('resources/image-1c5f68c9-dc4e-4287-b652-36c601daaec8.webp');background-position: 80% center; font-size:0;"></div>
-      <span class="work-num">04</span>
+    <a class="work-item" href="paris_street.html">
+      <div class="work-bg" style="background-image: url('Parigi/FotoParigiLowQ-19.jpg'); font-size:0;"></div>
+      <span class="work-num">01</span>
       <div class="work-info">
-        <style>/* Prende l'ultimo elemento della griglia e lo mette nella colonna 2 */
-          .work-grid .work-item:last-child {
-            grid-column-start: 2;}
-        </style>
-        <div class="work-title">AIKO srl — Brand</div>
-        <div class="work-cat">Videogame Design · Social Media</div>
+        <div class="work-title">Storytelling</div>
+        <div class="work-cat">Personal Photography</div>
       </div>
       <span class="work-arrow">↗</span>
     </a>
+
+
 
         <a class="work-item wide" href="oratorio.html">
       <div class="work-bg" style="background-image: url('resources/DJI_20250613110024_0005_D.jpg');  font-size:0;"></div>
@@ -739,7 +825,7 @@
   <p class="section-label">03 — What I do</p>
   <div class="services-list reveal">
     <div class="service-item">
-      <span class="service-name">Front End Development</span>
+      <span class="service-name">Web developer</span>
       <span class="service-tag">Brand · Identity · Print</span>
     </div>
     <div class="service-item">
@@ -757,14 +843,69 @@
   </div>
 </section>
 
+
+<section id="built">
+  <p class="section-label">04 — Built by hand</p>
+ 
+  <div class="built-grid">
+ 
+    <div class="built-intro">
+      <h2 class="built-title">
+        This site.<br>
+        <em>Written by me.</em><br>
+        From scratch.
+      </h2>
+      <p class="built-desc">
+        No templates, no Webflow, no WordPress.
+        Every line of HTML, CSS and JavaScript in this portfolio
+        was written by hand:  layout system, custom cursor,
+        scroll animations, responsive design and all.
+        It's also the project I'm most proud of,
+        because I built it while learning.
+        <span class="built-ai">(with a little help from AI)</span>
+      </p>
+    </div>
+ 
+    <div class="built-col">
+      <p class="built-cat">Code & structure</p>
+      <ul class="built-list">
+        <li>HTML5 semantics</li>
+        <li>CSS Grid & Flexbox</li>
+        <li>CSS animations & keyframes</li>
+        <li>Vanilla JavaScript</li>
+        <li>Responsive design</li>
+      </ul>
+    </div>
+ 
+    <div class="built-col">
+      <p class="built-cat">Design & deploy</p>
+      <ul class="built-list">
+        <li>Typography systems</li>
+        <li>Editorial layout composition</li>
+        <li>GitHub Pages</li>
+        <li>Cross-device testing</li>
+        <li>Performance & asset paths</li>
+      </ul>
+    </div>
+ 
+    <div class="built-footer-row">
+      <span>No frameworks. No templates. Just code.</span>
+      <span>View source! it's all there.</span>
+    </div>
+ 
+  </div>
+</section>
+
 <!-- Contact -->
 <section id="contact">
-  <p class="section-label" style="justify-content:center;">04 — Let's Talk</p>
+  <p class="section-label" style="justify-content:center;">05 — Let's Talk</p>
   <h2 class="contact-title reveal">
     Got a project?<br>
     <em>Let's make</em><br>
     it unforgettable.
   </h2>
+
+
   <a href="/cdn-cgi/l/email-protection#066a636968636b69746768626f686f46616b676f6a2865696b" class="cta-btn">Say ciao →</a>
   <div class="contact-links">
     <a href="https://youtube.com/channel/UCCex5pYz8A-mD8cNYz6H6_w" target="_blank">YouTube</a>
