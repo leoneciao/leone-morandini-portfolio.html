@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leone Morandini — NoSignal & Fondazione CRC</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0a0a0a; --white: #f0ede6; --accent: #d4ff5c;
+    --gray: #2a2a2a; --mid: #888;
+    --font-display: 'Playfair Display', serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: var(--font-mono); font-size: 14px; line-height: 1.6; cursor: none; overflow-x: hidden; }
+
+  .cursor { width: 12px; height: 12px; background: var(--accent); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transition: width 0.2s, height 0.2s; transform: translate(-50%, -50%); }
+  .cursor.expand { width: 48px; height: 48px; background: transparent; border: 1.5px solid var(--accent); }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 28px 40px; mix-blend-mode: difference; }
+  .nav-logo { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em; color: var(--white); text-decoration: none; text-transform: uppercase; }
+  .nav-back { color: var(--white); text-decoration: none; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; transition: opacity 0.2s; }
+  .nav-back:hover { opacity: 1; }
+
+  /* ── COVER ── */
+  #cover { height: 100vh; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 40px 60px; }
+  .cover-img { position: absolute; inset: 0; background-image: url('resources/image-c89d5ee6-cfed-4998-b5d4-e99c85edb75e.webp'); background-size: cover; background-position: center; filter: brightness(0.3); transform: scale(1.04); animation: slowZoom 14s ease forwards; }
+  @keyframes slowZoom { from { transform: scale(1.04); } to { transform: scale(1); } }
+  .cover-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.1) 60%); }
+  .cover-content { position: relative; z-index: 2; }
+  .cover-eyebrow { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
+  .cover-title { font-family: var(--font-display); font-size: clamp(56px, 10vw, 128px); font-weight: 900; line-height: 0.88; letter-spacing: -0.02em; margin-bottom: 36px; opacity: 0; animation: fadeUp 0.9s 0.6s forwards; }
+  .cover-title em { font-style: italic; color: var(--accent); }
+  .cover-meta { display: flex; justify-content: space-between; align-items: flex-end; opacity: 0; animation: fadeUp 0.8s 0.9s forwards; }
+  .cover-desc { max-width: 420px; font-size: 13px; color: rgba(240,237,230,0.6); line-height: 1.9; }
+  .cover-info { text-align: right; font-size: 11px; color: var(--mid); letter-spacing: 0.12em; text-transform: uppercase; line-height: 2; }
+
+  /* ── SHARED ── */
+  .section-label { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 48px; display: flex; align-items: center; gap: 16px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--gray); }
+  section { padding: 80px 40px; border-top: 1px solid var(--gray); }
+
+  /* ── PHOTO LAYOUTS ── */
+  .photo-full { width: 100%; overflow: hidden; }
+  .photo-full img { width: 100%; height: auto; display: block; transition: transform 0.9s ease; }
+  .photo-full:hover img { transform: scale(1.02); }
+  .photo-caption { padding: 14px 40px 0; font-size: 11px; color: var(--mid); letter-spacing: 0.09em; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .photo-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; align-items: start; }
+  .photo-duo .slot { overflow: hidden; }
+  .photo-duo .slot img { width: 100%; height: auto; display: block; transition: transform 0.7s ease; }
+  .photo-duo .slot:hover img { transform: scale(1.03); }
+  .photo-asym { display: grid; grid-template-columns: 1.6fr 1fr; gap: 3px; align-items: start; }
+  .photo-asym .slot { overflow: hidden; }
+  .photo-asym .slot img { width: 100%; height: auto; display: block; transition: transform 0.7s ease; }
+  .photo-asym .slot:hover img { transform: scale(1.03); }
+
+  /* ── TEXT + PHOTO ── */
+  .text-photo { display: grid; grid-template-columns: 1fr 1.5fr; gap: 0; border-top: 1px solid var(--gray); }
+  .text-photo.flip { grid-template-columns: 1.5fr 1fr; }
+  .text-photo-body { padding: 64px 40px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--gray); }
+  .text-photo.flip .text-photo-body { border-right: none; border-left: 1px solid var(--gray); order: 2; }
+  .text-photo.flip .text-photo-img { order: 1; }
+  .text-photo-title { font-family: var(--font-display); font-size: clamp(24px, 2.8vw, 36px); font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
+  .text-photo-title em { font-style: italic; color: var(--accent); }
+  .text-photo-body p { font-size: 14px; color: var(--mid); line-height: 1.9; margin-bottom: 16px; }
+  .text-photo-img { overflow: hidden; }
+  .text-photo-img img { width: 100%; height: auto; display: block; transition: transform 0.8s ease; }
+  .text-photo-img:hover img { transform: scale(1.03); }
+
+  /* ── CHAPTER ── */
+  .chapter { padding: 80px 40px 48px; border-top: 1px solid var(--gray); display: flex; justify-content: space-between; align-items: flex-end; }
+  .chapter-title { font-family: var(--font-display); font-size: clamp(40px, 6vw, 80px); font-weight: 900; line-height: 0.9; letter-spacing: -0.02em; }
+  .chapter-title em { font-style: italic; color: var(--accent); }
+  .chapter-text { max-width: 340px; font-size: 13px; color: var(--mid); line-height: 1.85; text-align: right; }
+
+  /* ── PULL QUOTE ── */
+  .pull-quote { padding: 80px 40px; border-top: 1px solid var(--gray); border-bottom: 1px solid var(--gray); }
+  .pull-quote-inner { display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: start; max-width: 820px; }
+  .pull-mark { font-family: var(--font-display); font-size: 100px; line-height: 0.7; color: var(--accent); font-style: italic; font-weight: 900; user-select: none; }
+  .pull-text { font-family: var(--font-display); font-size: clamp(20px, 3vw, 38px); font-style: italic; line-height: 1.35; font-weight: 400; }
+  .pull-text em { color: var(--accent); font-style: normal; font-weight: 900; }
+  .pull-author { margin-top: 16px; font-size: 11px; color: var(--mid); letter-spacing: 0.15em; text-transform: uppercase; }
+
+  /* ── FONDAZIONE CARD ── */
+  .fondazione-card {
+    border: 1px solid var(--gray);
+    display: grid; grid-template-columns: 1fr 1fr;
+    margin-top: 48px;
+  }
+  .fondazione-body { padding: 48px 40px; display: flex; flex-direction: column; justify-content: space-between; }
+  .fondazione-logo-text { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; }
+  .fondazione-title { font-family: var(--font-display); font-size: clamp(24px, 3vw, 36px); font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
+  .fondazione-title em { font-style: italic; color: var(--accent); }
+  .fondazione-desc { font-size: 14px; color: var(--mid); line-height: 1.9; margin-bottom: 24px; }
+  .fondazione-commissions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .commission { border: 1px solid var(--gray); padding: 10px 14px; font-size: 11px; color: var(--mid); letter-spacing: 0.05em; line-height: 1.5; }
+  .commission strong { display: block; color: var(--white); font-size: 12px; margin-bottom: 2px; }
+  .fondazione-link { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--gray); padding-bottom: 4px; transition: border-color 0.2s; }
+  .fondazione-link:hover { border-color: var(--accent); }
+  .fondazione-photo { overflow: hidden; border-left: 1px solid var(--gray); }
+  .fondazione-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s ease; }
+  .fondazione-photo:hover img { transform: scale(1.03); }
+
+  /* ── PROJECT CARD ── */
+  .project-card { border: 1px solid var(--gray); margin-top: 3px; }
+  .project-card-header { padding: 32px 40px; border-bottom: 1px solid var(--gray); display: flex; justify-content: space-between; align-items: center; }
+  .project-card-title { font-family: var(--font-display); font-size: clamp(22px, 2.5vw, 32px); font-weight: 900; }
+  .project-card-title em { font-style: italic; color: var(--accent); }
+  .project-card-tag { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); border: 1px solid var(--gray); padding: 6px 12px; }
+  .project-card-body { display: grid; grid-template-columns: 1fr 1.8fr; }
+  .project-card-text { padding: 36px 40px; border-right: 1px solid var(--gray); }
+  .project-card-text p { font-size: 14px; color: var(--mid); line-height: 1.9; margin-bottom: 16px; }
+  .project-card-text a { color: var(--accent); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid var(--gray); padding-bottom: 2px; }
+  .project-card-text a:hover { border-color: var(--accent); }
+  .project-card-img { overflow: hidden; }
+  .project-card-img img { width: 100%; height: 100%; object-fit: cover; min-height: 300px; display: block; transition: transform 0.7s ease; }
+  .project-card-img:hover img { transform: scale(1.03); }
+
+  /* ── SOCIAL LINKS ── */
+  .social-strip { padding: 40px 40px; border-top: 1px solid var(--gray); display: flex; gap: 32px; flex-wrap: wrap; align-items: center; }
+  .social-link { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--mid); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; border: 1px solid var(--gray); padding: 10px 20px; }
+  .social-link:hover { color: var(--accent); border-color: var(--accent); }
+  .social-label { font-size: 10px; display: block; color: var(--mid); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
+
+  /* ── FOOTER ── */
+  #footer-cta { padding: 100px 40px; border-top: 1px solid var(--gray); display: flex; justify-content: space-between; align-items: flex-end; }
+  .footer-title { font-family: var(--font-display); font-size: clamp(40px, 7vw, 96px); font-weight: 900; line-height: 0.9; letter-spacing: -0.02em; }
+  .footer-title em { font-style: italic; color: var(--accent); }
+  .footer-right { text-align: right; }
+  .footer-right a { display: inline-block; border: 1.5px solid var(--white); padding: 16px 40px; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); text-decoration: none; transition: all 0.3s; position: relative; overflow: hidden; margin-bottom: 20px; }
+  .footer-right a::before { content: ''; position: absolute; inset: 0; background: var(--accent); transform: translateX(-101%); transition: transform 0.3s; z-index: -1; }
+  .footer-right a:hover { color: var(--black); border-color: var(--accent); }
+  .footer-right a:hover::before { transform: translateX(0); }
+  .footer-note { font-size: 11px; color: var(--mid); letter-spacing: 0.08em; line-height: 1.9; }
+  footer { display: flex; justify-content: space-between; padding: 24px 40px; border-top: 1px solid var(--gray); font-size: 11px; color: var(--mid); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 1; opacity: 0.4; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    #cover { padding: 0 20px 40px; }
+    .cover-title { font-size: clamp(44px, 12vw, 72px); }
+    .cover-meta { flex-direction: column; gap: 16px; align-items: flex-start; }
+    .cover-info { text-align: left; }
+    section { padding: 56px 20px; }
+    .chapter { flex-direction: column; align-items: flex-start; gap: 16px; padding: 48px 20px 28px; }
+    .chapter-text { text-align: left; max-width: 100%; }
+    .fondazione-card { grid-template-columns: 1fr; }
+    .fondazione-photo { border-left: none; border-top: 1px solid var(--gray); min-height: 280px; }
+    .fondazione-commissions { grid-template-columns: 1fr; }
+    .text-photo { grid-template-columns: 1fr; }
+    .text-photo-body { padding: 48px 20px; border-right: none; border-bottom: 1px solid var(--gray); }
+    .text-photo.flip .text-photo-body { border-left: none; border-bottom: 1px solid var(--gray); order: 2; }
+    .photo-duo { grid-template-columns: 1fr; }
+    .photo-asym { grid-template-columns: 1fr; }
+    .pull-quote { padding: 56px 20px; }
+    .pull-quote-inner { grid-template-columns: 1fr; gap: 12px; }
+    .pull-mark { font-size: 64px; }
+    .project-card-header { flex-direction: column; align-items: flex-start; gap: 12px; padding: 24px 20px; }
+    .project-card-body { grid-template-columns: 1fr; }
+    .project-card-text { padding: 28px 20px; border-right: none; border-bottom: 1px solid var(--gray); }
+    .project-card-img img { min-height: 200px; }
+    .social-strip { padding: 32px 20px; gap: 12px; }
+    .photo-caption { padding: 10px 20px 0; flex-direction: column; gap: 2px; }
+    #footer-cta { flex-direction: column; gap: 32px; padding: 56px 20px; }
+    .footer-right { text-align: left; }
+    footer { flex-direction: column; gap: 8px; padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">← Leone Morandini</a>
+  <a href="index.html#work" class="nav-back">All work</a>
+</nav>
+
+<!-- COVER -->
+<section id="cover" style="border:none; padding:0;">
+  <div class="cover-img"></div>
+  <div class="cover-overlay"></div>
+  <div class="cover-content">
+    <p class="cover-eyebrow">NoSignal ETS · Fondazione CRC — 2023 – Present</p>
+    <h1 class="cover-title">
+      Roots<br>
+      in the<br>
+      <em>territory.</em>
+    </h1>
+    <div class="cover-meta">
+      <p class="cover-desc"> Time spent trying to make my hometown a little better: through media, events, exhibitions, and a seat at the table.</p>
+      <div class="cover-info">
+        <div>Mondovì — Cuneo</div>
+        <div>Piedmont, Italy</div>
+        <div>2023 – Present</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     FONDAZIONE CRC
+     ════════════════════════════ -->
+<section id="fondazione">
+  <p class="section-label">01 — Fondazione CRC</p>
+
+  <div class="fondazione-card reveal">
+    <div class="fondazione-body">
+      <div>
+        <p class="fondazione-logo-text">Advisory Board · Generazione delle Idee · Since 2025</p>
+        <h2 class="fondazione-title">
+          A young voice<br>
+          inside a<br>
+          <em>major institution.</em>
+        </h2>
+        <p class="fondazione-desc">
+          Fondazione CRC is one of the most significant banking foundations in Piedmont, managing millions in annual grants across culture, education, welfare, and environmental projects in the Cuneo province.
+        </p>
+        <p class="fondazione-desc">
+          In 2025 they launched the <strong style="color:var(--white)">Advisory Board "Generazione delle Idee"</strong> — 20 young people from the territory, under 26, brought in to give the Foundation's board direct access to younger perspectives on social, cultural, and environmental issues. The group has a consultative role and presents a formal policy document to the General Council each year.
+        </p>
+        <p class="fondazione-desc">
+          I am one of the 20. My commission focuses on Education and sports, a intersection I know very well.
+        </p>
+        <div class="fondazione-commissions">
+          <div class="commission"><strong>Local Development</strong>Economic & territorial issues</div>
+          <div class="commission"><strong>Education & Sport</strong>My commission</div>
+          <div class="commission"><strong>Art & Culture ✦</strong>Cumuicating art to young people</div>
+          <div class="commission"><strong>Volunteering & Health</strong>Social welfare</div>
+        </div>
+      </div>
+      <a href="https://fondazionecrc.it/advisory-board-della-generazione-delle-idee/" target="_blank" class="fondazione-link">
+        Full Advisory Board → fondazionecrc.it
+      </a>
+    </div>
+    <div class="fondazione-photo">
+      <img src="NosCRC/image-693a0fcf-4483-4c35-bfaa-4f4a2129c158.webp" alt="Leone speaking on stage at a Fondazione CRC event">
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     NOSIGNAL ETS
+     ════════════════════════════ -->
+<section id="nosignal">
+  <p class="section-label">02 — NoSignal ETS</p>
+
+  <div class="text-photo reveal">
+    <div class="text-photo-body">
+      <h2 class="text-photo-title">
+        Media, events<br>
+        and <em>making things</em><br>
+        happen.
+      </h2>
+      <p>NoSignal ETS is a cultural association based in Mondovì. It works at the intersection of art, social communication, and local community — organising events, exhibitions, and cultural projects for and with the territory.</p>
+      <p>My role is on the media side: photography, video, visual communication, and social content. But in practice the lines blur — I've been involved in producing events, curating exhibitions, and coordinating projects from start to finish.</p>
+      <p>Working for a cultural ETS with zero budget taught me something no agency ever could: how to make things look and feel good when there's almost nothing to work with.</p>
+    </div>
+    <div class="text-photo-img">
+      <img src="NosCRC/DSF8476.jpg" alt="Screen printing during a NoSignal event">
+    </div>
+  </div>
+</section>
+
+<!-- Pull quote -->
+<div class="pull-quote reveal">
+  <div class="pull-quote-inner">
+    <div class="pull-mark">"</div>
+    <div>
+      <p class="pull-text">Working with no budget taught me<br>something no agency could:<br><em>how to make things matter anyway.</em></p>
+      <p class="pull-author">— NoSignal ETS, Mondovì</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── PROJECT: VETRINE VIVE ── -->
+<div class="chapter reveal">
+  <h2 class="chapter-title">
+    Vetrine<br>
+    <em>Vive.</em>
+  </h2>
+  <p class="chapter-text">A project to turn empty shop windows in Mondovì's historic centre into cultural displays — fighting commercial decline through illustration, design, and storytelling.</p>
+</div>
+
+<div class="project-card reveal">
+  <div class="project-card-header">
+    <h3 class="project-card-title">Mondovì — <em>La Funicolare</em></h3>
+    <span class="project-card-tag">Photography · Communication · NoSignal × ConfCommercio Mondovì</span>
+  </div>
+  <div class="project-card-body">
+    <div class="project-card-text">
+      <p>
+        Vetrine Vive is a joint project between Confcommercio Monregalese and NoSignal ETS. The idea: take empty shop windows in Mondovì's historic centre: a symptom of commercial desertification and transform them into occasions for art and local storytelling.
+      </p>
+      <p>
+        Each window becomes a display, designed around a story about the city. The first edition featured an illustrated piece about the historic funicular, the tram that connects the upper and lower parts of Mondovì, with visual design, signage, and a QR code linking to local content.
+      </p>
+      <p>
+        My contribution: photography and media documentation. Making sure the project existed beyond the street it was installed on.
+      </p>
+      <a href="https://www.confcommerciomondovi.it/progetto/vetrine-vive/" target="_blank">Full project → confcommerciomondovi.it</a>
+    </div>
+    <div class="project-card-img">
+      <img src="NosCRC/image-c89d5ee6-cfed-4998-b5d4-e99c85edb75e.webp" alt="Vetrine Vive — Mondovì La Funicolare window installation">
+    </div>
+  </div>
+</div>
+
+<!-- ── PROJECT: PROFILI DI GENERE EXHIBITION ── -->
+<div class="chapter reveal">
+  <h2 class="chapter-title">
+    Profili<br>
+    <em>di Genere.</em>
+  </h2>
+  <p class="chapter-text">An itinerant exhibition on gender inequality: human-scale figures carrying data, stories, and illustrations. Shown in Forlì and Bologna, among other cities.</p>
+</div>
+
+<!-- Exhibition full width -->
+<div class="photo-full">
+  <img src="NosCRC/ProfiliDiGenereForlì-52.jpg" alt="Visitors interacting with the Profili di Genere exhibition">
+</div>
+<div class="photo-caption">
+  <span>Visitors reading the figures : each one carries statistics about gender inequality in Italy, alongside an original illustration. The data becomes physical, life-size.</span>
+  <span>Forlì, 2026</span>
+</div>
+
+<!-- Team + visitors duo -->
+<div class="photo-duo" style="margin-top:3px;">
+  <div class="slot">
+    <img src="NosCRC/ProfiliDiGenereForlì-34.jpg" alt="The team with the exhibition installation">
+  </div>
+  <div class="slot">
+    <img src="NosCRC/Profilidigenere.jpg" alt="Leone on stage presenting">
+  </div>
+</div>
+<div class="photo-caption">
+  <span>The team at the installation. Transporting the actual figures is also part of the work.</span>
+</div>
+
+<!-- Social links -->
+<div class="social-strip reveal">
+  <span class="social-label" style="margin-bottom:0; align-self:center;">Find us online →</span>
+  <a href="https://www.instagram.com/reel/DV3sfN6DOFs/" target="_blank" class="social-link">
+    Instagram · @NosignalMagazine
+  </a>
+  <a href="https://www.instagram.com/leoneciao_/" target="_blank" class="social-link">
+    My Instagram · @leoneciao_
+  </a>
+  <a href="https://www.linkedin.com/in/leone-morandini-4b1441276" target="_blank" class="social-link">
+    LinkedIn · Leone Morandini
+  </a>
+</div>
+
+<!-- FOOTER CTA -->
+<div id="footer-cta" class="reveal">
+  <h2 class="footer-title">See more<br><em>of my work.</em></h2>
+  <div class="footer-right">
+    <a href="index.html">Back to portfolio →</a>
+    <p class="footer-note">
+      NoSignal ETS — Mondovì, 2023–present<br>
+      Fondazione CRC Advisory Board — 2025–present<br>
+      Photography & Communication · Leone Morandini
+    </p>
+  </div>
+</div>
+
+<footer>
+  <span>Leone Morandini © 2026</span>
+  <span>Turin — World</span>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    window.requestAnimationFrame(() => {
+      cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+    });
+  });
+  document.querySelectorAll('a, .slot, .photo-full, .text-photo-img, .fondazione-photo, .project-card-img').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
