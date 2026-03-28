@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leone Morandini — IAAD & AIKO</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f0ede6;
+    --accent: #d4ff5c;
+    --gray: #2a2a2a;
+    --mid: #888;
+    --font-display: 'Playfair Display', serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: var(--font-mono); font-size: 14px; line-height: 1.6; cursor: none; overflow-x: hidden; }
+
+  .cursor { width: 12px; height: 12px; background: var(--accent); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transition: width 0.2s, height 0.2s; transform: translate(-50%, -50%); }
+  .cursor.expand { width: 48px; height: 48px; background: transparent; border: 1.5px solid var(--accent); }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 28px 40px; mix-blend-mode: difference; }
+  .nav-logo { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em; color: var(--white); text-decoration: none; text-transform: uppercase; }
+  .nav-back { color: var(--white); text-decoration: none; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; transition: opacity 0.2s; }
+  .nav-back:hover { opacity: 1; }
+
+  /* COVER */
+  #cover {
+    height: 100vh; position: relative; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 40px 60px;
+  }
+  .cover-img {
+    position: absolute; inset: 0;
+    background-image: url('DSC_1554.JPG');
+    background-size: cover; background-position: center 30%;
+    filter: brightness(0.35) grayscale(30%);
+    transform: scale(1.04);
+    animation: slowZoom 14s ease forwards;
+  }
+  @keyframes slowZoom { from { transform: scale(1.04); } to { transform: scale(1); } }
+  .cover-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.1) 60%); }
+  .cover-content { position: relative; z-index: 2; }
+  .cover-eyebrow { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
+  .cover-title { font-family: var(--font-display); font-size: clamp(56px, 10vw, 128px); font-weight: 900; line-height: 0.88; letter-spacing: -0.02em; margin-bottom: 36px; opacity: 0; animation: fadeUp 0.9s 0.6s forwards; }
+  .cover-title em { font-style: italic; color: var(--accent); }
+  .cover-meta { display: flex; justify-content: space-between; align-items: flex-end; opacity: 0; animation: fadeUp 0.8s 0.9s forwards; }
+  .cover-desc { max-width: 400px; font-size: 13px; color: rgba(240,237,230,0.6); line-height: 1.9; }
+  .cover-info { text-align: right; font-size: 11px; color: var(--mid); letter-spacing: 0.12em; text-transform: uppercase; line-height: 2; }
+
+  /* SHARED */
+  .section-label { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 48px; display: flex; align-items: center; gap: 16px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--gray); }
+
+  /* PHOTO LAYOUTS */
+  .photo-full { width: 100%; overflow: hidden; }
+  .photo-full img { width: 100%; height: auto; display: block; transition: transform 0.9s ease; }
+  .photo-full:hover img { transform: scale(1.02); }
+  .photo-caption { padding: 14px 40px 0; font-size: 11px; color: var(--mid); letter-spacing: 0.09em; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .photo-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; align-items: start; }
+  .photo-duo .slot { overflow: hidden; }
+  .photo-duo .slot img { width: 100%; height: auto; display: block; transition: transform 0.7s ease; }
+  .photo-duo .slot:hover img { transform: scale(1.03); }
+  .photo-trio { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px; align-items: start; }
+  .photo-trio .slot { overflow: hidden; }
+  .photo-trio .slot img { width: 100%; height: auto; display: block; transition: transform 0.7s ease; }
+  .photo-trio .slot:hover img { transform: scale(1.03); }
+  .photo-asym { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3px; align-items: start; }
+  .photo-asym.flip { grid-template-columns: 1fr 1.5fr; }
+  .photo-asym .slot { overflow: hidden; }
+  .photo-asym .slot img { width: 100%; height: auto; display: block; transition: transform 0.7s ease; }
+  .photo-asym .slot:hover img { transform: scale(1.03); }
+  .mosaic { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3px; align-items: start; }
+  .mosaic-col { display: flex; flex-direction: column; gap: 3px; }
+  .mosaic .slot { overflow: hidden; }
+  .mosaic .slot img { width: 100%; height: auto; display: block; transition: transform 0.7s ease; }
+  .mosaic .slot:hover img { transform: scale(1.04); }
+
+  /* CHAPTER HEADERS */
+  .chapter { padding: 80px 40px 48px; border-top: 1px solid var(--gray); display: flex; justify-content: space-between; align-items: flex-end; }
+  .chapter-title { font-family: var(--font-display); font-size: clamp(40px, 6vw, 80px); font-weight: 900; line-height: 0.9; letter-spacing: -0.02em; }
+  .chapter-title em { font-style: italic; color: var(--accent); }
+  .chapter-text { max-width: 340px; font-size: 13px; color: var(--mid); line-height: 1.85; text-align: right; }
+
+  /* PROJECT HEADER */
+  .project-header { padding: 60px 40px 40px; border-top: 1px solid var(--gray); }
+  .project-num { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+  .project-title { font-family: var(--font-display); font-size: clamp(36px, 5vw, 64px); font-weight: 900; line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 20px; }
+  .project-title em { font-style: italic; color: var(--accent); }
+  .project-meta-row { display: flex; gap: 48px; flex-wrap: wrap; margin-bottom: 28px; }
+  .project-meta-item { }
+  .project-meta-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); margin-bottom: 4px; }
+  .project-meta-value { font-size: 14px; color: var(--white); }
+  .project-desc { font-size: 14px; color: var(--mid); line-height: 1.9; max-width: 640px; }
+
+  /* PULL QUOTE */
+  .pull-quote { padding: 80px 40px; border-top: 1px solid var(--gray); border-bottom: 1px solid var(--gray); }
+  .pull-quote-inner { display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: start; max-width: 820px; }
+  .pull-mark { font-family: var(--font-display); font-size: 100px; line-height: 0.7; color: var(--accent); font-style: italic; font-weight: 900; user-select: none; }
+  .pull-text { font-family: var(--font-display); font-size: clamp(20px, 3vw, 38px); font-style: italic; line-height: 1.35; font-weight: 400; }
+  .pull-text em { color: var(--accent); font-style: normal; font-weight: 900; }
+  .pull-author { margin-top: 16px; font-size: 11px; color: var(--mid); letter-spacing: 0.15em; text-transform: uppercase; }
+
+  /* TEXT + PHOTO SIDEBAR */
+  .text-photo { display: grid; grid-template-columns: 1fr 1.5fr; gap: 0; border-top: 1px solid var(--gray); }
+  .text-photo-body { padding: 64px 40px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--gray); }
+  .text-photo-title { font-family: var(--font-display); font-size: clamp(24px, 2.8vw, 36px); font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
+  .text-photo-title em { font-style: italic; color: var(--accent); }
+  .text-photo-body p { font-size: 14px; color: var(--mid); line-height: 1.9; margin-bottom: 16px; }
+  .text-photo-img { overflow: hidden; }
+  .text-photo-img img { width: 100%; height: auto; display: block; transition: transform 0.8s ease; }
+  .text-photo-img:hover img { transform: scale(1.03); }
+
+  /* AIKO SECTION */
+  #aiko { padding: 80px 40px; border-top: 1px solid var(--gray); }
+  .aiko-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--gray); margin-top: 48px; }
+  .aiko-photo { overflow: hidden; }
+  .aiko-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(20%); transition: filter 0.6s ease; }
+  .aiko-photo:hover img { filter: grayscale(0%); }
+  .aiko-body { padding: 48px 40px; display: flex; flex-direction: column; justify-content: center; border-left: 1px solid var(--gray); }
+  .aiko-logo { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 28px; }
+  .aiko-title { font-family: var(--font-display); font-size: clamp(28px, 3vw, 42px); font-weight: 900; line-height: 1.1; margin-bottom: 24px; }
+  .aiko-title em { font-style: italic; color: var(--accent); }
+  .aiko-text { font-size: 14px; color: var(--mid); line-height: 1.9; margin-bottom: 20px; }
+  .aiko-tag { display: inline-block; border: 1px solid var(--gray); padding: 5px 12px; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); margin: 4px 4px 0 0; }
+  .aiko-confidential { margin-top: 28px; padding: 16px 20px; border-left: 2px solid var(--accent); font-size: 12px; color: var(--mid); font-style: italic; line-height: 1.7; }
+
+  /* YOUTUBE EMBED */
+  .video-embed { padding: 0 40px; margin-bottom: 3px; }
+  .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: var(--gray); }
+  .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+  .video-placeholder { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
+  .video-placeholder-icon { width: 64px; height: 64px; border: 1.5px solid var(--gray); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .video-placeholder-icon::after { content: '▶'; font-size: 18px; color: var(--accent); margin-left: 4px; }
+  .video-placeholder-text { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); }
+
+  /* PROCESS NOTE */
+  .process-note { padding: 32px 40px; border-top: 1px solid var(--gray); display: flex; gap: 40px; flex-wrap: wrap; }
+  .process-step { display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--mid); letter-spacing: 0.05em; }
+  .process-step::before { content: ''; width: 20px; height: 1px; background: var(--accent); flex-shrink: 0; }
+  .process-arrow { color: var(--gray); margin: 0 8px; }
+
+  /* DIVIDER */
+  .section-divider { height: 1px; background: var(--gray); margin: 0; }
+
+  /* FOOTER CTA */
+  #footer-cta { padding: 100px 40px; border-top: 1px solid var(--gray); display: flex; justify-content: space-between; align-items: flex-end; }
+  .footer-title { font-family: var(--font-display); font-size: clamp(40px, 7vw, 96px); font-weight: 900; line-height: 0.9; letter-spacing: -0.02em; }
+  .footer-title em { font-style: italic; color: var(--accent); }
+  .footer-right { text-align: right; }
+  .footer-right a { display: inline-block; border: 1.5px solid var(--white); padding: 16px 40px; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); text-decoration: none; transition: all 0.3s; position: relative; overflow: hidden; margin-bottom: 20px; }
+  .footer-right a::before { content: ''; position: absolute; inset: 0; background: var(--accent); transform: translateX(-101%); transition: transform 0.3s; z-index: -1; }
+  .footer-right a:hover { color: var(--black); border-color: var(--accent); }
+  .footer-right a:hover::before { transform: translateX(0); }
+  .footer-note { font-size: 11px; color: var(--mid); letter-spacing: 0.08em; line-height: 1.9; }
+
+  footer { display: flex; justify-content: space-between; padding: 24px 40px; border-top: 1px solid var(--gray); font-size: 11px; color: var(--mid); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 1; opacity: 0.4; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    #cover { padding: 0 20px 40px; }
+    .cover-title { font-size: clamp(44px, 12vw, 72px); }
+    .cover-meta { flex-direction: column; gap: 16px; align-items: flex-start; }
+    .cover-info { text-align: left; }
+    #aiko { padding: 56px 20px; }
+    .aiko-grid { grid-template-columns: 1fr; }
+    .aiko-body { border-left: none; border-top: 1px solid var(--gray); padding: 36px 20px; }
+    .chapter { flex-direction: column; align-items: flex-start; gap: 16px; padding: 48px 20px 28px; }
+    .chapter-text { text-align: left; max-width: 100%; }
+    .project-header { padding: 48px 20px 32px; }
+    .project-meta-row { gap: 24px; }
+    .photo-duo { grid-template-columns: 1fr; }
+    .photo-trio { grid-template-columns: 1fr 1fr; }
+    .photo-asym { grid-template-columns: 1fr; }
+    .photo-asym.flip { grid-template-columns: 1fr; }
+    .mosaic { grid-template-columns: 1fr; }
+    .mosaic-col { flex-direction: row; }
+    .pull-quote { padding: 56px 20px; }
+    .pull-quote-inner { grid-template-columns: 1fr; gap: 12px; }
+    .pull-mark { font-size: 64px; }
+    .text-photo { grid-template-columns: 1fr; }
+    .text-photo-body { padding: 48px 20px; border-right: none; border-bottom: 1px solid var(--gray); }
+    .video-embed { padding: 0 20px; }
+    .process-note { padding: 24px 20px; gap: 20px; }
+    .photo-caption { padding: 10px 20px 0; flex-direction: column; gap: 2px; }
+    #footer-cta { flex-direction: column; gap: 32px; padding: 56px 20px; }
+    .footer-right { text-align: left; }
+    footer { flex-direction: column; gap: 8px; padding: 20px; }
+  }
+  @media (max-width: 480px) {
+    .photo-trio { grid-template-columns: 1fr; }
+    .mosaic-col { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">← Leone Morandini</a>
+  <a href="index.html#work" class="nav-back">All work</a>
+</nav>
+
+<!-- COVER -->
+<section id="cover">
+  <div class="cover-img"></div>
+  <div class="cover-overlay"></div>
+  <div class="cover-content">
+    <p class="cover-eyebrow">AIKO Space · IAAD Turin — 2021–2025</p>
+    <h1 class="cover-title">
+      Design<br>
+      from Earth<br>
+      <em>to orbit.</em>
+    </h1>
+    <div class="cover-meta">
+      <p class="cover-desc">From a Turin AI space startup to a Transportation Design degree — four years of projects that never fit neatly into one category.</p>
+      <div class="cover-info">
+        <div>2021 — 2025</div>
+        <div>Turin, Italy</div>
+        <div>Design · VR · 3D · Rendering</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════
+     AIKO
+     ══════════════════ -->
+<section id="aiko">
+  <p class="section-label">01 — AIKO Space</p>
+
+  <div class="aiko-grid">
+    <div class="aiko-photo">
+      <img src="design/DSC_1554.JPG" alt="Leone with the AIKO team">
+    </div>
+    <div class="aiko-body">
+      <p class="aiko-logo">AIKO Space · Turin · October 2024 – April 2025</p>
+      <h2 class="aiko-title">
+        Designing worlds<br>
+        <em>for satellites</em><br>
+        to learn from.
+      </h2>
+      <p class="aiko-text">
+        AIKO is a Turin-based deep-tech startup that builds AI software for autonomous satellites — software that lets spacecraft take decisions in real time, detect anomalies, and operate without waiting for commands from Earth.
+      </p>
+      <p class="aiko-text">
+        My role as Designer & Developer was an unusual one for a company full of aerospace engineers: I built virtual reality environments used to train AIKO's AI. The idea is that before a model goes to orbit, it needs to learn somewhere — and that somewhere was a world I designed.
+      </p>
+      <div>
+        <span class="aiko-tag">VR Development</span>
+        <span class="aiko-tag">Visual Design</span>
+        <span class="aiko-tag">Social Communication</span>
+        <span class="aiko-tag">AI Training Environments</span>
+      </div>
+      <div class="aiko-confidential">
+        Details of the VR project are confidential. What I can say: it was the most technically ambitious thing I've built — and also the most fun.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════
+     IAAD INTRO
+     ══════════════════ -->
+<div class="chapter reveal">
+  <h2 class="chapter-title">
+    IAAD<br>
+    <em>Transportation</em><br>
+    Design.
+  </h2>
+  <p class="chapter-text">Bachelor degree in Transportation Design, graduated July 2024. Three years of projects spanning automotive, naval, and mobility design — from pencil sketches to Blender 3D to final renders.</p>
+</div>
+
+<!-- Process note -->
+<div class="process-note reveal">
+  <span class="process-step">Hand sketching</span>
+  <span class="process-arrow">→</span>
+  <span class="process-step">3D modelling in Blender</span>
+  <span class="process-arrow">→</span>
+  <span class="process-step">Rendering</span>
+  <span class="process-arrow">→</span>
+  <span class="process-step">Final presentation</span>
+</div>
+
+<!-- ══════════════════
+     PROJECT 01: YACHT
+     ══════════════════ -->
+<div class="project-header reveal">
+  <p class="project-num">Project 01 — Naval Design</p>
+  <h2 class="project-title">Superyacht<br><em>concept.</em></h2>
+  <div class="project-meta-row">
+    <div class="project-meta-item">
+      <div class="project-meta-label">Type</div>
+      <div class="project-meta-value">Naval · Interior Design</div>
+    </div>
+    <div class="project-meta-item">
+      <div class="project-meta-label">Tools</div>
+      <div class="project-meta-value">Blender · Rendering</div>
+    </div>
+    <div class="project-meta-item">
+      <div class="project-meta-label">Course</div>
+      <div class="project-meta-value">IAAD Turin</div>
+    </div>
+  </div>
+  <p class="project-desc">A full superyacht concept developed from the exterior silhouette down to interior cabin details. The design language contrasts a sharp, minimal hull with warm, residential interiors — making the yacht feel like a home that happens to float.</p>
+</div>
+
+<!-- Yacht exterior full width -->
+<div class="photo-full">
+  <img src="design/image-1a7bb74c-c398-44f8-94aa-05a84031decb.webp" alt="Superyacht exterior, full view">
+</div>
+
+<!-- Sunset silhouette + interior lounge -->
+<div class="photo-duo" style="margin-top:3px;">
+  <div class="slot">
+    <img src="design/image-e5ed2957-414f-4e36-8e72-1c561bc222fc.webp" alt="Yacht at sunset, silhouette">
+  </div>
+  <div class="slot">
+    <img src="design/image-db55e458-d387-4c29-9fc1-64a7eed24c39.webp" alt="Yacht interior main lounge">
+  </div>
+</div>
+<div class="photo-caption">
+  <span>The hull at dusk — one figure on the deck, the rest is silence. Below: the main lounge, where the circular ceiling trace anchors the whole room.</span>
+</div>
+
+<!-- Interior trio: dining, chairs, bedroom -->
+<div class="photo-duo" style="margin-top:3px;">
+  <div class="slot">
+    <img src="design/image-39282d03-0ad6-4f8a-b35f-a8a5b4689ecd.webp" alt="Yacht dining area with round table">
+  </div>
+  <div class="slot">
+    <img src="design/image-48c42d8a-491f-4c56-8dc4-5765ca62a3af.webp" alt="Yacht lounge chairs with sea view">
+  </div>
+</div>
+<div class="photo-caption">
+  <span>Dining area, lounge, and detail views. The red accent ring on the table becomes a recurring motif throughout the yacht's interior language.</span>
+</div>
+
+
+<!-- Living duo -->
+<div class="photo-duo" style="margin-top:3px;">
+  <div class="slot">
+    <img src="design/image-c338d5b6-b570-4c1b-8be5-7cd47e86f35d.webp" alt="Yacht living room dark">
+  </div>
+  <div class="slot">
+    <img src="design/image-58371ab7-233b-47f5-b062-9f38188a0664.webp" alt="Yacht lounge open plan">
+  </div>
+</div>
+
+<!-- Lamp detail + dining detail -->
+<div class="photo-duo" style="margin-top:3px;">
+  <div class="slot">
+    <img src="design/image-01b59e97-a1e1-4c71-8fe0-57f8e8387b7e.webp" alt="Yacht interior lamp detail">
+  </div>
+  <div class="slot">
+    <img src="design/image-793c0912-b9e7-44a1-b17a-8e6d2271eae3.webp" alt="Yacht dining interior">
+  </div>
+</div>
+<div class="photo-caption">
+  <span>Details: the spherical lamp in warm light, and the dining area in cooler tones. Light as the main design material.</span>
+  <span>IAAD — Blender + Rendering</span>
+</div>
+<div class="photo-full">
+  <img src="design/image-00e10c56-342a-4c4d-b9ca-6ed0059f7d27.webp" alt="Superyacht exterior, full view">
+</div>
+
+<!-- ══════════════════════════════════
+     PROJECT 02: THESIS — CAMPER
+     ══════════════════════════════════ -->
+<div class="project-header reveal" style="margin-top: 40px;">
+  <p class="project-num">Project 02 — Thesis Project</p>
+  <h2 class="project-title">A home<br><em>that moves.</em></h2>
+  <div class="project-meta-row">
+    <div class="project-meta-item">
+      <div class="project-meta-label">Type</div>
+      <div class="project-meta-value">Micro-living · Mobility</div>
+    </div>
+    <div class="project-meta-item">
+      <div class="project-meta-label">Graduated</div>
+      <div class="project-meta-value">July 2024</div>
+    </div>
+    <div class="project-meta-item">
+      <div class="project-meta-label">Tools</div>
+      <div class="project-meta-value">Blender · Rendering · Sketches</div>
+    </div>
+  </div>
+  <p class="project-desc">My thesis project is a rethinking of the camper van as a living unit — fully autonomous, modular, and designed for long-term inhabitation. The exterior breaks with every convention of the category. The interior is thought from the inside out: how do you live well in 7.35 metres?</p>
+</div>
+
+<!-- YouTube video placeholder -->
+<!-- 
+  COME AGGIUNGERE IL VIDEO YOUTUBE:
+  Sostituisci VIDEO_ID con l'ID del tuo video (es: dQw4w9WgXcQ)
+  L'URL completo è: https://www.youtube.com/watch?v=VIDEO_ID
+  L'embed src diventa: https://www.youtube.com/embed/VIDEO_ID
+-->
+<div class="video-embed">
+  <div class="video-wrap">
+    <iframe
+      src="https://www.youtube.com/embed/7rQqQwY2dEA"
+      title="Thesis project — A home that moves"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+</div>
+<div class="photo-caption" style="margin-bottom: 3px;">
+  <span>Introduction video — thesis presentation</span>
+</div>
+
+<!-- Camper aerial top view full width -->
+<div class="photo-full" style="margin-top:3px;">
+  <img src="design/image-1a10c958-317e-4291-96c8-390ad99a557e.webp" alt="Camper top view aerial">
+</div>
+<div class="photo-caption">
+  <span>Top view — the full floor plan in one shot. Bedroom module to the left, living and kitchen to the right, open-air deck extension.</span>
+</div>
+
+<!-- Cutaway section view -->
+<div class="photo-full" style="margin-top:3px;">
+  <img src="design/image-36463f77-9ebd-4db7-94f3-d987bf23b631.webp" alt="Camper cutaway section with human scale">
+</div>
+<div class="photo-caption">
+  <span>Section cutaway with human scale reference — 3100mm height, 7350mm length. The interior is compressed but never compromised.</span>
+</div>
+
+<!-- Interior details trio -->
+<div class="photo-trio" style="margin-top:3px;">
+  <div class="slot">
+    <img src="design/image-e91da1a4-ba05-4c76-99d6-e6b3693cd134.webp" alt="Camper dining interior with colourful chairs">
+  </div>
+  <div class="slot">
+    <img src="design/image-939da0fe-09d8-4855-8cb8-c3b71b6d4ba0.webp" alt="Camper bedroom and kitchen detail">
+  </div>
+  <div class="slot">
+    <img src="design/image-94855c9f-96d6-464b-846e-2fba00433574.webp" alt="Camper interior scene night"></div>
+
+<div class="photo-caption">
+  <span>Interior details: the dining module with its palette of primary colours, the sleeping and kitchen zone, and a night-time render of the experience inside.</span>
+  <span>Thesis — IAAD Turin, 2024</span>
+</div>
+
+</div>
+<div class="photo-full">
+  <img src="design/untitled.jpg" alt="Two city car concepts facing each other">
+</div>
+<div class="photo-caption">
+<!-- ══════════════════════════════════
+     PROJECT 03: CITY CAR / MULTIPLA
+     ══════════════════════════════════ -->
+<div class="project-header reveal" style="margin-top: 40px;">
+  <p class="project-num">Project 03 — Automotive Design</p>
+  <h2 class="project-title">City car<br><em>concept.</em></h2>
+  <div class="project-meta-row">
+    <div class="project-meta-item">
+      <div class="project-meta-label">Type</div>
+      <div class="project-meta-value">Automotive · Urban Mobility</div>
+    </div>
+    <div class="project-meta-item">
+      <div class="project-meta-label">Tools</div>
+      <div class="project-meta-value">Blender · Rendering · Sketches</div>
+    </div>
+    <div class="project-meta-item">
+      <div class="project-meta-label">Course</div>
+      <div class="project-meta-value">IAAD Turin</div>
+    </div>
+  </div>
+  <p class="project-desc">A compact city car concept that pushes the proportions of the urban vehicle toward something more expressive and less apologetic. The floral wheel design, the panoramic greenhouse, the asymmetric body — all deliberate provocations against the idea that a small car must be invisible.</p>
+</div>
+
+<!-- Two cars facing each other, full width -->
+<div class="photo-full">
+  <img src="design/image-0537d17f-567e-4ddf-b35c-27d9f31bbdac.webp" alt="Two city car concepts facing each other">
+</div>
+<div class="photo-caption">
+  <span>Front and rear — two versions of the same language. The contrast between the rounded front and the cut-out rear was one of the key design decisions.</span>
+</div>
+
+<!-- Side profile + rear three-quarter -->
+<div class="photo-duo" style="margin-top:3px;">
+  <div class="slot">
+    <img src="design/image-5dafc9c8-9eae-4bd0-a2aa-860ca734084d.webp" alt="City car side profile">
+  </div>
+  <div class="slot">
+    <img src="design/image-ac8c815f-ce2c-4d6c-b93f-42ccce0bd6ff.webp" alt="City car rear three-quarter">
+  </div>
+</div>
+<div class="photo-caption">
+  <span>Side profile and rear three-quarter. The floral wheel centres were an early sketch detail that survived all the way to the final model — a small obsession that became the car's signature.</span>
+  <span>IAAD — Blender + Rendering</span>
+</div>
+
+<!-- Interior abstract -->
+<div class="photo-full" style="margin-top:3px;">
+  <img src="design/image-281b75ab-8fa9-40c3-b391-90e93675b4fe.webp" alt="City car cockpit abstract view">
+</div>
+
+<!-- Pull quote -->
+<div class="pull-quote reveal">
+  <div class="pull-quote-inner">
+    <div class="pull-mark">"</div>
+    <div>
+      <p class="pull-text">The best designs don't explain themselves.<br>They just make you<br><em>want to get in.</em></p>
+      <p class="pull-author">— IAAD Transportation Design, 2021–2024</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER CTA -->
+<div id="footer-cta" class="reveal">
+  <h2 class="footer-title">See more<br><em>of my work.</em></h2>
+  <div class="footer-right">
+    <a href="index.html">Back to portfolio →</a>
+    <p class="footer-note">
+      AIKO Space — Turin, 2024–2025<br>
+      IAAD Transportation Design — Turin, 2021–2024<br>
+      Photography & Design · Leone Morandini
+    </p>
+  </div>
+</div>
+
+<footer>
+  <span>Leone Morandini © 2026</span>
+  <span>Turin — World</span>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    window.requestAnimationFrame(() => {
+      cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+    });
+  });
+  document.querySelectorAll('a, .slot, .photo-full, .text-photo-img, .aiko-photo').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
