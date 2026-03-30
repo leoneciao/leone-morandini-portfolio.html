@@ -126,7 +126,30 @@
     font-size: 11px; color: var(--mid);
     letter-spacing: 0.08em;
   }
-
+  #cover {
+    height: 100vh; position: relative; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 40px 60px;
+  }
+  .cover-img {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    filter: brightness(0.45);
+    transform: scale(1.04);
+    animation: slowZoom 14s ease forwards;
+  }
+  @keyframes slowZoom { from { transform: scale(1.04); } to { transform: scale(1); } }
+  .cover-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.1) 60%);
+  }
+  .cover-content { position: relative; z-index: 2; }
+  .cover-eyebrow { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
+  .cover-title { font-family: var(--font-display); font-size: clamp(56px, 10vw, 128px); font-weight: 900; line-height: 0.88; letter-spacing: -0.02em; margin-bottom: 36px; opacity: 0; animation: fadeUp 0.9s 0.6s forwards; }
+  .cover-title em { font-style: italic; color: var(--accent); }
+  .cover-meta { display: flex; justify-content: space-between; align-items: flex-end; opacity: 0; animation: fadeUp 0.8s 0.9s forwards; }
+  .cover-desc { max-width: 380px; font-size: 13px; color: rgba(240,237,230,0.65); line-height: 1.9; }
+  .cover-info { text-align: right; font-size: 11px; color: var(--mid); letter-spacing: 0.12em; text-transform: uppercase; line-height: 2; }
   /* ─── PULL QUOTE ─── */
   .pull-quote {
     padding: 100px 40px;
@@ -165,8 +188,37 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
   body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9998; opacity: 0.4; }
-
-  @media (max-width: 768px) {
+ @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    #cover { padding: 0 20px 40px; }
+    .cover-title { font-size: clamp(44px, 12vw, 72px); }
+    .cover-meta { flex-direction: column; gap: 16px; align-items: flex-start; }
+    .cover-info { text-align: left; }
+    section { padding: 56px 20px; }
+    .chapter { flex-direction: column; align-items: flex-start; gap: 16px; padding: 48px 20px 28px; }
+    .chapter-text { text-align: left; max-width: 100%; }
+    .fondazione-card { grid-template-columns: 1fr; }
+    .fondazione-photo { border-left: none; border-top: 1px solid var(--gray); min-height: 280px; }
+    .fondazione-commissions { grid-template-columns: 1fr; }
+    .text-photo { grid-template-columns: 1fr; }
+    .text-photo-body { padding: 48px 20px; border-right: none; border-bottom: 1px solid var(--gray); }
+    .text-photo.flip .text-photo-body { border-left: none; border-bottom: 1px solid var(--gray); order: 2; }
+    .photo-duo { grid-template-columns: 1fr; }
+    .photo-asym { grid-template-columns: 1fr; }
+    .pull-quote { padding: 56px 20px; }
+    .pull-quote-inner { grid-template-columns: 1fr; gap: 12px; }
+    .pull-mark { font-size: 64px; }
+    .project-card-header { flex-direction: column; align-items: flex-start; gap: 12px; padding: 24px 20px; }
+    .project-card-body { grid-template-columns: 1fr; }
+    .project-card-text { padding: 28px 20px; border-right: none; border-bottom: 1px solid var(--gray); }
+    .project-card-img img { min-height: 200px; }
+    .social-strip { padding: 32px 20px; gap: 12px; }
+    .photo-caption { padding: 10px 20px 0; flex-direction: column; gap: 2px; }
+    #footer-cta { flex-direction: column; gap: 32px; padding: 56px 20px; }
+    .footer-right { text-align: left; }
+    footer { flex-direction: column; gap: 8px; padding: 20px; }
+  }
+    @media (max-width: 768px) {
     nav { padding: 20px; }
     #project-hero { padding: 100px 20px 40px; }
     #intro { grid-template-columns: 1fr; gap: 24px; padding: 48px 20px; }
@@ -177,6 +229,8 @@
     #next-project { flex-direction: column; align-items: flex-start; gap: 24px; padding: 48px 20px; }
     footer { flex-direction: column; gap: 8px; padding: 20px; }
     .gal-caption { padding: 10px 20px 0; }
+</style>
+
   }
 </style>
 </head>
@@ -190,6 +244,26 @@
 </nav>
 
 <!-- Project Hero -->
+ <section id="cover" style="border:none; padding:0;">
+  <div class="cover-img" style="background-image: url('resources/DSF8093.jpg');"></div>
+  <div class="cover-overlay"></div>
+  <div class="cover-content">
+    <p class="cover-eyebrow">Photography — Personal Project</p>
+    <h1 class="cover-title">
+      Streets &<br>
+      <em>Friends.</em>
+    </h1>
+    <div class="cover-meta">
+      <p class="cover-desc">Random projects, street photography and portraits — the world as I see it when nobody asked me to photograph anything.</p>
+      <div class="cover-info">
+        <div>2021 – Ongoing</div>
+        <div>Italy · Europe</div>
+        <div>Street · Portrait</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="project-hero">
   <p class="project-category">Photography — Random projects</p>
   <h1 class="project-title">
