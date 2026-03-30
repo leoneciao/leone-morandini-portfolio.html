@@ -905,23 +905,36 @@
     it unforgettable.
   </h2>
 
+  <a href="#" 
+     id="email-main-cta" 
+     class="cta-btn" 
+     data-user="leonemorandini" 
+     data-domain="gmail.com">
+     Say ciao →
+  </a>
 
-  <a href="/cdn-cgi/l/email-protection#066a636968636b69746768626f686f46616b676f6a2865696b" class="cta-btn">Say ciao →</a>
   <div class="contact-links">
     <a href="https://youtube.com/channel/UCCex5pYz8A-mD8cNYz6H6_w" target="_blank">YouTube</a>
     <a href="https://instagram.com/leoneciao_" target="_blank">Instagram</a>
     <a href="https://www.linkedin.com/in/leone-morandini-4b1441276" target="_blank">LinkedIn</a>
-    <a href="/cdn-cgi/l/email-protection#dfb3bab0b1bab2b0adbeb1bbb6b1b69fb8b2beb6b3f1bcb0b2"><span class="__cf_email__" data-cfemail="3d515852535850524f5c53595453547d5a505c5451135e5250">[email&#160;protected]</span></a>
+    
     <a href="#" 
-      id="phone-cta" 
-      data-p1="347" 
-      data-p2="629" 
-      data-p3="5182" >
-      +39 [Show number]
+       id="email-link" 
+       data-user="leonemorandini" 
+       data-domain="gmail.com">
+       [Show email]
     </a>
+
+    <a href="#" 
+       id="phone-cta" 
+       data-p1="347" 
+       data-p2="629" 
+       data-p3="5182">
+       +39 [Show number]
     </a>
   </div>
 </section>
+
 
 <footer>
   <span>Leone Morandini © 2026</span>
@@ -969,7 +982,35 @@
     // Ora che il link è "sbloccato", avviamo la chiamata
     window.location.href = this.href;
   });
+// Sistema Anti-Spam per l'Email
+const emailElements = ['email-main-cta', 'email-link'];
 
+emailElements.forEach(id => {
+  const el = document.getElementById(id);
+  if(!el) return;
+
+  el.addEventListener('click', function(e) {
+    e.preventDefault();
+    // Ricostruiamo la mail dai dati nascosti
+    const user = this.dataset.user;
+    const domain = this.dataset.domain;
+    const fullEmail = user + '@' + domain;
+    
+    // Trasformiamo l'elemento in un vero link mailto
+    this.href = 'mailto:' + fullEmail;
+    
+    // Se è il link testuale, cambiamo anche la scritta
+    if(id === 'email-link') {
+      this.textContent = fullEmail;
+    }
+    
+    // Apriamo il client mail immediatamente al primo click
+    window.location.href = 'mailto:' + fullEmail;
+    
+    // Rimuoviamo il listener così al prossimo click è un link normale
+    this.onclick = null;
+  }, { once: true });
+});
 
 </script>
 
