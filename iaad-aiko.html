@@ -3,6 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Design work by Leone Morandini between AIKO Space and IAAD Turin, including VR environments, transportation design, 3D modelling and rendering.">
+<meta name="keywords" content="Leone Morandini, IAAD Turin, AIKO Space, transportation design, VR development, 3D modelling, Blender rendering, satellite AI, design portfolio">
+<meta name="author" content="Leone Morandini">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="color-scheme" content="dark light">
+<meta name="format-detection" content="telephone=no">
+<meta name="geo.region" content="IT-21">
+<meta name="geo.placename" content="Turin, Piedmont, Italy">
+<meta name="geo.position" content="45.0703;7.6869">
+<meta name="ICBM" content="45.0703, 7.6869">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Leone Morandini Portfolio">
+<meta property="og:title" content="Leone Morandini — IAAD & AIKO">
+<meta property="og:description" content="Design work by Leone Morandini between AIKO Space and IAAD Turin, including VR environments, transportation design, 3D modelling and rendering.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="resources/image-1c5f68c9-dc4e-4287-b652-36c601daaec8.webp">
+<meta property="og:image:alt" content="Design from Earth to orbit project cover">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Leone Morandini — IAAD & AIKO">
+<meta name="twitter:description" content="Design work by Leone Morandini between AIKO Space and IAAD Turin, including VR environments, transportation design, 3D modelling and rendering.">
+<meta name="twitter:image" content="resources/image-1c5f68c9-dc4e-4287-b652-36c601daaec8.webp">
+<meta name="twitter:image:alt" content="Design from Earth to orbit project cover">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "IAAD and AIKO Space design projects",
+  "author": {
+    "@type": "Person",
+    "name": "Leone Morandini",
+    "url": "index.html"
+  },
+  "description": "Design work by Leone Morandini between AIKO Space and IAAD Turin, including VR environments, transportation design, 3D modelling and rendering.",
+  "image": "resources/image-1c5f68c9-dc4e-4287-b652-36c601daaec8.webp",
+  "contentLocation": {
+    "@type": "Place",
+    "name": "Turin, Piedmont, Italy",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 45.0703,
+      "longitude": 7.6869
+    }
+  },
+  "keywords": [
+    "Leone Morandini",
+    "IAAD Turin",
+    "AIKO Space",
+    "transportation design",
+    "VR development",
+    "3D modelling",
+    "Blender rendering",
+    "satellite AI",
+    "design portfolio"
+  ]
+}
+</script>
 <title>Leone Morandini — IAAD & AIKO</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -28,6 +85,66 @@
   .nav-logo { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em; color: var(--white); text-decoration: none; text-transform: uppercase; }
   .nav-back { color: var(--white); text-decoration: none; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; transition: opacity 0.2s; }
   .nav-back:hover { opacity: 1; }
+
+  .skip-link {
+    position: fixed;
+    top: 12px; left: 12px;
+    z-index: 10000;
+    transform: translateY(-150%);
+    background: var(--accent);
+    color: var(--black);
+    padding: 10px 14px;
+    border: 1px solid var(--accent);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+  }
+  .skip-link:focus { transform: translateY(0); }
+  #main-content:focus { outline: none; }
+  .visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  a:focus-visible,
+  button:focus-visible,
+  iframe:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    body,
+    a,
+    button,
+    .slot,
+    .photo-full,
+    .gal-slot,
+    .text-photo-img,
+    .fondazione-photo,
+    .project-card-img,
+    .aiko-photo,
+    .social-link,
+    .footer-right a { cursor: auto; }
+    .cursor { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
 
   /* COVER */
   #cover {
@@ -206,17 +323,21 @@
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
-<nav>
-  <a href="index.html" class="nav-logo">← Leone Morandini</a>
-  <a href="index.html#work" class="nav-back">All work</a>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
+<nav aria-label="Project navigation">
+  <a href="index.html" class="nav-logo" aria-label="Leone Morandini home">← Leone Morandini</a>
+  <a href="index.html#work" class="nav-back" aria-label="Back to all work">All work</a>
 </nav>
 
+<main id="main-content" tabindex="-1">
+
 <!-- COVER -->
-<section id="cover">
-  <div class="cover-img" style="background-image: url('resources/image-1c5f68c9-dc4e-4287-b652-36c601daaec8.webp');"></div>
-  <div class="cover-overlay"></div>
+<section id="cover" aria-label="IAAD and AIKO design project cover">
+  <div class="cover-img" aria-hidden="true" style="background-image: url('resources/image-1c5f68c9-dc4e-4287-b652-36c601daaec8.webp');"></div>
+  <div class="cover-overlay" aria-hidden="true"></div>
   <div class="cover-content">
     <p class="cover-eyebrow">AIKO Space · IAAD Turin — 2021–2025</p>
     <h1 class="cover-title">
@@ -239,12 +360,12 @@
      AIKO
      ══════════════════ -->
 <section id="aiko">
-  <p class="section-label">01 — AIKO Space</p>
+  <p class="section-label" role="heading" aria-level="2">01 — AIKO Space</p>
 
   <div class="aiko-grid">
     <div class="aiko-photo">
-      <a href="https://www.aikospace.com/" target="_blank">
-        <img src="design/DSC_1554.JPG" alt="Leone with the AIKO team">
+      <a href="https://www.aikospace.com/" target="_blank" rel="noopener noreferrer">
+        <img src="design/DSC_1554.JPG" alt="Leone with the AIKO team" loading="lazy" decoding="async">
       </a>
     </div>
     <div class="aiko-body">
@@ -255,7 +376,7 @@
         to learn from.
       </h2>
       <p class="aiko-text">
-        AIKO is a Turin-based deep-tech startup that builds AI software for autonomous satellites — software that lets spacecraft take decisions in real time, detect anomalies, and operate without waiting for commands from Earth.
+        AIKO is a Turin-based deep-tech startup that builds AI software for autonomous satellites — software that lets spacecraft make decisions in real time, detect anomalies, and operate without waiting for commands from Earth.
       </p>
       <p class="aiko-text">
         My role as Designer & Developer was an unusual one for a company full of aerospace engineers: I built virtual reality environments used to train AIKO's AI. The idea is that before a model goes to orbit, it needs to learn somewhere — and that somewhere was a world I designed.
@@ -282,7 +403,7 @@
     <em>Transportation</em><br>
     Design.
   </h2>
-  <p class="chapter-text">Bachelor degree in Transportation Design, graduated July 2024. Three years of projects spanning automotive, naval, and mobility design — from pencil sketches to Blender 3D to final renders.</p>
+  <p class="chapter-text">Bachelor's degree in Transportation Design, graduated July 2024. Three years of projects spanning automotive, naval, and mobility design — from pencil sketches to Blender 3D to final renders.</p>
 </div>
 
 <!-- Process note -->
@@ -321,16 +442,16 @@
 
 <!-- Yacht exterior full width -->
 <div class="photo-full">
-  <img src="design/image-1a7bb74c-c398-44f8-94aa-05a84031decb.webp" alt="Superyacht exterior, full view">
+  <img src="design/image-1a7bb74c-c398-44f8-94aa-05a84031decb.webp" alt="Superyacht exterior, full view" loading="lazy" decoding="async">
 </div>
 
 <!-- Sunset silhouette + interior lounge -->
 <div class="photo-duo" style="margin-top:3px;">
   <div class="slot">
-    <img src="design/image-e5ed2957-414f-4e36-8e72-1c561bc222fc.webp" alt="Yacht at sunset, silhouette">
+    <img src="design/image-e5ed2957-414f-4e36-8e72-1c561bc222fc.webp" alt="Yacht at sunset, silhouette" loading="lazy" decoding="async">
   </div>
   <div class="slot">
-    <img src="design/image-db55e458-d387-4c29-9fc1-64a7eed24c39.webp" alt="Yacht interior main lounge">
+    <img src="design/image-db55e458-d387-4c29-9fc1-64a7eed24c39.webp" alt="Yacht interior main lounge" loading="lazy" decoding="async">
   </div>
 </div>
 <div class="photo-caption">
@@ -340,10 +461,10 @@
 <!-- Interior trio: dining, chairs, bedroom -->
 <div class="photo-duo" style="margin-top:3px;">
   <div class="slot">
-    <img src="design/image-39282d03-0ad6-4f8a-b35f-a8a5b4689ecd.webp" alt="Yacht dining area with round table">
+    <img src="design/image-39282d03-0ad6-4f8a-b35f-a8a5b4689ecd.webp" alt="Yacht dining area with round table" loading="lazy" decoding="async">
   </div>
   <div class="slot">
-    <img src="design/image-48c42d8a-491f-4c56-8dc4-5765ca62a3af.webp" alt="Yacht lounge chairs with sea view">
+    <img src="design/image-48c42d8a-491f-4c56-8dc4-5765ca62a3af.webp" alt="Yacht lounge chairs with sea view" loading="lazy" decoding="async">
   </div>
 </div>
 <div class="photo-caption">
@@ -354,20 +475,20 @@
 <!-- Living duo -->
 <div class="photo-duo" style="margin-top:3px;">
   <div class="slot">
-    <img src="design/image-c338d5b6-b570-4c1b-8be5-7cd47e86f35d.webp" alt="Yacht living room dark">
+    <img src="design/image-c338d5b6-b570-4c1b-8be5-7cd47e86f35d.webp" alt="Yacht living room dark" loading="lazy" decoding="async">
   </div>
   <div class="slot">
-    <img src="design/image-58371ab7-233b-47f5-b062-9f38188a0664.webp" alt="Yacht lounge open plan">
+    <img src="design/image-58371ab7-233b-47f5-b062-9f38188a0664.webp" alt="Yacht lounge open plan" loading="lazy" decoding="async">
   </div>
 </div>
 
 <!-- Lamp detail + dining detail -->
 <div class="photo-duo" style="margin-top:3px;">
   <div class="slot">
-    <img src="design/image-01b59e97-a1e1-4c71-8fe0-57f8e8387b7e.webp" alt="Yacht interior lamp detail">
+    <img src="design/image-01b59e97-a1e1-4c71-8fe0-57f8e8387b7e.webp" alt="Yacht interior lamp detail" loading="lazy" decoding="async">
   </div>
   <div class="slot">
-    <img src="design/image-793c0912-b9e7-44a1-b17a-8e6d2271eae3.webp" alt="Yacht dining interior">
+    <img src="design/image-793c0912-b9e7-44a1-b17a-8e6d2271eae3.webp" alt="Yacht dining interior" loading="lazy" decoding="async">
   </div>
 </div>
 <div class="photo-caption">
@@ -375,7 +496,7 @@
   <span>IAAD — Blender + Rendering</span>
 </div>
 <div class="photo-full">
-  <img src="design/image-00e10c56-342a-4c4d-b9ca-6ed0059f7d27.webp" alt="Superyacht exterior, full view">
+  <img src="design/image-00e10c56-342a-4c4d-b9ca-6ed0059f7d27.webp" alt="Superyacht exterior, full view" loading="lazy" decoding="async">
 </div>
 
 <!-- ══════════════════════════════════
@@ -414,7 +535,7 @@
       src="https://www.youtube.com/embed/7rQqQwY2dEA"
       title="Thesis project — A home that moves"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
+      allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin">
     </iframe>
   </div>
 </div>
@@ -424,7 +545,7 @@
 
 <!-- Camper aerial top view full width -->
 <div class="photo-full" style="margin-top:3px;">
-  <img src="design/image-1a10c958-317e-4291-96c8-390ad99a557e.webp" alt="Camper top view aerial">
+  <img src="design/image-1a10c958-317e-4291-96c8-390ad99a557e.webp" alt="Camper top view aerial" loading="lazy" decoding="async">
 </div>
 <div class="photo-caption">
   <span>Top view — the full floor plan in one shot. Bedroom module to the left, living and kitchen to the right, open-air deck extension.</span>
@@ -432,7 +553,7 @@
 
 <!-- Cutaway section view -->
 <div class="photo-full" style="margin-top:3px;">
-  <img src="design/image-36463f77-9ebd-4db7-94f3-d987bf23b631.webp" alt="Camper cutaway section with human scale">
+  <img src="design/image-36463f77-9ebd-4db7-94f3-d987bf23b631.webp" alt="Camper cutaway section with human scale" loading="lazy" decoding="async">
 </div>
 <div class="photo-caption">
   <span>Section cutaway with human scale reference — 3100mm height, 7350mm length. The interior is compressed but never compromised.</span>
@@ -441,24 +562,23 @@
 <!-- Interior details trio -->
 <div class="photo-trio" style="margin-top:3px;">
   <div class="slot">
-    <img src="design/image-e91da1a4-ba05-4c76-99d6-e6b3693cd134.webp" alt="Camper dining interior with colourful chairs">
+    <img src="design/image-e91da1a4-ba05-4c76-99d6-e6b3693cd134.webp" alt="Camper dining interior with colourful chairs" loading="lazy" decoding="async">
   </div>
   <div class="slot">
-    <img src="design/image-939da0fe-09d8-4855-8cb8-c3b71b6d4ba0.webp" alt="Camper bedroom and kitchen detail">
+    <img src="design/image-939da0fe-09d8-4855-8cb8-c3b71b6d4ba0.webp" alt="Camper bedroom and kitchen detail" loading="lazy" decoding="async">
   </div>
   <div class="slot">
-    <img src="design/image-94855c9f-96d6-464b-846e-2fba00433574.webp" alt="Camper interior scene night"></div>
-
+    <img src="design/image-94855c9f-96d6-464b-846e-2fba00433574.webp" alt="Camper interior scene night" loading="lazy" decoding="async">
+  </div>
+</div>
 <div class="photo-caption">
   <span>Interior details: the dining module with its palette of primary colours, the sleeping and kitchen zone, and a night-time render of the experience inside.</span>
   <span>Thesis — IAAD Turin, 2024</span>
 </div>
 
-</div>
 <div class="photo-full">
-  <img src="design/untitled.jpg" alt="Two city car concepts facing each other">
+  <img src="design/untitled.jpg" alt="Two city car concepts facing each other" loading="lazy" decoding="async">
 </div>
-<div class="photo-caption">
 <!-- ══════════════════════════════════
      PROJECT 03: CITY CAR / MULTIPLA
      ══════════════════════════════════ -->
@@ -484,7 +604,7 @@
 
 <!-- Two cars facing each other, full width -->
 <div class="photo-full">
-  <img src="design/image-0537d17f-567e-4ddf-b35c-27d9f31bbdac.webp" alt="Two city car concepts facing each other">
+  <img src="design/image-0537d17f-567e-4ddf-b35c-27d9f31bbdac.webp" alt="Two city car concepts facing each other" loading="lazy" decoding="async">
 </div>
 <div class="photo-caption">
   <span>Front and rear — two versions of the same language. The contrast between the rounded front and the cut-out rear was one of the key design decisions.</span>
@@ -493,10 +613,10 @@
 <!-- Side profile + rear three-quarter -->
 <div class="photo-duo" style="margin-top:3px;">
   <div class="slot">
-    <img src="design/image-5dafc9c8-9eae-4bd0-a2aa-860ca734084d.webp" alt="City car side profile">
+    <img src="design/image-5dafc9c8-9eae-4bd0-a2aa-860ca734084d.webp" alt="City car side profile" loading="lazy" decoding="async">
   </div>
   <div class="slot">
-    <img src="design/image-ac8c815f-ce2c-4d6c-b93f-42ccce0bd6ff.webp" alt="City car rear three-quarter">
+    <img src="design/image-ac8c815f-ce2c-4d6c-b93f-42ccce0bd6ff.webp" alt="City car rear three-quarter" loading="lazy" decoding="async">
   </div>
 </div>
 <div class="photo-caption">
@@ -506,13 +626,13 @@
 
 <!-- Interior abstract -->
 <div class="photo-full" style="margin-top:3px;">
-  <img src="design/image-281b75ab-8fa9-40c3-b391-90e93675b4fe.webp" alt="City car cockpit abstract view">
+  <img src="design/image-281b75ab-8fa9-40c3-b391-90e93675b4fe.webp" alt="City car cockpit abstract view" loading="lazy" decoding="async">
 </div>
 
 <!-- Pull quote -->
 <div class="pull-quote reveal">
   <div class="pull-quote-inner">
-    <div class="pull-mark">"</div>
+    <div class="pull-mark" aria-hidden="true">"</div>
     <div>
       <p class="pull-text">The best designs don't explain themselves.<br>They just make you<br><em>want to get in.</em></p>
       <p class="pull-author">— IAAD Transportation Design, 2021–2024</p>
@@ -533,26 +653,42 @@
   </div>
 </div>
 
+</main>
 <footer>
   <span>Leone Morandini © 2026</span>
   <span>Turin — World</span>
 </footer>
 
 <script>
+  // Custom cursor: enabled only on devices with a fine pointer.
   const cursor = document.getElementById('cursor');
-  document.addEventListener('mousemove', e => {
-    window.requestAnimationFrame(() => {
-      cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+  const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  if (cursor && hasFinePointer) {
+    document.addEventListener('mousemove', e => {
+      window.requestAnimationFrame(() => {
+        cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+      });
     });
-  });
-  document.querySelectorAll('a, .slot, .photo-full, .text-photo-img, .aiko-photo').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
-  });
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('a, button, .slot, .photo-full, .gal-slot, .text-photo-img, .fondazione-photo, .project-card-img, .aiko-photo, .social-link').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+    });
+  }
+
+  // Scroll reveal with graceful fallback.
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  }
 </script>
 </body>
 </html>

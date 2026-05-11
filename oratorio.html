@@ -3,6 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Education, music teaching and community work by Leone Morandini with Oratorio Ferrone and Scala del Re in Mondovì, Piedmont.">
+<meta name="keywords" content="Leone Morandini, Oratorio Ferrone, Scala del Re, Mondovì, Piedmont, music teaching, education, youth work, community projects">
+<meta name="author" content="Leone Morandini">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="color-scheme" content="dark light">
+<meta name="format-detection" content="telephone=no">
+<meta name="geo.region" content="IT-21">
+<meta name="geo.placename" content="Mondovì, Piedmont, Italy">
+<meta name="geo.position" content="44.3894;7.8200">
+<meta name="ICBM" content="44.3894, 7.8200">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Leone Morandini Portfolio">
+<meta property="og:title" content="Leone Morandini — Oratorio & Scala del Re">
+<meta property="og:description" content="Education, music teaching and community work by Leone Morandini with Oratorio Ferrone and Scala del Re in Mondovì, Piedmont.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="resources/DJI_20250613110024_0005_D.jpg">
+<meta property="og:image:alt" content="Mountain hike with Oratorio Ferrone summer camp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Leone Morandini — Oratorio & Scala del Re">
+<meta name="twitter:description" content="Education, music teaching and community work by Leone Morandini with Oratorio Ferrone and Scala del Re in Mondovì, Piedmont.">
+<meta name="twitter:image" content="resources/DJI_20250613110024_0005_D.jpg">
+<meta name="twitter:image:alt" content="Mountain hike with Oratorio Ferrone summer camp">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Oratorio Ferrone and Scala del Re",
+  "author": {
+    "@type": "Person",
+    "name": "Leone Morandini",
+    "url": "index.html"
+  },
+  "description": "Education, music teaching and community work by Leone Morandini with Oratorio Ferrone and Scala del Re in Mondovì, Piedmont.",
+  "image": "resources/DJI_20250613110024_0005_D.jpg",
+  "contentLocation": {
+    "@type": "Place",
+    "name": "Mondovì, Piedmont, Italy",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 44.3894,
+      "longitude": 7.82
+    }
+  },
+  "keywords": [
+    "Leone Morandini",
+    "Oratorio Ferrone",
+    "Scala del Re",
+    "Mondovì",
+    "Piedmont",
+    "music teaching",
+    "education",
+    "youth work",
+    "community projects"
+  ]
+}
+</script>
 <title>Leone Morandini — Oratorio & Scala del Re</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -23,6 +80,66 @@
   .nav-logo { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em; color: var(--white); text-decoration: none; text-transform: uppercase; }
   .nav-back { color: var(--white); text-decoration: none; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; transition: opacity 0.2s; }
   .nav-back:hover { opacity: 1; }
+
+  .skip-link {
+    position: fixed;
+    top: 12px; left: 12px;
+    z-index: 10000;
+    transform: translateY(-150%);
+    background: var(--accent);
+    color: var(--black);
+    padding: 10px 14px;
+    border: 1px solid var(--accent);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+  }
+  .skip-link:focus { transform: translateY(0); }
+  #main-content:focus { outline: none; }
+  .visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  a:focus-visible,
+  button:focus-visible,
+  iframe:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    body,
+    a,
+    button,
+    .slot,
+    .photo-full,
+    .gal-slot,
+    .text-photo-img,
+    .fondazione-photo,
+    .project-card-img,
+    .aiko-photo,
+    .social-link,
+    .footer-right a { cursor: auto; }
+    .cursor { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
 
   /* ── COVER ── */
   #cover {
@@ -145,17 +262,21 @@
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
-<nav>
-  <a href="index.html" class="nav-logo">← Leone Morandini</a>
-  <a href="index.html#work" class="nav-back">All work</a>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
+<nav aria-label="Project navigation">
+  <a href="index.html" class="nav-logo" aria-label="Leone Morandini home">← Leone Morandini</a>
+  <a href="index.html#work" class="nav-back" aria-label="Back to all work">All work</a>
 </nav>
 
+<main id="main-content" tabindex="-1">
+
 <!-- COVER — mountain hike photo -->
-<section id="cover" style="border:none; padding:0;">
-  <div class="cover-img" style="background-image: url('resources/DJI_20250613110024_0005_D.jpg');"></div>
-  <div class="cover-overlay"></div>
+<section id="cover" style="border:none; padding:0;" aria-label="Oratorio Ferrone and Scala del Re project cover">
+  <div class="cover-img" aria-hidden="true" style="background-image: url('resources/DJI_20250613110024_0005_D.jpg');"></div>
+  <div class="cover-overlay" aria-hidden="true"></div>
   <div class="cover-content">
     <p class="cover-eyebrow">Oratorio Ferrone · Scala del Re — 2015 – Present</p>
     <h1 class="cover-title">
@@ -197,13 +318,13 @@
     <p>I also contribute to the operational management of the oratory: logistics, planning, helping improve how things work. The same instinct that drives my design work: always asking how something could work better.</p>
   </div>
   <div class="text-photo-img">
-    <img src="oratorio_scala/Bimbioratorio.jpg" alt="Kids gathered in a circle during a camp activity">
+    <img src="oratorio_scala/Bimbioratorio.jpg" alt="Kids gathered in a circle during a camp activity" loading="lazy" decoding="async">
   </div>
 </div>
 
 <!-- Mountain hike full width -->
 <div class="photo-full">
-  <img src="oratorio_scala/camminataCampEstivi.jpg" alt="Group hiking in the Piedmont mountains during summer camp">
+  <img src="oratorio_scala/camminataCampEstivi.jpg" alt="Group hiking in the Piedmont mountains during summer camp" loading="lazy" decoding="async">
 </div>
 <div class="photo-caption">
   <span>Summer camp hike: the Piedmont Alps, late morning light. This is what ten years looks like.</span>
@@ -232,27 +353,27 @@
 
 <!-- YouTube video — summer camp -->
 <div style="padding: 48px 40px 0; border-top: 1px solid var(--gray);">
-  <p class="section-label">Summer camp 2025 — Video</p>
+  <p class="section-label" role="heading" aria-level="2">Summer camp 2025 — Video</p>
 </div>
 <div class="video-section" style="padding-bottom: 3px;">
   <div class="video-wrap">
     <iframe
       src="https://www.youtube.com/embed/RvvoJb3pk5g"
-      title="Oratorio Ferrone — Summer camp 2024"
+      title="Oratorio Ferrone — Summer camp 2025"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
+      allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin">
     </iframe>
   </div>
 </div>
 <div class="photo-caption" style="margin-bottom: 40px;">
   <span>Summer camp documentary — autoplay muted. Click to unmute.</span>
-  <span><a href="https://youtu.be/RvvoJb3pk5g" target="_blank" style="color:var(--accent); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none;">Watch on YouTube →</a></span>
+  <span><a href="https://youtu.be/RvvoJb3pk5g" target="_blank" style="color:var(--accent); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none;" rel="noopener noreferrer">Watch on YouTube →</a></span>
 </div>
 
 <!-- Pull quote -->
 <div class="pull-quote reveal">
   <div class="pull-quote-inner">
-    <div class="pull-mark">"</div>
+    <div class="pull-mark" aria-hidden="true">"</div>
     <div>
       <p class="pull-text">I started as a volunteer at 14.<br>I'm still here.<br><em>That tells you something.</em></p>
       <p class="pull-author">— Oratorio Ferrone, Mondovì · 2015–present</p>
@@ -274,10 +395,10 @@
 <!-- Leone playing piano + spettacolo -->
 <div class="photo-asym reveal">
   <div class="slot">
-    <img src="oratorio_scala/93dbae29-c635-4606-b630-51819845e4b5.jpg" alt="Leone playing piano at an outdoor event">
+    <img src="oratorio_scala/93dbae29-c635-4606-b630-51819845e4b5.jpg" alt="Leone playing piano at an outdoor event" loading="lazy" decoding="async">
   </div>
   <div class="slot">
-    <img src="oratorio_scala/SaggioSDL2.jpg" alt="Carnival show at Scala del Re — guitarist in costume">
+    <img src="oratorio_scala/SaggioSDL2.jpg" alt="Carnival show at Scala del Re — guitarist in costume" loading="lazy" decoding="async">
   </div>
 </div>
 <div class="photo-caption">
@@ -287,7 +408,7 @@
 
 <!-- Spiderman show full width -->
 <div class="photo-full" style="margin-top:3px;">
-  <img src="oratorio_scala/SaggioSDL.jpg" alt="Carnival show — Spider-Man playing guitar on stage">
+  <img src="oratorio_scala/SaggioSDL.jpg" alt="Carnival show — Spider-Man playing guitar on stage" loading="lazy" decoding="async">
 </div>
 <div class="photo-caption">
   <span>Carnival recital. Yes, that's Spider-Man playing guitar. The kids requested the costume. This is what teaching music to children actually looks like.</span>
@@ -323,26 +444,42 @@
   </div>
 </div>
 
+</main>
 <footer>
   <span>Leone Morandini © 2026</span>
   <span>Turin — World</span>
 </footer>
 
 <script>
+  // Custom cursor: enabled only on devices with a fine pointer.
   const cursor = document.getElementById('cursor');
-  document.addEventListener('mousemove', e => {
-    window.requestAnimationFrame(() => {
-      cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+  const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  if (cursor && hasFinePointer) {
+    document.addEventListener('mousemove', e => {
+      window.requestAnimationFrame(() => {
+        cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+      });
     });
-  });
-  document.querySelectorAll('a, .slot, .photo-full, .text-photo-img').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
-  });
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('a, button, .slot, .photo-full, .gal-slot, .text-photo-img, .fondazione-photo, .project-card-img, .aiko-photo, .social-link').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+    });
+  }
+
+  // Scroll reveal with graceful fallback.
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  }
 </script>
 </body>
 </html>

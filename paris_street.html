@@ -3,6 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Photography story by Leone Morandini documenting three days visiting Arianna during her Erasmus in Paris, France.">
+<meta name="keywords" content="Leone Morandini, Erasmus in Paris, Paris photography, storytelling photography, personal photography project, travel photography, street photography Paris">
+<meta name="author" content="Leone Morandini">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="color-scheme" content="dark light">
+<meta name="format-detection" content="telephone=no">
+<meta name="geo.region" content="FR-75">
+<meta name="geo.placename" content="Paris, Île-de-France, France">
+<meta name="geo.position" content="48.8566;2.3522">
+<meta name="ICBM" content="48.8566, 2.3522">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Leone Morandini Portfolio">
+<meta property="og:title" content="Leone Morandini — Erasmus in Paris">
+<meta property="og:description" content="Photography story by Leone Morandini documenting three days visiting Arianna during her Erasmus in Paris, France.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="Parigi/FotoParigiLowQ-19.jpg">
+<meta property="og:image:alt" content="Arianna laughing in Paris with the Eiffel Tower behind her">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Leone Morandini — Erasmus in Paris">
+<meta name="twitter:description" content="Photography story by Leone Morandini documenting three days visiting Arianna during her Erasmus in Paris, France.">
+<meta name="twitter:image" content="Parigi/FotoParigiLowQ-19.jpg">
+<meta name="twitter:image:alt" content="Arianna laughing in Paris with the Eiffel Tower behind her">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Erasmus in Paris",
+  "author": {
+    "@type": "Person",
+    "name": "Leone Morandini",
+    "url": "index.html"
+  },
+  "description": "Photography story by Leone Morandini documenting three days visiting Arianna during her Erasmus in Paris, France.",
+  "image": "Parigi/FotoParigiLowQ-19.jpg",
+  "contentLocation": {
+    "@type": "Place",
+    "name": "Paris, Île-de-France, France",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 48.8566,
+      "longitude": 2.3522
+    }
+  },
+  "keywords": [
+    "Leone Morandini",
+    "Erasmus in Paris",
+    "Paris photography",
+    "storytelling photography",
+    "personal photography project",
+    "travel photography",
+    "street photography Paris"
+  ]
+}
+</script>
 <title>Leone Morandini — Erasmus in Paris</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -38,6 +93,66 @@
   .nav-logo { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em; color: var(--white); text-decoration: none; text-transform: uppercase; }
   .nav-back { color: var(--white); text-decoration: none; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; transition: opacity 0.2s; }
   .nav-back:hover { opacity: 1; }
+
+  .skip-link {
+    position: fixed;
+    top: 12px; left: 12px;
+    z-index: 10000;
+    transform: translateY(-150%);
+    background: var(--accent);
+    color: var(--black);
+    padding: 10px 14px;
+    border: 1px solid var(--accent);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+  }
+  .skip-link:focus { transform: translateY(0); }
+  #main-content:focus { outline: none; }
+  .visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  a:focus-visible,
+  button:focus-visible,
+  iframe:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    body,
+    a,
+    button,
+    .slot,
+    .photo-full,
+    .gal-slot,
+    .text-photo-img,
+    .fondazione-photo,
+    .project-card-img,
+    .aiko-photo,
+    .social-link,
+    .footer-right a { cursor: auto; }
+    .cursor { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
 
   /* ── COVER ── */
   #cover {
@@ -248,19 +363,23 @@
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
-<nav>
-  <a href="index.html" class="nav-logo">← Leone Morandini</a>
-  <a href="index.html#work" class="nav-back">All work</a>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
+<nav aria-label="Project navigation">
+  <a href="index.html" class="nav-logo" aria-label="Leone Morandini home">← Leone Morandini</a>
+  <a href="index.html#work" class="nav-back" aria-label="Back to all work">All work</a>
 </nav>
+
+<main id="main-content" tabindex="-1">
 
 <!-- ══════════════════════════════════
      COVER
      ══════════════════════════════════ -->
-<section id="cover">
-  <div class="cover-img"></div>
-  <div class="cover-overlay"></div>
+<section id="cover" aria-label="Erasmus in Paris photo story cover">
+  <div class="cover-img" aria-hidden="true"></div>
+  <div class="cover-overlay" aria-hidden="true"></div>
   <div class="cover-content">
     <p class="cover-tag">Photography — Personal Project — Paris, March 2026</p>
     <h1 class="cover-title">
@@ -268,7 +387,7 @@
       <em>in Paris.</em>
     </h1>
     <div class="cover-meta">
-      <p class="cover-desc">I went to visit Arianna, my friend doing her Erasmus in Paris. Three days, her city, her life  and a red notebook she hadn't bought yet.</p>
+      <p class="cover-desc">I went to visit Arianna, my friend doing her Erasmus in Paris. Three days, her city, her life and a red notebook she hadn't bought yet.</p>
       <div class="cover-info">
         <div>March 2026</div>
         <div>20 photographs</div>
@@ -290,7 +409,7 @@
       <strong>what that looks like.</strong>
     </p>
     <p class="intro-text">
-      She has a flat somewhere between the 9th and the 18th. There are shoes by the door: Salomon trail runners, which feel slightly wrong for Paris and completely right for her. sometimes she studies on the sofa with her laptop on her knees. She knows which boulangerie opens first.
+      She has a flat somewhere between the 9th and the 18th. There are shoes by the door: Salomon trail runners, which feel slightly wrong for Paris and completely right for her. Sometimes she studies on the sofa with her laptop on her knees. She knows which boulangerie opens first.
       <br><br>
       I was there for three days in March 2026. This is what I photographed.
     </p>
@@ -311,13 +430,13 @@
 <!-- Appartamento: scarpe + laptop + tovaglia alla finestra -->
 <div class="photo-trio">
   <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-13.jpg" alt="Arianna si allaccia le Salomon">
+    <img src="Parigi/FotoParigiLowQ-13.jpg" alt="Arianna tying her Salomon shoes" loading="lazy" decoding="async">
   </div>
   <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-31.jpg" alt="Arianna studia sul divano">
+    <img src="Parigi/FotoParigiLowQ-31.jpg" alt="Arianna studying on the sofa" loading="lazy" decoding="async">
   </div>
   <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-7.jpg" alt="Due persone alla finestra del suo appartamento">
+    <img src="Parigi/FotoParigiLowQ-7.jpg" alt="Two flatmates by the apartment window" loading="lazy" decoding="async">
   </div>
 </div>
 <div class="photo-caption">
@@ -328,7 +447,7 @@
 <!-- Pull quote 1 -->
 <div class="pull-quote reveal">
   <div class="pull-quote-inner">
-    <div class="pull-mark">"</div>
+    <div class="pull-mark" aria-hidden="true">"</div>
     <div>
       <p class="pull-text">Erasmus is mostly<br>a sofa, a laptop, and<br><em>a city outside the window.</em></p>
       <p class="pull-author">— Her apartment, March 2026</p>
@@ -350,10 +469,10 @@
 <!-- Staircase + first building duo -->
 <div class="photo-duo">
   <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-14.jpg" alt="Scala a chiocciola del palazzo di Arianna">
+    <img src="Parigi/FotoParigiLowQ-14.jpg" alt="Spiral staircase in Arianna's building" loading="lazy" decoding="async">
   </div>
   <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-33.jpg" alt="Edifici parigini">
+    <img src="Parigi/FotoParigiLowQ-33.jpg" alt="Parisian buildings" loading="lazy" decoding="async">
   </div>
 </div>
 <div class="photo-caption">
@@ -364,13 +483,13 @@
 <!-- Streets trio -->
 <div class="photo-trio" style="margin-top:3px;">
   <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-34.jpg" alt="Incrocio parigino vuoto">
+    <img src="Parigi/FotoParigiLowQ-34.jpg" alt="Empty Parisian intersection" loading="lazy" decoding="async">
   </div>
   <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-90.jpg" alt="Fromagerie Chatin">
+    <img src="Parigi/FotoParigiLowQ-90.jpg" alt="Fromagerie Chatin" loading="lazy" decoding="async">
   </div>
   <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-48.jpg" alt="Lampione e palazzi">
+    <img src="Parigi/FotoParigiLowQ-48.jpg" alt="Street lamp and Paris buildings" loading="lazy" decoding="async">
   </div>
 </div>
 <div class="photo-caption">
@@ -389,13 +508,13 @@
     <p style="color: var(--accent); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 8px;">Montmartre — Rue Lepic area</p>
   </div>
   <div class="text-photo-img">
-    <img src="Parigi/FotoParigiLowQ-56.jpg" alt="Montmartre stairs">
+    <img src="Parigi/FotoParigiLowQ-56.jpg" alt="Montmartre stairs" loading="lazy" decoding="async">
   </div>
 </div>
 
 <!-- Sacré-Cœur full width -->
 <div class="photo-full">
-  <img src="Parigi/FotoParigiLowQ-53.jpg" alt="Sacré-Cœur" style="object-position: center 20%;">
+  <img src="Parigi/FotoParigiLowQ-53.jpg" alt="Sacré-Cœur" style="object-position: center 20%;" loading="lazy" decoding="async">
 </div>
 <div class="photo-caption">
   <span>Sacré-Cœur before the crowds. She had already been. She came again anyway.</span>
@@ -438,10 +557,10 @@
 <!-- Book market duo -->
 <div class="photo-duo">
   <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-44.jpg" alt="Bouquinistes - mercato libri usati">
+    <img src="Parigi/FotoParigiLowQ-44.jpg" alt="Bouquinistes used book market" loading="lazy" decoding="async">
   </div>
   <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-84.jpg" alt="Uomo con cane ai Tuileries">
+    <img src="Parigi/FotoParigiLowQ-84.jpg" alt="Man with a dog at the Tuileries" loading="lazy" decoding="async">
   </div>
 </div>
 <div class="photo-caption">
@@ -452,16 +571,15 @@
 <!-- City life — mosaic col sinistra + due a destra -->
 <div class="mosaic" style="margin-top:3px;">
   <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-49.jpg" alt="Uomo con giacca rossa contro muro bianco">
-        <div class="slot">
-      <img src="Parigi/FotoParigiLowQ-60.jpg" alt="Giostra vuota">
-    </div>
+    <img src="Parigi/FotoParigiLowQ-49.jpg" alt="Man in a red jacket against a white wall" loading="lazy" decoding="async">
   </div>
   <div class="mosaic-right">
     <div class="slot">
-      <img src="Parigi/FotoParigiLowQ-93.jpg" alt="Basket sotto la Torre Eiffel">
+      <img src="Parigi/FotoParigiLowQ-93.jpg" alt="Basketball court below the Eiffel Tower" loading="lazy" decoding="async">
     </div>
-
+    <div class="slot">
+      <img src="Parigi/FotoParigiLowQ-60.jpg" alt="Empty carousel in Paris" loading="lazy" decoding="async">
+    </div>
   </div>
 </div>
 <div class="photo-caption">
@@ -472,7 +590,7 @@
 <!-- Pull quote 2 -->
 <div class="pull-quote reveal">
   <div class="pull-quote-inner">
-    <div class="pull-mark">"</div>
+    <div class="pull-mark" aria-hidden="true">"</div>
     <div>
       <p class="pull-text">She said she bought it<br>because the cover was red.<br><em>That was enough of a reason.</em></p>
       <p class="pull-author">— Bouquinistes, Seine riverbank, March 2026</p>
@@ -493,7 +611,7 @@
 
 <!-- Moulin Rouge full width -->
 <div class="photo-full">
-  <img src="Parigi/FotoParigiLowQ-66.jpg" alt="Moulin Rouge at night" style="object-position: center 60%;">
+  <img src="Parigi/FotoParigiLowQ-66.jpg" alt="Moulin Rouge at night" style="object-position: center 60%;" loading="lazy" decoding="async">
 </div>
 <div class="photo-caption">
   <span>Moulin Rouge at dusk: she had walked past it a hundred times and still stopped to look.</span>
@@ -503,10 +621,10 @@
 <!-- Night portraits: Arianna blurry + col quaderno rosso -->
 <div class="photo-duo" style="margin-top:3px;">
   <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-70.jpg" alt="Arianna sfocata di notte">
+    <img src="Parigi/FotoParigiLowQ-70.jpg" alt="Blurred portrait of Arianna at night" loading="lazy" decoding="async">
   </div>
   <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-73.jpg" alt="Arianna con il quaderno rosso di notte">
+    <img src="Parigi/FotoParigiLowQ-73.jpg" alt="Arianna holding the red notebook at night" loading="lazy" decoding="async">
   </div>
 </div>
 <div class="photo-caption">
@@ -528,10 +646,10 @@
 <!-- Arianna Eiffel + Leone Louvre asym -->
 <div class="photo-asym">
   <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-19.jpg" alt="Arianna laughing at Trocadéro" style="object-position: center 20%;">
+    <img src="Parigi/FotoParigiLowQ-19.jpg" alt="Arianna laughing at Trocadéro" style="object-position: center 20%;" loading="lazy" decoding="async">
   </div>
   <div class="slot">
-    <img src="Parigi/FotoParigiLowQ-81.jpg" alt="Leone at the Louvre">
+    <img src="Parigi/FotoParigiLowQ-81.jpg" alt="Leone at the Louvre" loading="lazy" decoding="async">
   </div>
 </div>
 <div class="photo-caption">
@@ -542,7 +660,7 @@
 <!-- Final pull quote -->
 <div class="pull-quote reveal">
   <div class="pull-quote-inner">
-    <div class="pull-mark">"</div>
+    <div class="pull-mark" aria-hidden="true">"</div>
     <div>
       <p class="pull-text">She's been there three months.<br>I was there three days.<br>She showed me something.<br><em>I still feel like I missed almost everything.</em></p>
       <p class="pull-author">— Leone Morandini, March 2026</p>
@@ -564,27 +682,42 @@
   </div>
 </div>
 
+</main>
 <footer>
   <span>Leone Morandini © 2026</span>
   <span>Turin — Paris — World</span>
 </footer>
 
 <script>
+  // Custom cursor: enabled only on devices with a fine pointer.
   const cursor = document.getElementById('cursor');
-  document.addEventListener('mousemove', e => {
-    window.requestAnimationFrame(() => {
-      cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
-    });
-  });
-  document.querySelectorAll('a, .slot, .photo-full').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
-  });
+  const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  if (cursor && hasFinePointer) {
+    document.addEventListener('mousemove', e => {
+      window.requestAnimationFrame(() => {
+        cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+      });
+    });
+
+    document.querySelectorAll('a, button, .slot, .photo-full, .gal-slot, .text-photo-img, .fondazione-photo, .project-card-img, .aiko-photo, .social-link').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+    });
+  }
+
+  // Scroll reveal with graceful fallback.
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  }
 </script>
 </body>
 </html>
