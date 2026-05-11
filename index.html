@@ -108,20 +108,8 @@
   .hero-scroll { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); }
   .scroll-line { width: 60px; height: 1px; background: var(--mid); animation: scrollLine 2s ease-in-out infinite; }
   @keyframes scrollLine { 0%, 100% { width: 60px; } 50% { width: 120px; } }
-
-  /* ─── VIDEO REEL SECTION ─── */
-  /*
-   * Questo blocco mostra il tuo reel in autoplay, muted, loop.
-   * Posizionato subito dopo l'hero — è la prima cosa che si vede dopo lo scroll.
-   * Il video occupa tutta la larghezza e ha un overlay di testo sopra.
-   *
-   * COME AGGIUNGERE IL TUO VIDEO:
-   * 1. Metti il tuo file video nella stessa cartella (es: reel.mp4)
-   * 2. Sostituisci src="" con src="reel.mp4"
-   * 3. Per usare un link esterno: src="https://tuoserver.com/reel.mp4"
-   *    (NON usare YouTube/Vimeo diretti — non supportano autoplay embed via <video>)
-   *    Se hai su Vimeo, prendi il link diretto al file .mp4 da Vimeo Pro.
-   */
+  
+  /* ─── REEL ─── */
   #reel {
     position: relative;
     width: 100%;
@@ -174,7 +162,20 @@
     cursor: none;
     transition: border-color 0.2s, color 0.2s;
   }
-  .reel-mute-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .reel-link {
+    font-size: 14px;
+    color: var(--mid);
+    line-height: 1.8;
+    margin-top: 16px;
+  }
+  .reel-link a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .reel-link a:hover {
+    color: var(--white);
+  }
 
   /* ─── MARQUEE ─── */
   .marquee-wrapper {
@@ -203,11 +204,6 @@
   #about { border-top: 1px solid var(--gray); }
   .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; align-items: start; }
 
-  /* FOTO PROFILO ─────────────────────────────────
-   * Per aggiungere la tua foto:
-   * 1. Rimuovi il div .about-photo-placeholder
-   * 2. Aggiungi: <img src="leone-profile.jpg" alt="Leone Morandini">
-   * ─────────────────────────────────────────────── */
   .about-photo-wrap {
     position: relative;
     width: 100%;
@@ -275,15 +271,6 @@
   }
   .work-item.tall { aspect-ratio: 3/4; }
 
-  /*
-   * COME AGGIUNGERE LE TUE FOTO NELLA GRIGLIA:
-   * Ogni .work-item contiene un .work-bg — imposta il suo background-image:
-   *
-   *   <div class="work-bg" style="background-image: url('foto-matrimonio.jpg')"></div>
-   *
-   * Oppure metti un <img> dentro .work-item al posto di .work-bg:
-   *   <img src="tua-foto.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
-   */
   .work-bg {
     position: absolute; inset: 0;
     background-size: cover;
@@ -329,14 +316,6 @@
   .view-all-link { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; border-bottom: 1px solid var(--gray); padding-bottom: 4px; }
   .view-all-link:hover { color: var(--accent); border-color: var(--accent); }
 
-  /*
-   * COME AGGIUNGERE LE TUE FOTO STREET:
-   * Ogni .photo-thumb ha un .photo-img — aggiungi background-image:
-   *   <div class="photo-img" style="background-image: url('street-01.jpg')"></div>
-   *
-   * Le prime 3 card sono orizzontali, le ultime 2 verticali.
-   * Puoi aggiungere quante card vuoi duplicando il markup .photo-thumb.
-   */
   .photo-strip {
     display: grid;
     grid-template-columns: 2fr 1.2fr 1.2fr;
@@ -638,6 +617,9 @@
       Everything I've<br>
       <em>made with love.</em>
     </h2>
+    <p class="reel-link">
+      See more videos on <a href="https://youtube.com/channel/UCCex5pYz8A-mD8cNYz6H6_w" target="_blank">YouTube</a>
+    </p>
   </div>
 
   <!-- Bottone mute/unmute -->
@@ -819,7 +801,7 @@
       <div class="photo-overlay"><span class="photo-num">04</span></div>
     </div>
     <div class="photo-thumb mid-bottom">
-      <div class="photo-img" style="background-image: url('resources/image-efed2cf0-5a45-46b9-9ce3-cab6e668e6c4.webp'); font-size:0;"></div>
+      <div class="photo-img" style="background-image: url('resources/Monfleur-66.jpg'); font-size:0;"></div>
       <div class="photo-overlay"><span class="photo-num">05</span></div>
     </div>
     <div class="photo-thumb right-bottom">
