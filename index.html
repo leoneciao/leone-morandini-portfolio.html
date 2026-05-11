@@ -12,7 +12,60 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Portfolio of Leone Morandini, designer, videomaker and photographer based in Turin, Piedmont. Digital communication, web development, photography, video and storytelling projects.">
+<meta name="keywords" content="Leone Morandini, designer Turin, designer Torino, Piedmont designer, digital communication design, photographer Turin, videomaker Turin, web developer, portfolio, storytelling, IAAD, photography, videomaking">
+<meta name="author" content="Leone Morandini">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="color-scheme" content="dark light">
+<meta name="format-detection" content="telephone=no">
+<meta name="geo.region" content="IT-21">
+<meta name="geo.placename" content="Turin, Piedmont, Italy">
+<meta name="geo.position" content="45.0703;7.6869">
+<meta name="ICBM" content="45.0703, 7.6869">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Leone Morandini Portfolio">
+<meta property="og:title" content="Leone Morandini — Designer">
+<meta property="og:description" content="Designer, videomaker and photographer based in Turin, Piedmont. Digital communication, web development, photography, video and storytelling projects.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="resources/DSF0346.jpg">
+<meta property="og:image:alt" content="Leone Morandini portfolio portrait">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Leone Morandini — Designer">
+<meta name="twitter:description" content="Designer, videomaker and photographer based in Turin, Piedmont. Digital communication, web development, photography, video and storytelling projects.">
+<meta name="twitter:image" content="resources/DSF0346.jpg">
 <title>Leone Morandini — Designer</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Leone Morandini",
+  "jobTitle": "Designer, Videomaker and Photographer",
+  "description": "Portfolio of Leone Morandini, designer, videomaker and photographer based in Turin, Piedmont.",
+  "homeLocation": {
+    "@type": "Place",
+    "name": "Turin, Piedmont, Italy",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 45.0703,
+      "longitude": 7.6869
+    }
+  },
+  "knowsAbout": [
+    "Digital Communication Design",
+    "Web Development",
+    "Photography",
+    "Videomaking",
+    "Transportation Design",
+    "Storytelling"
+  ],
+  "sameAs": [
+    "https://youtube.com/channel/UCCex5pYz8A-mD8cNYz6H6_w",
+    "https://instagram.com/leoneciao_",
+    "https://www.linkedin.com/in/leone-morandini-4b1441276"
+  ]
+}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400;1,900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -65,6 +118,39 @@
   .nav-links { display: flex; gap: 32px; list-style: none; }
   .nav-links a { color: var(--white); text-decoration: none; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; transition: opacity 0.2s; }
   .nav-links a:hover { opacity: 1; }
+
+  .skip-link {
+    position: fixed;
+    top: 12px; left: 12px;
+    z-index: 10000;
+    transform: translateY(-150%);
+    background: var(--accent);
+    color: var(--black);
+    padding: 10px 14px;
+    border: 1px solid var(--accent);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+  }
+  .skip-link:focus { transform: translateY(0); }
+  .visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  a:focus-visible,
+  button:focus-visible,
+  .work-item:focus-visible,
+  .photo-thumb:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
 
   /* ─── HERO ─── */
   #hero {
@@ -281,7 +367,8 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 64px; opacity: 0.5; color: rgba(255,255,255,0.04);
   }
-  .work-item:hover .work-bg { transform: scale(1.04); opacity: 1; }
+  .work-item:hover .work-bg,
+  .work-item:focus-visible .work-bg { transform: scale(1.04); opacity: 1; }
 
   .work-info {
     position: absolute; bottom: 0; left: 0; right: 0;
@@ -290,7 +377,8 @@
     transform: translateY(20px); opacity: 0;
     transition: all 0.3s;
   }
-  .work-item:hover .work-info { transform: translateY(0); opacity: 1; }
+  .work-item:hover .work-info,
+  .work-item:focus-visible .work-info { transform: translateY(0); opacity: 1; }
   .work-title { font-family: var(--font-display); font-size: 22px; font-weight: 700; margin-bottom: 4px; }
   .work-cat { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
   .work-num { position: absolute; top: 20px; right: 20px; font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
@@ -302,7 +390,50 @@
     transition: all 0.3s 0.05s;
     color: var(--accent);
   }
-  .work-item:hover .work-arrow { opacity: 1; transform: translate(0, 0); }
+  .work-item:hover .work-arrow,
+  .work-item:focus-visible .work-arrow { opacity: 1; transform: translate(0, 0); }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .work-grid { grid-template-columns: 1fr 1fr; }
+    .work-item,
+    .work-item.tall,
+    .work-item.wide {
+      aspect-ratio: 4 / 3 !important;
+      grid-column: auto !important;
+      grid-row: auto !important;
+    }
+    .work-item.wide {
+      grid-column: 1 / -1 !important;
+      aspect-ratio: 16 / 7 !important;
+    }
+    .work-info,
+    .work-arrow {
+      opacity: 1 !important;
+      transform: translate(0, 0) !important;
+    }
+    .work-bg { opacity: 1; }
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    body,
+    a,
+    button,
+    .work-item,
+    .service-item,
+    .photo-thumb { cursor: auto; }
+    .cursor { display: none; }
+    .work-item.tall {
+      aspect-ratio: 3 / 4 !important;
+      grid-row: auto !important;
+    }
+    .work-grid .work-item:nth-child(4) { grid-column-start: auto !important; }
+    .work-info,
+    .work-arrow {
+      opacity: 1 !important;
+      transform: translate(0, 0) !important;
+    }
+    .work-bg { opacity: 1; }
+  }
 
   /* ─── PHOTOGRAPHY PREVIEW (Street) ─── */
   #photo-preview { border-top: 1px solid var(--gray); }
@@ -421,6 +552,17 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
   body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 1; opacity: 0.4; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+    .marquee-track { animation: none !important; }
+  }
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 768px) {
@@ -560,12 +702,13 @@
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
 
 
 <!-- Nav -->
-<nav>
-  <a href="index.html" class="nav-logo">LM ©2026</a>
+<nav aria-label="Main navigation">
+  <a href="index.html" class="nav-logo" aria-label="Leone Morandini home">LM ©2026</a>
   <ul class="nav-links">
     <li><a href="#work">Career</a></li>
     <li><a href="#photo-preview">Photo</a></li>
@@ -574,12 +717,13 @@
   </ul>
 </nav>
 
+<main id="main-content">
 <!-- Hero -->
-<section id="hero">
+<section id="hero" aria-label="Portfolio introduction">
   <!-- FOTO HERO: stessa foto del profilo, appare subito a destra -->
   <!-- Cambia src con il percorso della tua foto -->
   <div class="hero-photo">
-    <img src="./resources/DSF0346.jpg" alt="Leone Morandini">
+    <img src="./resources/DSF0346.jpg" alt="Leone Morandini" decoding="async" fetchpriority="high">
   </div>
 
   <p class="hero-tag">Designer · Videomaker · Photographer — Turin → World</p>
@@ -590,7 +734,7 @@
   </h1>
   <div class="hero-bottom">
     <p class="hero-desc">Hi, I'm Leone. Italian by origin, curious by nature. I design experiences that feel human, because before I touch a screen, I talk to people.</p>
-    <div class="hero-scroll">
+    <div class="hero-scroll" aria-hidden="true">
       <div class="scroll-line"></div>
       Scroll
     </div>
@@ -598,13 +742,15 @@
 </section>
 
 
-<div id="reel">
+<section id="reel" aria-labelledby="reel-title">
   <video
     id="reelVideo"
     autoplay
     muted
     loop
     playsinline
+    preload="metadata"
+    aria-label="Leone Morandini reel video"
     src="resources/Video_show.mp4"
   >
     <!-- FALLBACK: se il video non carica, mostra questo -->
@@ -613,23 +759,23 @@
 
   <div class="reel-overlay">
     <p class="reel-label">Reel 2025</p>
-    <h2 class="reel-title">
+    <h2 class="reel-title" id="reel-title">
       Everything I've<br>
       <em>made with love.</em>
     </h2>
     <p class="reel-link">
-      See more videos on <a href="https://youtube.com/channel/UCCex5pYz8A-mD8cNYz6H6_w" target="_blank">YouTube</a>
+      See more videos on <a href="https://youtube.com/channel/UCCex5pYz8A-mD8cNYz6H6_w" target="_blank" rel="noopener noreferrer">YouTube</a>
     </p>
   </div>
 
   <!-- Bottone mute/unmute -->
-  <button class="reel-mute-btn" id="muteBtn" onclick="toggleMute()">
+  <button class="reel-mute-btn" id="muteBtn" type="button" onclick="toggleMute()" aria-label="Turn reel sound on" aria-pressed="false">
     Sound off
   </button>
-</div>
+</section>
 
 <!-- Marquee -->
-<div class="marquee-wrapper">
+<div class="marquee-wrapper" aria-hidden="true">
   <div class="marquee-track">
     <span class="marquee-item">Design <span class="marquee-dot">✦</span></span>
     <span class="marquee-item">Photography <span class="marquee-dot">✦</span></span>
@@ -647,13 +793,13 @@
 </div>
 
 <!-- About -->
-<section id="about">
-  <p class="section-label">00 — About</p>
+<section id="about" aria-label="About Leone Morandini">
+  <p class="section-label" role="heading" aria-level="2">00 — About</p>
   <div class="about-grid">
     <!-- Colonna sinistra: foto profilo -->
     <div class="about-left reveal">
       <div class="about-photo-wrap">
-        <img src="resources/x012%20(2%20di%203)%20low%20res.jpg" alt="Leone Morandini">
+        <img src="resources/x012%20(2%20di%203)%20low%20res.jpg" alt="Leone Morandini" loading="lazy" decoding="async">
       </div>
       <p class="about-photo-caption">Leone Morandini — Torino, 2024</p>
     </div>
@@ -703,61 +849,61 @@
   Crea un file HTML per ogni progetto (es: wedding.html, real-estate.html)
   seguendo il template di street.html.
 -->
-<section id="work">
-  <p class="section-label">01 — Selected Experiences</p>
+<section id="work" aria-label="Selected Experiences">
+  <p class="section-label" role="heading" aria-level="2">01 — Selected Experiences</p>
   <div class="work-grid">
 
 
-    <a class="work-item" href="iaad-aiko.html">
-      <div class="work-bg" style="background-image: url('resources/image-1c5f68c9-dc4e-4287-b652-36c601daaec8.webp');background-position: 80% center; font-size:0;"></div>
-      <span class="work-num">01</span>
+    <a class="work-item" href="iaad-aiko.html" aria-label="Open AIKO srl — IAAD project">
+      <div class="work-bg" aria-hidden="true" style="background-image: url('resources/image-1c5f68c9-dc4e-4287-b652-36c601daaec8.webp');background-position: 80% center; font-size:0;"></div>
+      <span class="work-num" aria-hidden="true">01</span>
       <div class="work-info">
         <div class="work-title">AIKO srl — IAAD</div>
         <div class="work-cat">Videogame Design · Transportation Design</div>
       </div>
-      <span class="work-arrow">↗</span>
+      <span class="work-arrow" aria-hidden="true">↗</span>
     </a>
 
-    <a class="work-item tall" href="nosignal.html">
-      <div class="work-bg"  style="background-image: url('NosCRC/DSF8477.jpg'); background-position: 80% center; font-size:0;"></div>
-      <span class="work-num">02</span>
+    <a class="work-item tall" href="nosignal.html" aria-label="Open NoSignal ETS - Fondazione CRC project">
+      <div class="work-bg" aria-hidden="true"  style="background-image: url('NosCRC/DSF8477.jpg'); background-position: 80% center; font-size:0;"></div>
+      <span class="work-num" aria-hidden="true">02</span>
       <div class="work-info">
-        <div class="work-title">NoSignal ets - Fondazione CRC</div>
+        <div class="work-title">NoSignal ETS - Fondazione CRC</div>
         <div class="work-cat">Branding · Events · Advisory Board member</div>
       </div>
-      <span class="work-arrow">↗</span>
+      <span class="work-arrow" aria-hidden="true">↗</span>
     </a>
 
-    <a class="work-item tall" href="wedding.html">
-      <div class="work-bg" style="background-image: url('Wedding/image-507c125e-d1dd-4e5a-95df-69fd7634fdf4.webp'); font-size:0;"></div>
-      <span class="work-num">03</span>
+    <a class="work-item tall" href="wedding.html" aria-label="Open Weddings project">
+      <div class="work-bg" aria-hidden="true" style="background-image: url('Wedding/image-507c125e-d1dd-4e5a-95df-69fd7634fdf4.webp'); font-size:0;"></div>
+      <span class="work-num" aria-hidden="true">03</span>
       <div class="work-info">
         <div class="work-title">Weddings</div>
         <div class="work-cat">Event Photography</div>
       </div>
-      <span class="work-arrow">↗</span>
+      <span class="work-arrow" aria-hidden="true">↗</span>
     </a>
 
-    <a class="work-item" href="paris_street.html">
-      <div class="work-bg" style="background-image: url('Parigi/FotoParigiLowQ-19.jpg'); font-size:0;"></div>
-      <span class="work-num">04</span>
+    <a class="work-item" href="paris_street.html" aria-label="Open Storytelling project">
+      <div class="work-bg" aria-hidden="true" style="background-image: url('Parigi/FotoParigiLowQ-19.jpg'); font-size:0;"></div>
+      <span class="work-num" aria-hidden="true">04</span>
       <div class="work-info">
         <div class="work-title">Storytelling</div>
         <div class="work-cat">Personal Photography</div>
       </div>
-      <span class="work-arrow">↗</span>
+      <span class="work-arrow" aria-hidden="true">↗</span>
     </a>
 
 
 
-        <a class="work-item wide" href="oratorio.html">
-      <div class="work-bg" style="background-image: url('resources/DJI_20250613110024_0005_D.jpg');  font-size:0;"></div>
-      <span class="work-num">05</span>
+        <a class="work-item wide" href="oratorio.html" aria-label="Open Scala del Re - Oratorio Ferrone project">
+      <div class="work-bg" aria-hidden="true" style="background-image: url('resources/DJI_20250613110024_0005_D.jpg');  font-size:0;"></div>
+      <span class="work-num" aria-hidden="true">05</span>
       <div class="work-info">
         <div class="work-title">Scala del Re - Oratorio Ferrone</div>
         <div class="work-cat">Music teaching · Kid mentoring</div>
       </div>
-      <span class="work-arrow">↗</span>
+      <span class="work-arrow" aria-hidden="true">↗</span>
     </a>
   </div>
 </section>
@@ -771,8 +917,8 @@
   Puoi avere quante foto vuoi — segui la struttura della griglia.
   Le prime 3 sono in riga alta, le ultime 3 in riga bassa.
 -->
-<section id="photo-preview">
-  <p class="section-label">02 — Photography</p>
+<section id="photo-preview" aria-label="Photography preview">
+  <p class="section-label" role="heading" aria-level="2">02 — Photography</p>
   <div class="photo-header">
     <h2 class="photo-header-title">
       The world<br>
@@ -784,36 +930,36 @@
   <div class="photo-strip">
     <!-- Riga 1 -->
     <div class="photo-thumb">
-      <div class="photo-img" style="background-image: url('resources/DSF6474.jpg'); font-size:0;"></div>
+      <div class="photo-img" role="img" aria-label="Photography preview 01" style="background-image: url('resources/DSF6474.jpg'); font-size:0;"></div>
       <div class="photo-overlay"><span class="photo-num">01</span></div>
     </div>
     <div class="photo-thumb">
-      <div class="photo-img" style="background-image: url('studioTom/Tomstudio-8.jpg'); font-size:0;"></div>
+      <div class="photo-img" role="img" aria-label="Photography preview 02" style="background-image: url('studioTom/Tomstudio-8.jpg'); font-size:0;"></div>
       <div class="photo-overlay"><span class="photo-num">02</span></div>
     </div>
     <div class="photo-thumb">
-      <div class="photo-img" style="background-image: url('resources/DSF8011.jpg'); font-size:0;"></div>
+      <div class="photo-img" role="img" aria-label="Photography preview 03" style="background-image: url('resources/DSF8011.jpg'); font-size:0;"></div>
       <div class="photo-overlay"><span class="photo-num">03</span></div>
     </div>
     <!-- Riga 2 -->
     <div class="photo-thumb wide">
-      <div class="photo-img" style="background-image: url('resources/DSF7678.jpg'); font-size:0;"></div>
+      <div class="photo-img" role="img" aria-label="Photography preview 04" style="background-image: url('resources/DSF7678.jpg'); font-size:0;"></div>
       <div class="photo-overlay"><span class="photo-num">04</span></div>
     </div>
     <div class="photo-thumb mid-bottom">
-      <div class="photo-img" style="background-image: url('resources/Monfleur-66.jpg'); font-size:0;"></div>
+      <div class="photo-img" role="img" aria-label="Photography preview 05" style="background-image: url('resources/Monfleur-66.jpg'); font-size:0;"></div>
       <div class="photo-overlay"><span class="photo-num">05</span></div>
     </div>
     <div class="photo-thumb right-bottom">
-      <div class="photo-img" style="background-image: url('resources/image-1a4459e4-b9d9-4768-a2d8-d2c031e0315b.webp'); font-size:0;"></div>
+      <div class="photo-img" role="img" aria-label="Photography preview 06" style="background-image: url('resources/image-1a4459e4-b9d9-4768-a2d8-d2c031e0315b.webp'); font-size:0;"></div>
       <div class="photo-overlay"><span class="photo-num">06</span></div>
     </div>
   </div>
 </section>
 
 <!-- Services -->
-<section id="services">
-  <p class="section-label">03 — What I do</p>
+<section id="services" aria-label="Services">
+  <p class="section-label" role="heading" aria-level="2">03 — What I do</p>
   <div class="services-list reveal">
     <div class="service-item">
       <span class="service-name">Web developer</span>
@@ -835,8 +981,8 @@
 </section>
 
 
-<section id="built">
-  <p class="section-label">04 — Built by hand</p>
+<section id="built" aria-label="Built by hand">
+  <p class="section-label" role="heading" aria-level="2">04 — Built by hand</p>
  
   <div class="built-grid">
  
@@ -849,7 +995,7 @@
       <p class="built-desc">
         No templates, no Webflow, no WordPress.
         Every line of HTML, CSS and JavaScript in this portfolio
-        was written by hand:  layout system, custom cursor,
+        was written by hand: layout system, custom cursor,
         scroll animations, responsive design and all.
         It's also the project I'm most proud of,
         because I built it while learning.
@@ -881,15 +1027,15 @@
  
     <div class="built-footer-row">
       <span>No frameworks. No templates. Just code.</span>
-      <span>View source! it's all there.</span>
+      <span>View source! It's all there.</span>
     </div>
  
   </div>
 </section>
 
 <!-- Contact -->
-<section id="contact">
-  <p class="section-label" style="justify-content:center;">05 — Let's Talk</p>
+<section id="contact" aria-label="Contact Leone Morandini">
+  <p class="section-label" style="justify-content:center;" role="heading" aria-level="2">05 — Let's Talk</p>
   <h2 class="contact-title reveal">
     Got a project?<br>
     <em>Let's make</em><br>
@@ -900,19 +1046,23 @@
      id="email-main-cta" 
      class="cta-btn" 
      data-user="leonemorandini" 
-     data-domain="gmail.com">
+     data-domain="gmail.com"
+     role="button"
+     aria-label="Open email contact">
      Say ciao →
   </a>
 
   <div class="contact-links">
-    <a href="https://youtube.com/channel/UCCex5pYz8A-mD8cNYz6H6_w" target="_blank">YouTube</a>
-    <a href="https://instagram.com/leoneciao_" target="_blank">Instagram</a>
-    <a href="https://www.linkedin.com/in/leone-morandini-4b1441276" target="_blank">LinkedIn</a>
+    <a href="https://youtube.com/channel/UCCex5pYz8A-mD8cNYz6H6_w" target="_blank" rel="noopener noreferrer">YouTube</a>
+    <a href="https://instagram.com/leoneciao_" target="_blank" rel="noopener noreferrer">Instagram</a>
+    <a href="https://www.linkedin.com/in/leone-morandini-4b1441276" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     
     <a href="#" 
        id="email-link" 
        data-user="leonemorandini" 
-       data-domain="gmail.com">
+       data-domain="gmail.com"
+       role="button"
+       aria-label="Show email address">
        [Show email]
     </a>
 
@@ -920,89 +1070,103 @@
        id="phone-cta" 
        data-p1="347" 
        data-p2="629" 
-       data-p3="5182">
+       data-p3="5182"
+       role="button"
+       aria-label="Show phone number">
        +39 [Show number]
     </a>
   </div>
 </section>
 
 
+</main>
 <footer>
   <span>Leone Morandini © 2026</span>
   <span>Turin — World</span>
 </footer>
 
 <script>
-  // FIX CURSORE: Movimento fluido senza lag
+  // Custom cursor: enabled only on devices with a fine pointer.
   const cursor = document.getElementById('cursor');
-  document.addEventListener('mousemove', e => {
-    window.requestAnimationFrame(() => {
-      cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
-    });
-  });
+  const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-  document.querySelectorAll('a, .work-item, .service-item, .cta-btn, .photo-thumb').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
-  });
+  if (cursor && hasFinePointer) {
+    document.addEventListener('mousemove', e => {
+      window.requestAnimationFrame(() => {
+        cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+      });
+    });
+
+    document.querySelectorAll('a, button, .work-item, .service-item, .cta-btn, .photo-thumb').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+    });
+  }
 
   // Mute toggle
   function toggleMute() {
     const video = document.getElementById('reelVideo');
     const btn = document.getElementById('muteBtn');
-    if (!video) return;
+    if (!video || !btn) return;
+
     video.muted = !video.muted;
-    btn.textContent = video.muted ? 'Sound off' : 'Sound on';
+    const soundOn = !video.muted;
+    btn.textContent = soundOn ? 'Sound on' : 'Sound off';
+    btn.setAttribute('aria-pressed', String(soundOn));
+    btn.setAttribute('aria-label', soundOn ? 'Turn reel sound off' : 'Turn reel sound on');
   }
 
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
+  // Scroll reveal with graceful fallback.
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  }
+
+  const phoneCta = document.getElementById('phone-cta');
+  if (phoneCta) {
+    phoneCta.addEventListener('click', function(e) {
+      e.preventDefault();
+      // Ricostruiamo il numero solo al click dell'utente umano.
+      const num = `+39 ${this.dataset.p1} ${this.dataset.p2} ${this.dataset.p3}`;
+      this.href = 'tel:' + num.replace(/\s/g, '');
+      this.innerText = num;
+      this.setAttribute('aria-label', 'Call ' + num);
+      window.location.href = this.href;
     });
-  }, { threshold: 0.1 });
+  }
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  // Sistema Anti-Spam per l'Email.
+  const emailElements = ['email-main-cta', 'email-link'];
 
-  document.getElementById('phone-cta').addEventListener('click', function(e) {
-    e.preventDefault();
-    // Ricostruiamo il numero solo al click dell'utente umano
-    const num = `+39 ${this.dataset.p1} ${this.dataset.p2} ${this.dataset.p3}`;
-    this.href = 'tel:' + num.replace(/\s/g, '');
-    this.innerText = num;
-    // Ora che il link è "sbloccato", avviamo la chiamata
-    window.location.href = this.href;
+  emailElements.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      // Ricostruiamo la mail dai dati nascosti.
+      const user = this.dataset.user;
+      const domain = this.dataset.domain;
+      const fullEmail = user + '@' + domain;
+
+      this.href = 'mailto:' + fullEmail;
+
+      if (id === 'email-link') {
+        this.textContent = fullEmail;
+        this.setAttribute('aria-label', 'Email ' + fullEmail);
+      }
+
+      window.location.href = 'mailto:' + fullEmail;
+    }, { once: true });
   });
-// Sistema Anti-Spam per l'Email
-const emailElements = ['email-main-cta', 'email-link'];
-
-emailElements.forEach(id => {
-  const el = document.getElementById(id);
-  if(!el) return;
-
-  el.addEventListener('click', function(e) {
-    e.preventDefault();
-    // Ricostruiamo la mail dai dati nascosti
-    const user = this.dataset.user;
-    const domain = this.dataset.domain;
-    const fullEmail = user + '@' + domain;
-    
-    // Trasformiamo l'elemento in un vero link mailto
-    this.href = 'mailto:' + fullEmail;
-    
-    // Se è il link testuale, cambiamo anche la scritta
-    if(id === 'email-link') {
-      this.textContent = fullEmail;
-    }
-    
-    // Apriamo il client mail immediatamente al primo click
-    window.location.href = 'mailto:' + fullEmail;
-    
-    // Rimuoviamo il listener così al prossimo click è un link normale
-    this.onclick = null;
-  }, { once: true });
-});
-
 </script>
 
- 
+ </body>
+</html>
