@@ -3,6 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Street photography, portraits and personal visual stories by Leone Morandini across Italy, Portugal and Europe.">
+<meta name="keywords" content="Leone Morandini, street photography, portrait photography, Fujifilm photography, Italy photography, Portugal photography, personal projects, visual storytelling">
+<meta name="author" content="Leone Morandini">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="color-scheme" content="dark light">
+<meta name="format-detection" content="telephone=no">
+<meta name="geo.region" content="IT-21">
+<meta name="geo.placename" content="Turin, Piedmont, Italy">
+<meta name="geo.position" content="45.0703;7.6869">
+<meta name="ICBM" content="45.0703, 7.6869">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Leone Morandini Portfolio">
+<meta property="og:title" content="Leone Morandini — Street Photography">
+<meta property="og:description" content="Street photography, portraits and personal visual stories by Leone Morandini across Italy, Portugal and Europe.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="resources/DSF8093.jpg">
+<meta property="og:image:alt" content="Street and portrait photography by Leone Morandini">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Leone Morandini — Street Photography">
+<meta name="twitter:description" content="Street photography, portraits and personal visual stories by Leone Morandini across Italy, Portugal and Europe.">
+<meta name="twitter:image" content="resources/DSF8093.jpg">
+<meta name="twitter:image:alt" content="Street and portrait photography by Leone Morandini">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Streets & Friends",
+  "author": {
+    "@type": "Person",
+    "name": "Leone Morandini",
+    "url": "index.html"
+  },
+  "description": "Street photography, portraits and personal visual stories by Leone Morandini across Italy, Portugal and Europe.",
+  "image": "resources/DSF8093.jpg",
+  "contentLocation": {
+    "@type": "Place",
+    "name": "Turin, Piedmont, Italy",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 45.0703,
+      "longitude": 7.6869
+    }
+  },
+  "keywords": [
+    "Leone Morandini",
+    "street photography",
+    "portrait photography",
+    "Fujifilm photography",
+    "Italy photography",
+    "Portugal photography",
+    "personal projects",
+    "visual storytelling"
+  ]
+}
+</script>
 <title>Leone Morandini — Street Photography</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400;1,900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -19,7 +75,7 @@
   }
 
   html { scroll-behavior: smooth; }
-  body { background: var(--black); color: var(--white); font-family: var(--font-mono); font-size: 14px; cursor: none; overflow-x: hidden; }
+  body { background: var(--black); color: var(--white); font-family: var(--font-mono); font-size: 14px; line-height: 1.6; cursor: none; overflow-x: hidden; }
 
   /* Cursor */
   .cursor { width: 12px; height: 12px; background: var(--accent); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transition: transform 0.15s ease, width 0.2s, height 0.2s; transform: translate(-50%, -50%); }
@@ -30,6 +86,66 @@
   .nav-logo { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em; color: var(--white); text-decoration: none; text-transform: uppercase; }
   .nav-back { color: var(--white); text-decoration: none; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; transition: opacity 0.2s; }
   .nav-back:hover { opacity: 1; }
+
+  .skip-link {
+    position: fixed;
+    top: 12px; left: 12px;
+    z-index: 10000;
+    transform: translateY(-150%);
+    background: var(--accent);
+    color: var(--black);
+    padding: 10px 14px;
+    border: 1px solid var(--accent);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+  }
+  .skip-link:focus { transform: translateY(0); }
+  #main-content:focus { outline: none; }
+  .visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  a:focus-visible,
+  button:focus-visible,
+  iframe:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    body,
+    a,
+    button,
+    .slot,
+    .photo-full,
+    .gal-slot,
+    .text-photo-img,
+    .fondazione-photo,
+    .project-card-img,
+    .aiko-photo,
+    .social-link,
+    .footer-right a { cursor: auto; }
+    .cursor { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
 
   /* ─── PROJECT HERO ─── */
   #project-hero {
@@ -66,7 +182,7 @@
   .meta-value { font-size: 14px; color: var(--white); }
 
   /* ─── INTRO TEXT ─── */
-  #intro { padding: 80px 40px; display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; border-bottom: 1px solid var(--gray); }
+  #intro, #next-story { padding: 80px 40px; display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; border-bottom: 1px solid var(--gray); }
   .intro-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); padding-top: 6px; }
   .intro-text { font-family: var(--font-display); font-size: clamp(20px, 2.5vw, 30px); line-height: 1.4; font-weight: 400; }
   .intro-text em { font-style: italic; color: var(--accent); }
@@ -188,65 +304,41 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
   body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9998; opacity: 0.4; }
- @media (max-width: 768px) {
+  @media (max-width: 768px) {
     nav { padding: 16px 20px; }
     #cover { padding: 0 20px 40px; }
     .cover-title { font-size: clamp(44px, 12vw, 72px); }
     .cover-meta { flex-direction: column; gap: 16px; align-items: flex-start; }
     .cover-info { text-align: left; }
-    section { padding: 56px 20px; }
-    .chapter { flex-direction: column; align-items: flex-start; gap: 16px; padding: 48px 20px 28px; }
-    .chapter-text { text-align: left; max-width: 100%; }
-    .fondazione-card { grid-template-columns: 1fr; }
-    .fondazione-photo { border-left: none; border-top: 1px solid var(--gray); min-height: 280px; }
-    .fondazione-commissions { grid-template-columns: 1fr; }
-    .text-photo { grid-template-columns: 1fr; }
-    .text-photo-body { padding: 48px 20px; border-right: none; border-bottom: 1px solid var(--gray); }
-    .text-photo.flip .text-photo-body { border-left: none; border-bottom: 1px solid var(--gray); order: 2; }
-    .photo-duo { grid-template-columns: 1fr; }
-    .photo-asym { grid-template-columns: 1fr; }
-    .pull-quote { padding: 56px 20px; }
-    .pull-quote-inner { grid-template-columns: 1fr; gap: 12px; }
-    .pull-mark { font-size: 64px; }
-    .project-card-header { flex-direction: column; align-items: flex-start; gap: 12px; padding: 24px 20px; }
-    .project-card-body { grid-template-columns: 1fr; }
-    .project-card-text { padding: 28px 20px; border-right: none; border-bottom: 1px solid var(--gray); }
-    .project-card-img img { min-height: 200px; }
-    .social-strip { padding: 32px 20px; gap: 12px; }
-    .photo-caption { padding: 10px 20px 0; flex-direction: column; gap: 2px; }
-    #footer-cta { flex-direction: column; gap: 32px; padding: 56px 20px; }
-    .footer-right { text-align: left; }
-    footer { flex-direction: column; gap: 8px; padding: 20px; }
-  }
-    @media (max-width: 768px) {
-    nav { padding: 20px; }
     #project-hero { padding: 100px 20px 40px; }
-    #intro { grid-template-columns: 1fr; gap: 24px; padding: 48px 20px; }
+    #intro, #next-story { grid-template-columns: 1fr; gap: 24px; padding: 48px 20px; }
     .project-meta { grid-template-columns: 1fr 1fr; gap: 24px; }
     .gallery-duo, .gallery-trio, .gallery-feature { grid-template-columns: 1fr; }
-    .gallery-duo .gal-slot, .gallery-trio .gal-slot, .gallery-feature .gal-slot { height: 60vw; }
-    .gallery-full .gal-slot { height: 60vw; }
+    .gallery-duo .gal-slot, .gallery-trio .gal-slot, .gallery-feature .gal-slot, .gallery-full .gal-slot { height: 60vw; }
+    .pull-quote { padding: 56px 20px; }
     #next-project { flex-direction: column; align-items: flex-start; gap: 24px; padding: 48px 20px; }
     footer { flex-direction: column; gap: 8px; padding: 20px; }
     .gal-caption { padding: 10px 20px 0; }
-</style>
-
   }
 </style>
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
-<nav>
-  <a href="index.html" class="nav-logo">← Leone Morandini</a>
-  <a href="index.html#photo-preview" class="nav-back">All work</a>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
+<nav aria-label="Project navigation">
+  <a href="index.html" class="nav-logo" aria-label="Leone Morandini home">← Leone Morandini</a>
+  <a href="index.html#photo-preview" class="nav-back" aria-label="Back to photography preview">All work</a>
 </nav>
 
+<main id="main-content" tabindex="-1">
+
 <!-- Project Hero -->
- <section id="cover" style="border:none; padding:0;">
-  <div class="cover-img" style="background-image: url('resources/DSF8093.jpg');"></div>
-  <div class="cover-overlay"></div>
+ <section id="cover" style="border:none; padding:0;" aria-label="Street photography project cover">
+  <div class="cover-img" aria-hidden="true" style="background-image: url('resources/DSF8093.jpg');"></div>
+  <div class="cover-overlay" aria-hidden="true"></div>
   <div class="cover-content">
     <p class="cover-eyebrow">Photography — Personal Project</p>
     <h1 class="cover-title">
@@ -294,7 +386,7 @@
 </section>
 
 <!-- Intro -->
-<section id="intro" class="reveal">
+<section id="intro" class="reveal" aria-label="About this photography series">
   <div class="intro-label">About this series</div>
   <div class="intro-text">
     I photograph people the way I try to design, by <em>listening first.</em>
@@ -317,7 +409,7 @@
   <!-- Foto 1: Full width -->
   <div class="gallery-full">
     <div class="gal-slot">
-      <div class="gal-img" style="background-image: url('studioTom/Tomstudio-11.jpg'); font-size:0;"></div>
+      <div class="gal-img" style="background-image: url('studioTom/Tomstudio-11.jpg'); font-size:0;" role="img" aria-label="Street photography image 01"></div>
     </div>
   </div>
   <p class="gal-caption"> 2025 — My producer friend needed a rebranding for his studio</p>
@@ -325,10 +417,10 @@
   <!-- Foto 2+3: Due affiancate -->
   <div class="gallery-duo" style="margin-top: 3px;">
     <div class="gal-slot">
-      <div class="gal-img" style="background-image: url('studioTom/Tomstudio-2.jpg'); font-size:0;"></div>
+      <div class="gal-img" style="background-image: url('studioTom/Tomstudio-2.jpg'); font-size:0;" role="img" aria-label="Street photography image 02"></div>
     </div>
     <div class="gal-slot">
-      <div class="gal-img" style="background-image: url('studioTom/Tomstudio.jpg'); font-size:0;"></div>
+      <div class="gal-img" style="background-image: url('studioTom/Tomstudio.jpg'); font-size:0;" role="img" aria-label="Street photography image 03"></div>
     </div>
   </div>
 
@@ -346,35 +438,35 @@
   <!-- Foto 4: Full width -->
   <div class="gallery-full">
     <div class="gal-slot">
-      <div class="gal-img" style="background-image: url('studioTom/Tomstudio-3.jpg'); font-size:0;">/div>
+      <div class="gal-img" style="background-image: url('studioTom/Tomstudio-3.jpg'); font-size:0;" role="img" aria-label="Street photography image 04"></div>
     </div>
   </div>
 
   <!-- Foto 5+6+7: Trio -->
   <div class="gallery-trio" style="margin-top: 3px;">
     <div class="gal-slot">
-      <div class="gal-img" style="background-image: url('studioTom/Tomstudio-5.jpg'); font-size:0;"></div>
+      <div class="gal-img" style="background-image: url('studioTom/Tomstudio-5.jpg'); font-size:0;" role="img" aria-label="Street photography image 05"></div>
     </div>
     <div class="gal-slot">
-      <div class="gal-img" style="background-image: url('studioTom/Tomstudio-9.jpg'); font-size:0;"></div>
+      <div class="gal-img" style="background-image: url('studioTom/Tomstudio-9.jpg'); font-size:0;" role="img" aria-label="Street photography image 06"></div>
     </div>
     <div class="gal-slot">
-      <div class="gal-img" style="background-image: url('studioTom/Tomstudio-7.jpg'); font-size:0;"></div>
+      <div class="gal-img" style="background-image: url('studioTom/Tomstudio-7.jpg'); font-size:0;" role="img" aria-label="Street photography image 07"></div>
     </div>
   </div>
 
   <!-- Foto 8+9: Feature (grande + verticale) -->
   <div class="gallery-feature" style="margin-top: 100px;">
     <div class="gal-slot">
-      <div class="gal-img" style="background-image: url('resources/DSF0365.jpg'); font-size:0;"></div>
+      <div class="gal-img" style="background-image: url('resources/DSF0365.jpg'); font-size:0;" role="img" aria-label="Street photography image 08"></div>
     </div>
     <div class="gal-slot portrait">
-      <div class="gal-img" style="background-image: url('resources/DSF0370.jpg'); font-size:0;"></div>
+      <div class="gal-img" style="background-image: url('resources/DSF0370.jpg'); font-size:0;" role="img" aria-label="Street photography image 09"></div>
     </div>
   </div>
   <p class="gal-caption">Lisbon, 2026</p>
 
-<section id="intro" class="reveal">
+<section id="next-story" class="reveal" aria-label="Next story">
   <div class="intro-label">Next story</div>
   <div class="intro-text">
 "We began as wanderers in a melancholic fog, where the world felt boundless and grey.
@@ -387,45 +479,45 @@
 
   <div class="gallery-full">
     <div class="gal-slot">
-      <div class="gal-img" style="background-image: url('resources/DSF1856.jpg'); font-size:0;">/div>
+      <div class="gal-img" style="background-image: url('resources/DSF1856.jpg'); font-size:0;" role="img" aria-label="Street photography image 10"></div>
     </div>
   </div>
-<p class="gal-caption">South Piedmont,September 2025</p>
+<p class="gal-caption">South Piedmont, September 2025</p>
 
   <!-- Foto 10+11: Due affiancate finali -->
   <div class="gallery-duo" style="margin-top: 3px;">
     <div class="gal-slot">
-      <div class="gal-img" style="background-image: url('resources/DSF1774.jpg'); font-size:0;"></div>
+      <div class="gal-img" style="background-image: url('resources/DSF1774.jpg'); font-size:0;" role="img" aria-label="Street photography image 11"></div>
     </div>
     <div class="gal-slot">
-      <div class="gal-img" style="background-image: url('resources/DSF1792.jpg'); font-size:0;"></div>
+      <div class="gal-img" style="background-image: url('resources/DSF1792.jpg'); font-size:0;" role="img" aria-label="Street photography image 12"></div>
     </div>
   </div>
 
-</div>
   <!-- Foto 5+6+7: Trio -->
   <div class="gallery-trio" style="margin-top: 3px;">
     <div class="gal-slot">
-      <div class="gal-img" style="background-image: url('resources/DSF1795.jpg'); font-size:0;"></div>
+      <div class="gal-img" style="background-image: url('resources/DSF1795.jpg'); font-size:0;" role="img" aria-label="Street photography image 13"></div>
     </div>
     <div class="gal-slot">
-      <div class="gal-img" style="background-image: url('resources/DSF1853.jpg'); font-size:0;"></div>
+      <div class="gal-img" style="background-image: url('resources/DSF1853.jpg'); font-size:0;" role="img" aria-label="Street photography image 14"></div>
     </div>
     <div class="gal-slot">
-      <div class="gal-img" style="background-image: url('resources/DSF1800.jpg'); font-size:0;"></div>
+      <div class="gal-img" style="background-image: url('resources/DSF1800.jpg'); font-size:0;" role="img" aria-label="Street photography image 15"></div>
     </div>
   </div>
   <p class="gal-caption">The Brocken Specter effect in the right picture</p>
 
  <div class="gallery-feature" style="margin-top: 6px;">
     <div class="gal-slot">
-      <div class="gal-img" style="background-image: url('resources/DSF1846.jpg'); font-size:0;"></div>
+      <div class="gal-img" style="background-image: url('resources/DSF1846.jpg'); font-size:0;" role="img" aria-label="Street photography image 16"></div>
     </div>
     <div class="gal-slot portrait">
-      <div class="gal-img" style="background-image: url('resources/DSF1859.jpg'); font-size:0;"></div>
+      <div class="gal-img" style="background-image: url('resources/DSF1859.jpg'); font-size:0;" role="img" aria-label="Street photography image 17"></div>
     </div>
 
   </div>
+</div>
 
 <!-- Next Project -->
 <div id="next-project">
@@ -436,32 +528,47 @@
       <h2 class="next-title">Wedding <em>Stories</em></h2>
     </a>
   </div>
-  <a href="wedding.html" class="next-arrow">→</a>
+  <a href="wedding.html" class="next-arrow" aria-label="Open next project: Wedding Stories">→</a>
 </div>
 
 
 
+</main>
 <footer>
   <span>Leone Morandini © 2026</span>
   <span>Turin — World</span>
 </footer>
 
 <script>
+  // Custom cursor: enabled only on devices with a fine pointer.
   const cursor = document.getElementById('cursor');
-  document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-  });
-  document.querySelectorAll('a, .gal-slot').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
-  });
+  const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
+  if (cursor && hasFinePointer) {
+    document.addEventListener('mousemove', e => {
+      window.requestAnimationFrame(() => {
+        cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+      });
+    });
+
+    document.querySelectorAll('a, button, .slot, .photo-full, .gal-slot, .text-photo-img, .fondazione-photo, .project-card-img, .aiko-photo, .social-link').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+    });
+  }
+
+  // Scroll reveal with graceful fallback.
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  }
 </script>
 </body>
 </html>

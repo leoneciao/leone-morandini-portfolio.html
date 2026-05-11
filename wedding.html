@@ -1,8 +1,63 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Wedding photography story by Leone Morandini in Piedmont, Italy, focused on ceremony, family, emotion and documentary moments.">
+<meta name="keywords" content="Leone Morandini, wedding photography, Piedmont wedding photographer, Italy wedding photography, documentary wedding, event photography, wedding videomaking">
+<meta name="author" content="Leone Morandini">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="color-scheme" content="dark light">
+<meta name="format-detection" content="telephone=no">
+<meta name="geo.region" content="IT-21">
+<meta name="geo.placename" content="Piedmont, Italy">
+<meta name="geo.position" content="45.0703;7.6869">
+<meta name="ICBM" content="45.0703, 7.6869">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Leone Morandini Portfolio">
+<meta property="og:title" content="Leone Morandini — Wedding Photography">
+<meta property="og:description" content="Wedding photography story by Leone Morandini in Piedmont, Italy, focused on ceremony, family, emotion and documentary moments.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="Wedding/image-88a5e514-4a21-416f-ab69-a772baf86b5d.webp">
+<meta property="og:image:alt" content="Wedding photography in Piedmont by Leone Morandini">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Leone Morandini — Wedding Photography">
+<meta name="twitter:description" content="Wedding photography story by Leone Morandini in Piedmont, Italy, focused on ceremony, family, emotion and documentary moments.">
+<meta name="twitter:image" content="Wedding/image-88a5e514-4a21-416f-ab69-a772baf86b5d.webp">
+<meta name="twitter:image:alt" content="Wedding photography in Piedmont by Leone Morandini">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Wedding Photography",
+  "author": {
+    "@type": "Person",
+    "name": "Leone Morandini",
+    "url": "index.html"
+  },
+  "description": "Wedding photography story by Leone Morandini in Piedmont, Italy, focused on ceremony, family, emotion and documentary moments.",
+  "image": "Wedding/image-88a5e514-4a21-416f-ab69-a772baf86b5d.webp",
+  "contentLocation": {
+    "@type": "Place",
+    "name": "Piedmont, Italy",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 45.0703,
+      "longitude": 7.6869
+    }
+  },
+  "keywords": [
+    "Leone Morandini",
+    "wedding photography",
+    "Piedmont wedding photographer",
+    "Italy wedding photography",
+    "documentary wedding",
+    "event photography",
+    "wedding videomaking"
+  ]
+}
+</script>
 <title>Leone Morandini — Wedding Photography</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -28,6 +83,66 @@
   .nav-logo { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em; color: var(--white); text-decoration: none; text-transform: uppercase; }
   .nav-back { color: var(--white); text-decoration: none; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; transition: opacity 0.2s; }
   .nav-back:hover { opacity: 1; }
+
+  .skip-link {
+    position: fixed;
+    top: 12px; left: 12px;
+    z-index: 10000;
+    transform: translateY(-150%);
+    background: var(--accent);
+    color: var(--black);
+    padding: 10px 14px;
+    border: 1px solid var(--accent);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+  }
+  .skip-link:focus { transform: translateY(0); }
+  #main-content:focus { outline: none; }
+  .visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  a:focus-visible,
+  button:focus-visible,
+  iframe:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    body,
+    a,
+    button,
+    .slot,
+    .photo-full,
+    .gal-slot,
+    .text-photo-img,
+    .fondazione-photo,
+    .project-card-img,
+    .aiko-photo,
+    .social-link,
+    .footer-right a { cursor: auto; }
+    .cursor { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
 
   /* COVER */
   #cover { height: 100vh; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 40px 60px; }
@@ -149,17 +264,21 @@
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
-<nav>
-  <a href="index.html" class="nav-logo">← Leone Morandini</a>
-  <a href="index.html#work" class="nav-back">All work</a>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
+<nav aria-label="Project navigation">
+  <a href="index.html" class="nav-logo" aria-label="Leone Morandini home">← Leone Morandini</a>
+  <a href="index.html#work" class="nav-back" aria-label="Back to all work">All work</a>
 </nav>
 
+<main id="main-content" tabindex="-1">
+
 <!-- COVER -->
-<section id="cover">
-  <div class="cover-img"></div>
-  <div class="cover-overlay"></div>
+<section id="cover" aria-label="Wedding photography project cover">
+  <div class="cover-img" aria-hidden="true"></div>
+  <div class="cover-overlay" aria-hidden="true"></div>
   <div class="cover-content">
     <p class="cover-eyebrow">Wedding Photography — Piedmont, Italy — October 2025</p>
     <h1 class="cover-title">
@@ -198,10 +317,10 @@
 
 <div class="photo-duo">
   <div class="slot">
-    <img src="Wedding/image-af51572f-5948-42a9-ae2d-75fc32f52886.webp" alt="Rings on the altar">
+    <img src="Wedding/image-af51572f-5948-42a9-ae2d-75fc32f52886.webp" alt="Rings on the altar" loading="lazy" decoding="async">
   </div>
   <div class="slot">
-    <img src="Wedding/image-eeba1a17-7c82-420a-9fb9-d772b2aa201a.webp" alt="Hands holding, wedding ring">
+    <img src="Wedding/image-eeba1a17-7c82-420a-9fb9-d772b2aa201a.webp" alt="Hands holding, wedding ring" loading="lazy" decoding="async">
   </div>
 </div>
 <div class="photo-caption">
@@ -210,7 +329,7 @@
 </div>
 
 <div class="photo-full" style="margin-top:3px;">
-  <img src="Wedding/image-fa60a0b1-1a7e-4646-94d1-b22307a8cfb6.webp" alt="The bouquet">
+  <img src="Wedding/image-fa60a0b1-1a7e-4646-94d1-b22307a8cfb6.webp" alt="The bouquet" loading="lazy" decoding="async">
 </div>
 <div class="photo-caption"><span>The bouquet, just before the entrance.</span></div>
 
@@ -222,10 +341,10 @@
 
 <div class="photo-duo">
   <div class="slot">
-    <img src="Wedding/image-2c71469f-f4d2-472e-937f-4f42d7507fe0.webp" alt="Two women laughing together">
+    <img src="Wedding/image-2c71469f-f4d2-472e-937f-4f42d7507fe0.webp" alt="Two women laughing together" loading="lazy" decoding="async">
   </div>
   <div class="slot">
-    <img src="Wedding/image-fc4d525d-243f-4fe3-9d21-3a76a5e14c7f.webp" alt="Friend wiping tears">
+    <img src="Wedding/image-fc4d525d-243f-4fe3-9d21-3a76a5e14c7f.webp" alt="Friend wiping tears" loading="lazy" decoding="async">
   </div>
 </div>
 <div class="photo-caption">
@@ -235,7 +354,7 @@
 
 <div class="pull-quote reveal">
   <div class="pull-quote-inner">
-    <div class="pull-mark">"</div>
+    <div class="pull-mark" aria-hidden="true">"</div>
     <div>
       <p class="pull-text">Before walking into the church,<br>she laughed so hard<br>she had to redo her lipstick.<br><em>Twice.</em></p>
       <p class="pull-author">— Getting ready, October morning</p>
@@ -250,7 +369,7 @@
 </div>
 
 <div class="photo-full">
-  <img src="Wedding/image-828f82ec-4061-4866-816f-c4756acd924e.webp" alt="The couple laughing at the altar">
+  <img src="Wedding/image-828f82ec-4061-4866-816f-c4756acd924e.webp" alt="The couple laughing at the altar" loading="lazy" decoding="async">
 </div>
 <div class="photo-caption">
   <span>At the altar. The priest said something. He laughed first. Then she did. Then everything else became secondary.</span>
@@ -259,10 +378,10 @@
 
 <div class="photo-duo" style="margin-top:3px;">
   <div class="slot">
-    <img src="Wedding/image-507c125e-d1dd-4e5a-95df-69fd7634fdf4.webp" alt="The bride, emotional">
+    <img src="Wedding/image-507c125e-d1dd-4e5a-95df-69fd7634fdf4.webp" alt="The bride, emotional" loading="lazy" decoding="async">
   </div>
   <div class="slot">
-    <img src="Wedding/image-7b14ca0c-f5d2-4102-9bd5-92d4154611d7.webp" alt="The couple outside the church">
+    <img src="Wedding/image-7b14ca0c-f5d2-4102-9bd5-92d4154611d7.webp" alt="The couple outside the church" loading="lazy" decoding="async">
   </div>
 </div>
 <div class="photo-caption">
@@ -276,7 +395,7 @@
     <p style="color: var(--accent); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 8px;">Outside the church — Piedmont</p>
   </div>
   <div class="text-photo-img">
-    <img src="Wedding/image-5e240c13-1649-401c-acec-89d905bb0204.webp" alt="The bride laughing outside the church">
+    <img src="Wedding/image-5e240c13-1649-401c-acec-89d905bb0204.webp" alt="The bride laughing outside the church" loading="lazy" decoding="async">
   </div>
 </div>
 
@@ -288,10 +407,10 @@
 
 <div class="photo-duo">
   <div class="slot">
-    <img src="Wedding/image-f479d11e-2f83-4d52-b763-7b9f0c427443.webp" alt="Young boy and elderly man">
+    <img src="Wedding/image-f479d11e-2f83-4d52-b763-7b9f0c427443.webp" alt="Young boy and elderly man" loading="lazy" decoding="async">
   </div>
   <div class="slot">
-    <img src="Wedding/image-48c8f039-7477-4899-a4c2-c82aa7214dde.webp" alt="Family photo with grandparents">
+    <img src="Wedding/image-48c8f039-7477-4899-a4c2-c82aa7214dde.webp" alt="Family photo with grandparents" loading="lazy" decoding="async">
   </div>
 </div>
 <div class="photo-caption">
@@ -299,7 +418,7 @@
 </div>
 
 <div class="photo-full" style="margin-top:3px;">
-  <img src="Wedding/image-188b4371-3f3b-4ed1-8efb-a358505b38ea.webp" alt="The whole family outside the church">
+  <img src="Wedding/image-188b4371-3f3b-4ed1-8efb-a358505b38ea.webp" alt="The whole family outside the church" loading="lazy" decoding="async">
 </div>
 <div class="photo-caption">
   <span>The whole family outside the church door. In the middle of all that happy chaos, she leaned down toward the smallest child. She noticed him.</span>
@@ -308,7 +427,7 @@
 
 <div class="pull-quote reveal">
   <div class="pull-quote-inner">
-    <div class="pull-mark">"</div>
+    <div class="pull-mark" aria-hidden="true">"</div>
     <div>
       <p class="pull-text">Some people made<br>a great effort to be there.<br><em>And they were.</em></p>
       <p class="pull-author">— Outside the church, October 2025</p>
@@ -324,10 +443,10 @@
 
 <div class="photo-duo">
   <div class="slot">
-    <img src="Wedding/image-84f68ece-2457-4b9b-b63f-4d9be48cd1c7.webp" alt="Couple seen through the neon sign">
+    <img src="Wedding/image-84f68ece-2457-4b9b-b63f-4d9be48cd1c7.webp" alt="Couple seen through the neon sign" loading="lazy" decoding="async">
   </div>
   <div class="slot">
-    <img src="Wedding/image-53367c2b-e72b-4996-853e-ead3ba1678d0.webp" alt="Family at the reception with newborn">
+    <img src="Wedding/image-53367c2b-e72b-4996-853e-ead3ba1678d0.webp" alt="Family at the reception with newborn" loading="lazy" decoding="async">
   </div>
 </div>
 <div class="photo-caption">
@@ -336,7 +455,7 @@
 </div>
 
 <div class="photo-full" style="margin-top:3px;">
-  <img src="Wedding/image-292c132c-681b-4953-bc41-bee8dc43a27e.webp" alt="Cutting the cake">
+  <img src="Wedding/image-292c132c-681b-4953-bc41-bee8dc43a27e.webp" alt="Cutting the cake" loading="lazy" decoding="async">
 </div>
 <div class="photo-caption">
   <span>The cake. She's already laughing. He's paying close attention. Almost there.</span>
@@ -372,26 +491,42 @@
   </div>
 </div>
 
+</main>
 <footer>
   <span>Leone Morandini © 2026</span>
   <span>Turin — World</span>
 </footer>
 
 <script>
+  // Custom cursor: enabled only on devices with a fine pointer.
   const cursor = document.getElementById('cursor');
-  document.addEventListener('mousemove', e => {
-    window.requestAnimationFrame(() => {
-      cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+  const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  if (cursor && hasFinePointer) {
+    document.addEventListener('mousemove', e => {
+      window.requestAnimationFrame(() => {
+        cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+      });
     });
-  });
-  document.querySelectorAll('a, .slot, .photo-full, .text-photo-img').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
-  });
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('a, button, .slot, .photo-full, .gal-slot, .text-photo-img, .fondazione-photo, .project-card-img, .aiko-photo, .social-link').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+    });
+  }
+
+  // Scroll reveal with graceful fallback.
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  }
 </script>
 </body>
 </html>
